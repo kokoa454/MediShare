@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MediShare - For your life">
+    <!-- TODO <meta name="keywords" content=""> -->
+    <title>MediShare</title>
+    <link rel="stylesheet" href="../../static/css/main.css">
+    <link rel="stylesheet" href="../../static/css/sidebar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header >
+        <section id="header-title">
+            <h1 class="MediShare-text">MEDISHARE</h1>
+            <p class="ForYourLife-text">For your life</p>
+            <img src="../../static/img/icon.png" alt="MediShare Icon" class="MediShare-icon">
+        </section>
+        <section id="email-container">
+            <h3 id="email">example@domain.com</h3>
+            <p><a href="#">設定</a></p>
+        </section>
+        <section id="tips-containers">
+            <h4 id="tips-title">よくある質問</h4>
+            <div class="tip-container">
+                <input type="checkbox" class="tip" id="tip1">
+                <label for="tip1" class="label">お薬の登録方法</label>
+                <div class="tip-content">
+                    <p>時間帯カードを選択肢、お薬一覧画面の”+”ボタンをクリックすると、お薬の登録画面に移動します。</p>
+                </div>
+            </div>
+            <div class="tip-container">
+                <input type="checkbox" class="tip" id="tip2">
+                <label for="tip2" class="label">お薬の編集方法</label>
+                <div class="tip-content">
+                    <p>お薬の登録方法についての説明がここに入ります。</p>
+                </div>
+            </div>
+            <div class="tip-container">
+                <input type="checkbox" class="tip" id="tip3">
+                <label for="tip3" class="label">お薬の削除方法</label>
+                <div class="tip-content">
+                    <p>お薬の登録方法についての説明がここに入ります。</p>
+                </div>
+            </div>
+            <div class="tip-container">
+                <input type="checkbox" class="tip" id="tip4">
+                <label for="tip4" class="label">カードがオレンジになる理由</label>
+                <div class="tip-content">
+                    <p>お薬の登録方法についての説明がここに入ります。</p>
+                </div>
+            </div>
+            <div class="tip-container">
+                <input type="checkbox" class="tip" id="tip5">
+                <label for="tip5" class="label">アカウントの設定・削除について</label>
+                <div class="tip-content">
+                    <p>お薬の登録方法についての説明がここに入ります。</p>
+                </div>
+            </div>
+        </section>
+        <section id="footer-title">
+            <p><a href="#">プライバシーポリシー</a></p>
+            <p><a href="#">会員規約</a></p>
+            <p><a href="#">利用規約</a></p>
+        </section>
+    </header>
+    <script>
+        document.querySelectorAll('.tip').forEach(tip => {
+            tip.addEventListener('change', (e) => {
+                const content = e.target.nextElementSibling.nextElementSibling;
+
+                document.querySelectorAll('.tip').forEach(otherTip => {
+                    if (otherTip !== tip) {
+                        otherTip.checked = false;
+                        const otherContent = otherTip.nextElementSibling.nextElementSibling;
+                        otherContent.style.height = "0px";
+                    }
+                });
+
+                if (e.target.checked) {
+                    content.style.height = "auto";
+                    const height = (content.scrollHeight + 20) + "px"; //include padding
+                    content.style.height = "0px";
+
+                    requestAnimationFrame(() => {
+                        content.style.height = height;
+                    });
+                } else {
+                    content.style.height = "0px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

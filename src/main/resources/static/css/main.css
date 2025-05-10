@@ -1,3 +1,11 @@
+/* Google Fonts settings
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+*/
+
 *{
     margin: 0;
     padding: 0;
@@ -6,10 +14,18 @@
     line-height: 1;
 }
 
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Sawarabi Gothic', sans-serif;
+    color: var(--black);
+}
+
 :root{
     --mikan: #F08300;
     --black: #333;
     --white: #fdfdfd;
+    --gray: #dddddd;
+    --dark-gray: #999999;
+    --light-gray: #f0f0f0;
 }
 
 .MediShare-text{
@@ -22,6 +38,7 @@
     font-family: 'Oswald', sans-serif;
     font-size: 24px;
     font-style: bold;
+    font-weight: 500;
     color: var(--black);
 }
 
