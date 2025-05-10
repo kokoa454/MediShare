@@ -1,40 +1,55 @@
-header{
+header {
     width: 100%;
-    height: 100px;
-    box-shadow: 0 2px 4px var(--black);
+    height: 108px;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.MediShare-icon{
+.MediShare-icon {
     position: absolute;
-    top: 0;
-    left: 20px;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
 }
 
-#header-title{
+.MediShare-icon:hover {
+    transform: translateY(-50%) scale(1.05);
+}
+
+#header-title {
     text-align: center;
     user-select: none;
 }
 
-/* styles for mobile*/
-@media (max-width: 480px) { 
-    header{
-        height: 80px;
+
+/* styles for mobile */
+@media (max-width: 480px) {
+    header {
+        height: 84px;
         position: inherit;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .MediShare-icon{
-        width: 80px;
-        height: 80px;
+
+    .MediShare-icon {
+        width: 76px;
+        height: 76px;
         position: inherit;
+        transform: none;
     }
 
-    #header-title{
+    .MediShare-icon:hover {
+        transform: scale(1.05);
+    }
+
+    #header-title {
         display: none;
     }
 }

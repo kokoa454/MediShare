@@ -1,14 +1,3 @@
-:root {
-    --white: #ffffff;
-    --mikan: #f08300;
-    --black: #2c3e50;
-    --gray-light: #f8f9fa;
-    --gray: #666666;
-    --gray-darker: #444444;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow: rgba(0, 0, 0, 0.1);
-}
-
 header{
     width: 480px;
     height: 100dvh;
