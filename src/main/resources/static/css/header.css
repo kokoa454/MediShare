@@ -1,0 +1,40 @@
+header{
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 2px 4px var(--black);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MediShare-icon{
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+
+#header-title{
+    text-align: center;
+    user-select: none;
+}
+
+/* styles for mobile*/
+@media (max-width: 480px) { 
+    header{
+        height: 80px;
+        position: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .MediShare-icon{
+        width: 80px;
+        height: 80px;
+        position: inherit;
+    }
+
+    #header-title{
+        display: none;
+    }
+}
