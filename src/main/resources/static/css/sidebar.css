@@ -34,7 +34,36 @@ header *{
     transform: scale(1.05);
 }
 
-#email-container{
+.hamburger-menu {
+    display: none;
+}
+
+.overlay-menu {
+    display: none;
+}
+
+.menu-content {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-content .MediShare-text {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.menu-content .ForYourLife-text {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+#email-container-desktop,
+#email-container-mobile {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -48,31 +77,35 @@ header *{
     border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-#email-container h3{
+#email-container-desktop h3,
+#email-container-mobile h3 {
     font-size: 18px;
     color: var(--black);
     margin: 0;
     font-weight: 600;
 }
 
-#email-container p{
+#email-container-desktop p,
+#email-container-mobile p {
     margin-top: 12px;
     font-size: 16px;
     font-weight: 500;
 }
 
-#email-container p a{
+#email-container-desktop p a,
+#email-container-mobile p a {
     text-decoration: none;
     color: var(--mikan);
     transition: color 0.3s ease;
 }
 
-#email-container p a:hover {
+#email-container-desktop p a:hover,
+#email-container-mobile p a:hover {
     color: var(--mikan);
     opacity: 0.8;
 }
 
-#tips-containers{
+#tips-containers-desktop {
     margin-top: 160px;
     display: flex;
     flex-direction: column;
@@ -81,7 +114,8 @@ header *{
     width: 100%;
 }
 
-#tips-containers h4{
+#tips-containers-desktop h4,
+#tips-containers-mobile h4 {
     font-size: 20px;
     margin-bottom: 25px;
     color: var(--black);
@@ -89,7 +123,7 @@ header *{
     text-shadow: 0 1px 1px var(--shadow-light);
 }
 
-.tip-container{
+.tip-container {
     width: 90%;
     margin-bottom: 15px;
     background-color: var(--white);
@@ -106,11 +140,11 @@ header *{
     border-color: rgba(0, 0, 0, 0.12);
 }
 
-.tip{
+.tip {
     display: none;
 }
 
-.label{
+.label {
     padding: 16px 20px;
     display: block;
     background-color: var(--white);
@@ -128,16 +162,16 @@ header *{
     background-color: var(--gray-light);
 }
 
-.label::before{
+.label::before {
     content: "";
     width: 8px;
     height: 8px;
     border-top: 2px solid var(--black);
-	border-right: 2px solid var(--black);
+    border-right: 2px solid var(--black);
     position: absolute;
     top: 50%;
-	right: 20px;
-	transform: translateY(-50%) rotate(135deg);
+    right: 20px;
+    transform: translateY(-50%) rotate(135deg);
     transition: transform 0.3s ease;
 }
 
@@ -155,7 +189,7 @@ header *{
     line-height: 1.6;
     font-size: 15px;
     margin: 0;
-    padding-bottom: 4px;
+    padding-bottom: 20px;
 }
 
 .tip:checked + .label {
@@ -168,17 +202,19 @@ header *{
 }
 
 .tip:checked + .label + .tip-content {
+    height: auto;
     padding: 20px 20px 24px 20px;
     background-color: var(--gray-light);
     box-shadow: inset 0 2px 4px var(--shadow-light);
 }
 
-#footer-title{
+#footer-title-desktop,
+#footer-title-mobile {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     width: 100%;
     padding: 15px 0;
     background-color: var(--gray-light);
@@ -186,11 +222,13 @@ header *{
     border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-#footer-title p {
+#footer-title-desktop p,
+#footer-title-mobile p {
     margin: 0;
 }
 
-#footer-title p a{
+#footer-title-desktop p a,
+#footer-title-mobile p a {
     text-decoration: none;
     color: var(--gray-darker);
     font-size: 14px;
@@ -198,10 +236,181 @@ header *{
     font-weight: 500;
 }
 
-#footer-title p:first-child, #footer-title p:nth-child(2){
+#footer-title-desktop p:first-child,
+#footer-title-desktop p:nth-child(2),
+#footer-title-mobile p:first-child,
+#footer-title-mobile p:nth-child(2) {
     margin-right: 25px;
 }
 
-#footer-title p a:hover {
+#footer-title-desktop p a:hover,
+#footer-title-mobile p a:hover {
     color: var(--mikan);
+}
+
+/* styles for mobile and narrow desktop screen*/
+@media (max-width: 1024px) {
+    header {
+        width: 100%;
+        height: 84px;
+        position: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    #header-title {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #header-title .MediShare-icon {
+        width: 76px;
+        height: 76px;
+        margin-top: 0;
+    }
+
+    #header-title .MediShare-text,
+    #header-title .ForYourLife-text {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1000;
+    }
+
+    .hamburger-menu span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--black);
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger-menu span:nth-child(1) {
+        top: 0;
+    }
+
+    .hamburger-menu span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .hamburger-menu span:nth-child(3) {
+        bottom: 0;
+    }
+
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    .overlay-menu {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--white);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .overlay-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .menu-content {
+        width: 100%;
+        max-width: none;
+        padding: 40px 30px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .menu-content .MediShare-text {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .menu-content .ForYourLife-text {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .menu-content #email-container-mobile{
+        max-width: 480px;
+        margin-top: 20px;
+    }
+
+    .menu-content #tips-containers-mobile {
+        display: block !important;
+        width: 100%;
+        max-width: 480px;
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+    .menu-content #footer-title-mobile {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: var(--gray-light);
+        box-shadow: 0 -2px 8px var(--shadow-light);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 15px 0;
+        z-index: 1000;
+    }
+
+    .menu-content .tip-container {
+        width: 100%;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .menu-content .tip-content {
+        background-color: var(--gray-light);
+    }
+
+    .menu-content .tip:checked + .label + .tip-content {
+        padding: 20px;
+    }
+
+    #email-container-desktop,
+    #tips-containers-desktop,
+    #footer-title-desktop {
+        display: none;
+    }
 }
