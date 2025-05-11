@@ -16,6 +16,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--gray-light);
+
 }
 
 #footer-title p {
@@ -25,6 +27,7 @@ footer {
 #footer-title p a{
     text-decoration: none;
     color: var(--gray-darker);
+    background-color: var(--gray-light);
     font-size: 14px;
     transition: color 0.3s ease;
     font-weight: 500;
