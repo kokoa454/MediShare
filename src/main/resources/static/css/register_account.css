@@ -107,7 +107,7 @@ button{
     margin-right: 8px;
 }
 
-@media (max-width: 640px){
+@media (max-width: 790px){
     #wrapper1, #wrapper2{
         width: 350px;
     }
