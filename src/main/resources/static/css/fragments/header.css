@@ -29,7 +29,7 @@ header {
 
 
 /* styles for mobile */
-@media (max-width: 480px) {
+@media (max-width: 540px) {
     header {
         height: 84px;
         position: inherit;
