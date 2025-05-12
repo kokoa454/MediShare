@@ -90,7 +90,7 @@ form a{
     font-weight: 600;
 }
 
-#is-forget-password{
+#does-forget-password{
     width: 600px;
     margin-top: 8px;
 }
@@ -114,4 +114,34 @@ button{
 
 #to-register-account p{
     margin-right: 8px;
+}
+
+@media (max-width: 640px){
+    #wrapper1, #wrapper2{
+        width: 350px;
+    }
+
+    .input-group{
+        width: 310px;
+    }
+
+    .input-group img{
+        display: none;
+    }
+
+    #does-forget-password{
+        width: 310px;
+    }
+
+    button{
+        margin-top: 20px;
+    }
+
+    #to-register-account{
+        flex-direction: column;
+    }
+
+    #to-register-account a{
+        margin-top: 8px;
+    }
 }
