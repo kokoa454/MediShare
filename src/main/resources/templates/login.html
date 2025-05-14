@@ -1,34 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MediShare - For your life">
-    <!-- TODO <meta name="keywords" content=""> -->
-    <title>MediShare</title>
-    <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/login.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
-</head>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('login', 'headerAndFooter')"></head>
 <body>
+    <div th:replace="fragments/header :: header"></div>
     <main>
         <div id="wrapper1">
             <div id="wrapper2">
                 <h1>ログイン</h1>
                 <form action="#" method="post">
                     <div class="input-group">
-                        <img src="../static/img/user-icon.png" alt="メールアドレスアイコン">
+                        <img th:src="@{/img/user-icon.png}" alt="メールアドレスアイコン">
                         <div class="input-text-group">
                             <label for="username">メールアドレス</label>
                             <input type="text" id="username" name="username" placeholder="example@domain.com" required>
                         </div>
                     </div>
                     <div class="input-group">
-                        <img src="../static/img/password-icon.png" alt="パスワードアイコン">
+                        <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン">
                         <div class="input-text-group">
                             <label for="password">パスワード（英数字混合・6文字以上）</label>
                             <input type="password" id="password" name="password" placeholder="････････" required>
@@ -44,5 +32,6 @@
             </div>
         </div>
     </main>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
