@@ -1,4 +1,4 @@
-package com.medi.share.MediShare;
+package com.medishare;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
