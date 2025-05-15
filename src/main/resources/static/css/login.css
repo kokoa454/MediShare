@@ -1,6 +1,7 @@
 main{
     width: 100%;
-    height: calc(100vh - 178px);
+    min-height: calc(100vh - 178px);
+    padding: 20px 0 90px 0;
     background: url(../img/background.png) no-repeat center center fixed;
     background-size: cover;
     display: flex;
@@ -117,6 +118,10 @@ button{
 }
 
 @media (max-width: 790px){
+    main{
+        min-height: calc(100vh - 154px);
+        margin-bottom: 70px;
+    }
     #wrapper1, #wrapper2{
         width: 350px;
     }
