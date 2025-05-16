@@ -19,7 +19,17 @@
                         <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン">
                         <div class="input-text-group">
                             <label for="password">パスワード（英数字混合・6文字以上）<span class="error-message" id="password-error">正しいパスワードパターンを入力してください</span></label>
-                            <input type="password" id="password" name="password" placeholder="････････" required>
+                            <div id="password-strength">
+                                <div id="password-strength-bar"></div>
+                                <p id="password-strength-text"></p>
+                            </div>
+                            <input type="password" id="password" name="password" placeholder="・・・・・・" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-text-group">
+                            <label for="password-validation">パスワードをもう一度入力してください<span class="error-message" id="password-validation-error">パスワードが一致しません</span></label>
+                            <input type="password" id="password-validation" name="password-validation" placeholder="・・・・・・" required>
                         </div>
                     </div>
                     <button type="submit">アカウント作成</button>
@@ -30,8 +40,16 @@
                 </form>
             </div>
         </div>
+        <dialog id="success-dialog">
+            <div id="success-dialog-content">
+                <h2>アカウントを作成しました</h2>
+                <p>ログイン画面に移ります</p>
+                <button id="close-dialog">OK</button>
+            </div>
+        </dialog>
     </main>
     <div th:replace="fragments/footer :: footer"></div>
     <script th:src="@{/js/register_account.js}"></script>
+    <script th:src="@{/js/zxcvbn.js}"></script>
 </body>
 </html>
