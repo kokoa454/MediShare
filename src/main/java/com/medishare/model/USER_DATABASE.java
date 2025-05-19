@@ -22,4 +22,13 @@ public class USER_DATABASE {
     @Column(nullable = true)
     private String family_email;
 
+    public USER_DATABASE(){
+
+    }
+    public USER_DATABASE(String user_email, String password, String family_email){
+        this.user_email = user_email;
+        this.password = password;
+        this.family_email = family_email;
+    }
+
 }
