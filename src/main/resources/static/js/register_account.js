@@ -1,5 +1,7 @@
 const form = document.getElementById("register-account-form");
 const dialog = document.getElementById("success-dialog");
+const dialogContent = document.getElementById("success-dialog-content");
+const dialogLoader = document.getElementById("loading-cat");
 const goToLogin = document.getElementById("close-dialog");
 const strengthBar = document.getElementById("password-strength-bar");
 const strengthText = document.getElementById("password-strength-text");
@@ -96,7 +98,7 @@ form.addEventListener("submit", function(event) {
         body: formData
     }).then(response => {
         if (response.ok) {
-            dialog.showModal();
+            showLoaderDialog();
         } else {
             alert("アカウント作成失敗");
         }
@@ -109,3 +111,14 @@ goToLogin.addEventListener("click", function() {
     dialog.close();
     window.location.href = "/login";
 });
+
+function showLoaderDialog() {
+    dialog.showModal();
+    dialogContent.style.display = "none";
+    dialogLoader.style.display = "block";
+
+    setTimeout(() => {
+        dialogLoader.style.display = "none";
+        dialogContent.style.display = "block";
+    }, 3000);
+}
