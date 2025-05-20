@@ -9,6 +9,100 @@ main{
     align-items: center;
 }
 
+#success-dialog:not([open]) {
+    display: none;
+}
+
+#success-dialog::backdrop {
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#success-dialog {
+    width: 450px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.4s ease-out forwards;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    z-index: 9999;
+}
+
+#success-dialog-content, #error-dialog-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#success-dialog h2, #error-dialog-content h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: var(--mikan);
+}
+
+#success-dialog p, #error-dialog-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#success-close-dialog, #error-close-dialog {
+    margin-top: 20px;
+    width: 60%;
+    height: 40px;
+    background-color: var(--mikan);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#success-close-dialog::before, #error-close-dialog::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+#success-close-dialog:hover::before, #error-close-dialog:hover::before {
+    left: 0;
+}
+
+#success-close-dialog:hover, #error-close-dialog:hover {
+    background-color: #d97300;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 #wrapper1{
     width: 750px;
     height: 600px;
@@ -142,6 +236,22 @@ button:hover {
 
 #to-register-account p{
     margin-right: 8px;
+}
+
+#loading-cat{
+    width: 100%;
+    height: 100%;
+}
+
+#loading-cat img{
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+#loading-cat p{
+    font-size: 12px;
+    margin-top: 8px;
 }
 
 @media (max-width: 790px){

@@ -7,7 +7,7 @@
         <div id="wrapper1">
             <div id="wrapper2">
                 <h1>ログイン</h1>
-                <form action="/login" method="post">
+                <form action="/login" method="post" id="login-form">
                     <div class="input-group">
                         <img th:src="@{/img/user-icon.png}" alt="メールアドレスアイコン">
                         <div class="input-text-group">
@@ -19,7 +19,7 @@
                         <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン">
                         <div class="input-text-group">
                             <label for="password">パスワード（英数字混合・6文字以上）</label>
-                            <input type="password" id="password" name="password" placeholder="････････" required>
+                            <input type="password" id="password" name="password" placeholder="・・・・・・" required>
                             <a href="#" id="does-forget-password">パスワードをお忘れですか？</a>
                         </div>
                     </div>
@@ -31,7 +31,24 @@
                 </form>
             </div>
         </div>
+        <dialog id="success-dialog">
+            <div id="loading-cat">
+                <img th:src="@{/img/loading-cat.gif}" alt="ローディング" id="loading-cat">
+                <p>ログイン中</p>
+            </div>
+            <div id="success-dialog-content">
+                <h2>ログインしました</h2>
+                <p>ダッシュボード画面に移ります</p>
+                <button id="success-close-dialog">OK</button>
+            </div>
+            <div id="error-dialog-content">
+                <h2>ログインに失敗しました</h2>
+                <p><!-- the message from the server will be inserted here --></p>
+                <button id="error-close-dialog">OK</button>
+            </div>
+        </dialog>
     </main>
     <div th:replace="fragments/footer :: footer"></div>
+    <script th:src="@{/js/login.js}"></script>
 </body>
 </html>
