@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/register_account")
 public class RegisterController {
 
     private final UserService userService;
@@ -18,22 +18,22 @@ public class RegisterController {
 
     @GetMapping
     public String registerPage() {
-        return "register";  // register.html を表示
+        return "register_account";  // register_account.html を表示
     }
 
     @PostMapping
     public String registerUser(
-            @RequestParam("username") String email,
+            @RequestParam("username") String userEmail,
             @RequestParam("password") String password
     ) {
-        boolean isRegistered = userService.registerUser(email, password);
+        boolean isRegistered = userService.registerUser(userEmail, password);
 
         if (!isRegistered) {
             System.out.println("すでに登録されているユーザーです");
             return "redirect:/register?error=exists";
         }
 
-        System.out.println("ユーザー登録成功: " + email);
+        System.out.println("ユーザー登録成功: " + userEmail);
         return "redirect:/login";
     }
 }

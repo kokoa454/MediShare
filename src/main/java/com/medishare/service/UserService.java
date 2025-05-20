@@ -19,20 +19,20 @@ public class UserService {
     }
 
     // ユーザー登録処理
-    public boolean registerUser(String email, String password) {
-        if (userRepository.existsByUserEmail(email)) {
+    public boolean registerUser(String userEmail, String password) {
+        if (userRepository.existsByUserEmail(userEmail)) {
             return false;  // すでに登録済み
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        USER_DATABASE user = new USER_DATABASE(email, encodedPassword, null);
+        USER_DATABASE user = new USER_DATABASE(userEmail, encodedPassword, null);
         userRepository.save(user);
         return true;
     }
 
     // ユーザー認証処理
-    public boolean authenticateUser(String email, String password) {
-        USER_DATABASE user = userRepository.findByUserEmail(email);
+    public boolean authenticateUser(String userEmail, String password) {
+        USER_DATABASE user = userRepository.findByUserEmail(userEmail);
         return user != null && passwordEncoder.matches(password, user.getPassword());
     }
 }

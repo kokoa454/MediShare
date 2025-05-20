@@ -23,16 +23,16 @@ public class LoginController {
 
     @PostMapping
     public String loginUser(
-            @RequestParam("username") String email,
+            @RequestParam("username") String userEmail,
             @RequestParam("password") String password
     ) {
-        boolean isAuthenticated = userService.authenticateUser(email, password);
+        boolean isAuthenticated = userService.authenticateUser(userEmail, password);
 
         if (isAuthenticated) {
-            System.out.println("ログイン成功: " + email);
-            return "redirect:/home";
+            System.out.println("ログイン成功: " + userEmail);
+            return "redirect:/dashboard";
         } else {
-            System.out.println("ログイン失敗: " + email);
+            System.out.println("ログイン失敗: " + userEmail);
             return "redirect:/login?error=invalid";
         }
     }
