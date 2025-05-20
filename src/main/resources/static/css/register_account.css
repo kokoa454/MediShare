@@ -53,25 +53,27 @@ main{
     z-index: 9999;
 }
 
-#success-dialog-content {
+#success-dialog-content, #error-dialog-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#success-dialog h2 {
+#success-dialog h2, #error-dialog-content h2 {
     margin-bottom: 10px;
     font-size: 22px;
     color: var(--mikan);
 }
 
-#success-dialog p {
+#success-dialog p, #error-dialog-content p {
     font-size: 16px;
     margin-bottom: 20px;
     color: #333;
 }
 
-#close-dialog {
+#success-close-dialog, #error-close-dialog {
+    margin-top: 20px;
     width: 60%;
     height: 40px;
     background-color: var(--mikan);
@@ -87,7 +89,7 @@ main{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-#close-dialog::before {
+#success-close-dialog::before, #error-close-dialog::before {
     content: "";
     position: absolute;
     top: 0;
@@ -98,11 +100,11 @@ main{
     transition: all 0.3s ease;
 }
 
-#close-dialog:hover::before {
+#success-close-dialog:hover::before, #error-close-dialog:hover::before {
     left: 0;
 }
 
-#close-dialog:hover {
+#success-close-dialog:hover, #error-close-dialog:hover {
     background-color: #d97300;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);

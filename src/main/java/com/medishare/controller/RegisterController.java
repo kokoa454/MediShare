@@ -2,6 +2,8 @@ package com.medishare.controller;
 
 import com.medishare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,19 +24,27 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String registerUser(
+    @ResponseBody
+    public ResponseEntity<String> registerUser(
             @RequestParam("username") String userEmail,
             @RequestParam("password") String password
     ) {
-        boolean isRegistered = userService.registerUser(userEmail, password);
+        try{
+            boolean isRegistered = userService.registerUser(userEmail, password);
 
-        if (!isRegistered) {
-            System.out.println("すでに登録されているユーザーです");
-            return "redirect:/register?error=exists";
+            if (!isRegistered) {
+                System.out.println("すでに登録されているユーザーです");
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("このメールアドレスは既に登録されています");
+            }
+
+            System.out.println("ユーザー登録成功: " + userEmail);
+            return ResponseEntity.ok("User registered successfully");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("サーバーエラーが発生しました");
         }
-
-        System.out.println("ユーザー登録成功: " + userEmail);
-        return "redirect:/login";
     }
 }
 

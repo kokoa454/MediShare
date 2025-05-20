@@ -1,8 +1,10 @@
 const form = document.getElementById("register-account-form");
 const dialog = document.getElementById("success-dialog");
-const dialogContent = document.getElementById("success-dialog-content");
+const successDialogContent = document.getElementById("success-dialog-content");
+const errorDialogContent = document.getElementById("error-dialog-content");
 const dialogLoader = document.getElementById("loading-cat");
-const goToLogin = document.getElementById("close-dialog");
+const goToLogin = document.getElementById("success-close-dialog");
+const goToRegisterAccountAgain = document.getElementById("error-close-dialog");
 const strengthBar = document.getElementById("password-strength-bar");
 const strengthText = document.getElementById("password-strength-text");
 const passwordInput = document.getElementById("password");
@@ -96,29 +98,45 @@ form.addEventListener("submit", function(event) {
     fetch("/register_account", {
         method: "POST",
         body: formData
-    }).then(response => {
+    }).then(response => response.text().then(text => {
+        successDialogContent.style.display = "none";
+        errorDialogContent.style.display = "none";
+        dialogLoader.style.display = "none";
+
         if (response.ok) {
-            showLoaderDialog();
+            showSuccessDialog();
         } else {
-            alert("アカウント作成失敗");
+            showErrorDialog(text);
         }
-    }).catch(error => {
+    })).catch(error => {
         console.error(error);
-    })
+        showErrorDialog("サーバーエラーが発生しました。");
+    });
 });
+
+function showSuccessDialog() {
+    dialog.showModal();
+    dialogLoader.style.display = "block";
+
+    setTimeout(() => {
+        dialogLoader.style.display = "none";
+        successDialogContent.style.display = "block";
+    }, 3000);
+}
+
+function showErrorDialog(message) {
+    dialog.showModal();
+    
+    errorDialogContent.style.display = "block";
+    errorDialogContent.querySelector("p").textContent = message;
+}
 
 goToLogin.addEventListener("click", function() {
     dialog.close();
     window.location.href = "/login";
 });
 
-function showLoaderDialog() {
-    dialog.showModal();
-    dialogContent.style.display = "none";
-    dialogLoader.style.display = "block";
-
-    setTimeout(() => {
-        dialogLoader.style.display = "none";
-        dialogContent.style.display = "block";
-    }, 3000);
-}
+goToRegisterAccountAgain.addEventListener("click", function() {
+    dialog.close();
+    window.location.href = "/register_account";
+});
