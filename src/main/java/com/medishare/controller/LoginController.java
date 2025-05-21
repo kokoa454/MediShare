@@ -25,7 +25,7 @@ public class LoginController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<String> loginUser(
+    public String loginUser(
             @RequestParam("username") String userEmail,
             @RequestParam("password") String password
     ) {
@@ -34,16 +34,14 @@ public class LoginController {
 
             if (isAuthenticated) {
                 System.out.println("ログイン成功: " + userEmail);
-                return ResponseEntity.ok("Login successful");
+                return "Login successful";
             } else {
                 System.out.println("ログイン失敗: " + userEmail);
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body("認証されませんでした");
+                return "Login failed";
             }
         } catch(Exception e){
             System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("サーバーエラーが発生しました");
+            return "Server error";
         }
     }
 }
