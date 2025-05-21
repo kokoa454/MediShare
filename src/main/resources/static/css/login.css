@@ -112,7 +112,7 @@ form{
     margin-bottom: 3px;
 }
 
-.input-group:nth-child(2) img{
+.input-group:nth-of-type(2) img{
     margin-bottom: 27px;
 }
 
