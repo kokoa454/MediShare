@@ -29,21 +29,4 @@ public class UserService {
         userRepository.save(user);
         return true;
     }
-
-    // ユーザー認証処理
-    public boolean authenticateUser(String userEmail, String password) {
-        USER_DATABASE user = userRepository.findByUserEmail(userEmail);
-
-        if (user == null) {
-            System.out.println("ユーザーが見つかりませんでした: " + userEmail);
-            return false;
-        }
-
-        if (user.getPassword() == null) {
-            System.out.println("パスワードがnullです: " + userEmail);
-            return false;
-        }
-
-        return passwordEncoder.matches(password, user.getPassword());
-    }
 }

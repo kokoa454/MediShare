@@ -29,7 +29,10 @@ public class SecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login-process")
+                        .defaultSuccessUrl("/dashboard", true)
+                        .failureUrl("/login_error")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
                         .permitAll()
                 );
         return http.build();
