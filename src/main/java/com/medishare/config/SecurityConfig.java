@@ -34,6 +34,11 @@ public class SecurityConfig {
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .permitAll()
+                )
+                .rememberMe(r -> r
+                        .key("your-remember-key")
+                        .rememberMeParameter("remember-me")
+                        .tokenValiditySeconds(60 * 60 * 24 * 14) // valid for 14 days
                 );
         return http.build();
     }
