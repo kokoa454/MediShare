@@ -21,10 +21,17 @@
                         <div class="input-text-group">
                             <label for="password">パスワード（英数字混合・6文字以上）</label>
                             <input type="password" id="password" name="password" placeholder="・・・・・・" required>
+                            <button type="button" id="show-password">
+                                <img id="password-eye" th:src="@{/img/eye-slash-icon.png}" alt="パスワードの表示アイコン" th:data-eye-open-path="@{/img/eye-open-icon.png}" th:data-eye-close-path="@{/img/eye-slash-icon.png}">
+                            </button>
                             <a href="#" id="does-forget-password">パスワードをお忘れですか？</a>
                         </div>
                     </div>
-                    <div id="remember-group">
+                    <div id="remember-username-group">
+                        <input type="checkbox" name="remember-username" id="remember-username" value="on" checked />
+                        <label for="remember-username">メールアドレスを記憶する</label>
+                    </div>
+                    <div id="remember-userInfo-group">
                         <input type="checkbox" name="remember-me" id="remember-me" value="on" checked />
                         <label for="remember-me">ログイン情報を記憶する</label>
                     </div>

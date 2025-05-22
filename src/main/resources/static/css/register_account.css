@@ -178,6 +178,14 @@ input{
     font-size: 16px;
 }
 
+.input-group:nth-of-type(1) input{
+    font-size: 20px;
+}
+
+.input-group:nth-of-type(1) input::placeholder{
+    font-size: 20px;
+}
+
 input[type="password"]{
     -webkit-text-security: none;
     letter-spacing: 0px;
