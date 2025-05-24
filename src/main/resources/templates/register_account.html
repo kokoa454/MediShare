@@ -1,47 +1,70 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MediShare - For your life">
-    <!-- TODO <meta name="keywords" content=""> -->
-    <title>MediShare</title>
-    <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/register_account.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
-</head>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('register_account', 'headerAndFooter')"></head>
 <body>
+    <div th:replace="fragments/header :: header"></div>
     <main>
         <div id="wrapper1">
             <div id="wrapper2">
                 <h1>アカウント作成</h1>
-                <form action="#" method="post">
+                <form th:action="@{/register_account}" method="post" id="register-account-form">
                     <div class="input-group">
-                        <img src="../static/img/user-icon.png" alt="メールアドレスアイコン">
+                        <img th:src="@{/img/user-icon.png}" alt="メールアドレスアイコン" class="no-display-in-mobile-icon">
                         <div class="input-text-group">
-                            <label for="username">メールアドレス</label>
+                            <label for="username">メールアドレス<span class="error-message" id="username-error"> 正しいメールアドレスを入力してください</span></label>
                             <input type="text" id="username" name="username" placeholder="example@domain.com" required>
                         </div>
                     </div>
                     <div class="input-group">
-                        <img src="../static/img/password-icon.png" alt="パスワードアイコン">
+                        <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン" class="no-display-in-mobile-icon">
                         <div class="input-text-group">
-                            <label for="password">パスワード（英数字混合・6文字以上）</label>
-                            <input type="password" id="password" name="password" placeholder="････････" required>
+                            <label for="password">パスワード（英数字混合・6文字以上）<span class="error-message" id="password-error">正しいパスワードパターンを入力してください</span></label>
+                            <div id="password-strength">
+                                <div id="password-strength-bar"></div>
+                                <p id="password-strength-text"></p>
+                            </div>
+                            <button type="button" class="show-password">
+                                <img id="password-eye" th:src="@{/img/eye-slash-icon.png}" alt="パスワードの表示アイコン" th:data-eye-open-path="@{/img/eye-open-icon.png}" th:data-eye-close-path="@{/img/eye-slash-icon.png}">
+                            </button>
+                            <input type="password" id="password" name="password" placeholder="・・・・・・" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-text-group">
+                            <label for="password-validation">パスワードをもう一度入力してください<span class="error-message" id="password-validation-error">パスワードが一致しません</span></label>
+                            <button type="button" class="show-password">
+                                <img id="password-validation-eye" th:src="@{/img/eye-slash-icon.png}" alt="パスワードの表示アイコン" th:data-eye-open-path="@{/img/eye-open-icon.png}" th:data-eye-close-path="@{/img/eye-slash-icon.png}">
+                            </button>
+                            <input type="password" id="password-validation" name="password-validation" placeholder="・・・・・・" required>
                         </div>
                     </div>
                     <button type="submit">アカウント作成</button>
                     <div id="to-login">
                         <p>アカウントをお持ちですか？</p>
-                        <a href="#">ログイン</a>
+                        <a th:href="@{/login}">ログイン</a>
                     </div>
                 </form>
             </div>
         </div>
+        <dialog id="success-dialog">
+            <div id="loading-cat">
+                <img th:src="@{/img/loading-cat.gif}" alt="ローディング" id="loading-cat">
+                <p>アカウントを作成中</p>
+            </div>
+            <div id="success-dialog-content">
+                <h2>アカウントを作成しました</h2>
+                <p>ログイン画面に移ります</p>
+                <button id="success-close-dialog">OK</button>
+            </div>
+            <div id="error-dialog-content">
+                <h2>アカウントの作成に失敗しました</h2>
+                <p><!-- the message from the server will be inserted here --></p>
+                <button id="error-close-dialog">OK</button>
+            </div>
+        </dialog>
     </main>
+    <div th:replace="fragments/footer :: footer"></div>
+    <script th:src="@{/js/register_account.js}"></script>
+    <script th:src="@{/js/zxcvbn.js}"></script>
 </body>
 </html>

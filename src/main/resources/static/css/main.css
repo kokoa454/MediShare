@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6, p, a, label, span, input, button{
     --shadow-light: rgba(0, 0, 0, 0.05);
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-mikan: rgba(240, 131, 0, 0.5);
+    --red: #E2041B
 }
 
 html, body{

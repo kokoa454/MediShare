@@ -1,6 +1,7 @@
 main{
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - 178px);
+    padding: 20px 0 90px 0;
     background: url(../img/background.png) no-repeat center center fixed;
     background-size: cover;
     display: flex;
@@ -26,7 +27,101 @@ main{
     box-shadow: -4px -4px 5px 4px var(--shadow-mikan);
 }
 
-h1{
+#success-dialog:not([open]) {
+    display: none;
+}
+
+#success-dialog::backdrop {
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#success-dialog {
+    width: 450px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.4s ease-out forwards;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    z-index: 9999;
+}
+
+#success-dialog-content, #error-dialog-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#success-dialog h2, #error-dialog-content h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: var(--mikan);
+}
+
+#success-dialog p, #error-dialog-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#success-close-dialog, #error-close-dialog {
+    margin-top: 20px;
+    width: 60%;
+    height: 40px;
+    background-color: var(--mikan);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#success-close-dialog::before, #error-close-dialog::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+#success-close-dialog:hover::before, #error-close-dialog:hover::before {
+    left: 0;
+}
+
+#success-close-dialog:hover, #error-close-dialog:hover {
+    background-color: #d97300;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#wrapper2 h1{
     margin-top: 60px;
     font-size: 36px;
 }
@@ -38,6 +133,13 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.error-message{
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--red);
+    display: none;
 }
 
 .input-group{
@@ -72,11 +174,57 @@ input{
     height: 40px;
     border: 2px solid var(--gray-light);
     border-radius: 5px;
-}
-
-input{
     padding-left: 8px;
     font-size: 16px;
+    letter-spacing: 1px;
+}
+
+input::placeholder{
+    letter-spacing: 1px;
+}
+
+.input-group:nth-of-type(1) input{
+    font-size: 20px;
+}
+
+.input-group:nth-of-type(1) input::placeholder{
+    font-size: 20px;
+}
+
+input[type="password"]{
+    -webkit-text-security: none;
+    letter-spacing: 0px;
+    font-size: 16px;
+}
+
+.input-group:nth-of-type(2), .input-group:nth-of-type(3){
+    position: relative;
+}
+
+.show-password{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 40px;
+    opacity: 0.5;
+    color: var(--white);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.show-password img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.input-group:nth-of-type(2) .show-password{
+    top: 68px;
+}
+
+.input-group:nth-of-type(3) .show-password{
+    top: 34px;
 }
 
 form a{
@@ -86,7 +234,31 @@ form a{
     font-weight: 600;
 }
 
-button{
+label[for="password-validation"] ,#password-validation{
+    margin-left: 20px;
+}
+
+#password-strength {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 4px;
+    margin-bottom: 24px;
+}
+
+#password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+#password-strength-text {
+    font-size: 12px;
+    color: #333;
+}
+
+button[type="submit"] {
     width: 280px;
     height: 48px;
     margin-bottom: 60px;
@@ -95,6 +267,33 @@ button{
     border: none;
     border-radius: 8px;
     font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button[type="submit"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover::before {
+    left: 0;
+}
+
+button[type="submit"]:hover {
+    background-color: #333333;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 #to-login{
@@ -107,21 +306,58 @@ button{
     margin-right: 8px;
 }
 
+#loading-cat{
+    width: 100%;
+    height: 100%;
+}
+
+#loading-cat img{
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+#loading-cat p{
+    font-size: 12px;
+    margin-top: 8px;
+}
+
 @media (max-width: 790px){
+    main{
+        min-height: calc(100vh - 154px);
+        margin-bottom: 70px;
+    }
     #wrapper1, #wrapper2{
         width: 350px;
+        height: 720px;
     }
 
     .input-group{
         width: 310px;
     }
 
-    .input-group img{
+    .no-display-in-mobile-icon{
         display: none;
+    }
+
+    .show-password{
+        right: 16px;
+    }
+
+    .input-group:nth-of-type(2) .show-password{
+        top: 50px;
+    }
+
+    .input-group:nth-of-type(3) .show-password{
+        top: 14px;
     }
 
     button{
         margin-top: 20px;
+    }
+
+    label[for="password-validation"],#password-validation{
+    margin-left: 0;
     }
 
     #to-login{

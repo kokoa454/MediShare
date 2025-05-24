@@ -1,4 +1,4 @@
-package com.medi.share.MediShare;
+package com.medishare;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
