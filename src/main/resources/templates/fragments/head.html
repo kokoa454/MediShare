@@ -11,11 +11,13 @@
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/header.css}">
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:if="${currentPageFragments == 'sidebar'}" th:href="@{/css/fragments/sidebar.css}">
+    <script th:if="${currentPageFragments == 'sidebar'}" th:src="@{/js/fragments/sidebar.js}" defer></script>
     <!-- page css -->
     <link rel="stylesheet" th:if="${currentPage == 'login'}" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:if="${currentPage == 'register_account'}" th:href="@{/css/register_account.css}">
     <link rel="stylesheet" th:if="${currentPage == 'login_error'}" th:href="@{/css/login_error.css}">
     <link rel="stylesheet" th:if="${currentPage == 'initial_guidance'}" th:href="@{/css/initial-guidance.css}">
+    <link rel="stylesheet" th:if="${currentPage == 'dashboard'}" th:href="@{/css/dashboard.css}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,0 +1,115 @@
+body{
+    width: 100%;
+    display: flex;
+}
+
+main{
+    width: calc(100% - 480px);
+    height: 100vh;
+    padding-top: 24px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#page-title{
+    font-size: 48px;
+    margin-bottom: 48px;
+}
+
+#tab-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+#tab-container button{
+    width: 120px;
+    height: 32px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 2px solid var(--gray);
+}
+
+#tab-container button:hover{
+    cursor: pointer;
+    color: var(--mikan);
+    border-bottom: 2px solid var(--mikan);
+}
+
+#tab-container .inactive{
+    color: var(--gray-middle);
+    border-bottom: 2px solid var(--gray-middle);
+}
+
+.tab-content{
+    padding: 12px 48px 48px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.button-content{
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.button-content:last-of-type{
+    margin-bottom: 0;
+}
+
+.timing-button{
+    width: 240px;
+    height: 284px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    will-change: transform, box-shadow, filter;
+}
+
+.timing-button:hover {
+    cursor: pointer;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 12px 24px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.05);
+}
+
+.timing-button img{
+    width: 100%;
+    height: 236px;
+    object-fit: cover;
+}
+
+.timing-button p{
+    width: 100%;
+    height: 48px;
+    font-size: 32px;
+    border-top: 1px solid var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-content .completed-icon{
+    display: none;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 82px;
+    left: 82px;
+    object-fit: contain;
+    background-color: transparent;
+    z-index: 9999;
+}
