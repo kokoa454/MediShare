@@ -13,6 +13,12 @@ const passwordValidationInput = document.getElementById("password-validation");
 const username_error = document.getElementById("username-error");
 const password_error = document.getElementById("password-error");
 const passwordValidation_error = document.getElementById("password-validation-error");
+const showPasswordButton = document.getElementById("password-eye");
+const showPasswordValidationButton = document.getElementById("password-validation-eye");
+const eyeOpenPath = showPasswordButton.dataset.eyeOpenPath;
+const eyeClosePath = showPasswordButton.dataset.eyeClosePath;
+const eyeOpenValidationPath = showPasswordValidationButton.dataset.eyeOpenPath;
+const eyeCloseValidationPath = showPasswordValidationButton.dataset.eyeClosePath;
 
 passwordInput.addEventListener("input", () => {
     let password = passwordInput.value;
@@ -140,3 +146,37 @@ goToRegisterAccountAgain.addEventListener("click", function() {
     dialog.close();
     window.location.href = "/register_account";
 });
+
+showPasswordButton.addEventListener("click", showPassword);
+
+function showPassword(){
+    if(passwordInput.type === "password"){
+        passwordInput.type = "text";
+        passwordInput.style.fontSize = "20px"
+        showPasswordButton.src = eyeOpenPath;
+    }else{
+        passwordInput.type = "password";
+        showPasswordButton.src = eyeClosePath;
+    }
+
+    if(passwordInput.value.length > 0){
+        passwordInput.setSelectionRange(passwordInput.value.length, passwordInput.value.length);
+    }
+}
+
+showPasswordValidationButton.addEventListener("click", showPasswordValidation);
+
+function showPasswordValidation(){
+    if(passwordValidationInput.type === "password"){
+        passwordValidationInput.type = "text";
+        passwordValidationInput.style.fontSize = "20px"
+        showPasswordValidationButton.src = eyeOpenValidationPath;
+    }else{
+        passwordValidationInput.type = "password";
+        showPasswordValidationButton.src = eyeCloseValidationPath;
+    }
+
+    if(passwordValidationInput.value.length > 0){
+        passwordValidationInput.setSelectionRange(passwordValidationInput.value.length, passwordValidationInput.value.length);
+    }
+}

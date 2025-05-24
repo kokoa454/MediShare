@@ -10,14 +10,14 @@
                 <form th:action="@{/login}", onsubmit="showDialog(event)" method="post" id="login-form">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <div class="input-group">
-                        <img th:src="@{/img/user-icon.png}" alt="メールアドレスアイコン">
+                        <img th:src="@{/img/user-icon.png}" alt="メールアドレスアイコン" class="no-display-in-mobile-icon">
                         <div class="input-text-group">
                             <label for="username">メールアドレス</label>
                             <input type="text" id="username" name="username" placeholder="example@domain.com" required>
                         </div>
                     </div>
                     <div class="input-group">
-                        <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン">
+                        <img th:src="@{/img/password-icon.png}" alt="パスワードアイコン" class="no-display-in-mobile-icon">
                         <div class="input-text-group">
                             <label for="password">パスワード（英数字混合・6文字以上）</label>
                             <input type="password" id="password" name="password" placeholder="・・・・・・" required>
