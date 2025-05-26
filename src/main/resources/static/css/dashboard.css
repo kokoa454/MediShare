@@ -46,16 +46,17 @@ main{
 }
 
 .tab-content{
+    width: 80%;
     padding: 12px 48px 48px 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
     overflow-y: scroll;
+    justify-items: center;
 }
 
 .button-content{
     position: relative;
-    margin-bottom: 24px;
 }
 
 .button-content:last-of-type{
