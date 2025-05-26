@@ -10,63 +10,63 @@
             <button id="selected-time-button" class="inactive" type="menu">時間指定</button>
         </section>
         <section class="tab-content" id="timing-content">
-            <div class="button-content">
+            <div class="button-content" id="wake-up-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/wake-up-photo.png}" alt="wake-up-photo">
                     <p>起床時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="wake-up-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="before-breakfast-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/before-breakfast-photo.png}" alt="before-breakfast-photo">
                     <p>朝食前</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-breakfast-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="after-breakfast-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/after-breakfast-photo.png}" alt="after-breakfast-photo">
                     <p>朝食後</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-breakfast-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="before-lunch-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/before-lunch-photo.png}" alt="before-lunch-photo">
                     <p>昼食前</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-lunch-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="after-lunch-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/after-lunch-photo.png}" alt="after-lunch-photo">
                     <p>昼食後</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-lunch-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="before-dinner-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/before-dinner-photo.png}" alt="before-dinner-photo">
                     <p>夕食前</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-dinner-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="after-dinner-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/after-dinner-photo.png}" alt="after-dinner-photo">
                     <p>夕食後</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-dinner-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="before-sleep-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/before-sleep-photo.png}" alt="before-sleep-photo">
                     <p>就寝前</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-sleep-icon" class="completed-icon">
                 </button>
             </div>
-            <div class="button-content">
+            <div class="button-content" id="between-meal-content">
                 <button class="timing-button" type="menu">
                     <img th:src="@{/img/between-meal-photo.png}" alt="between-meal-photo">
                     <p>食間</p>
@@ -74,6 +74,153 @@
                 </button>
             </div>
         </section>
+        <section class="tab-content" id="selected-time-content">
+            <div class="button-content" id="zero-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>0時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="wake-up-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="one-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>1時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="two-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>2時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="three-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>3時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="four-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>4時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="five-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>5時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-dinner-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="six-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>6時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-dinner-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="seven-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>7時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-sleep-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="eight-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>8時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="between-meal-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="nine-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>9時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="wake-up-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="ten-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>10時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="eleven-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>11時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="twelve-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>12時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="thirteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>13時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="fourteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>14時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-dinner-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="fifteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>15時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-dinner-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="sixteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>16時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-sleep-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="seventeen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>17時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="between-meal-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="eighteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>18時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="wake-up-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="nineteen-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>19時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="twenty-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>20時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-breakfast-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="twenty-one-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>21時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="twenty-two-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>22時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-lunch-icon" class="completed-icon">
+                </button>
+            </div>
+            <div class="button-content" id="twenty-three-oclock-content">
+                <button class="selected-time-button" type="menu">
+                    <p>23時</p>
+                    <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-dinner-icon" class="completed-icon">
+                </button>
+            </div>
+        </section>
     </main>
+    <script th:src="@{/js/dashboard.js}"></script>
 </body>
 </html>

@@ -70,7 +70,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--gray);
+    border: 2px solid var(--mikan);
     border-radius: 8px;
     overflow: hidden;
     background-color: var(--white);
@@ -113,4 +113,41 @@ main{
     object-fit: contain;
     background-color: transparent;
     z-index: 9999;
+}
+
+#selected-time-content{
+    display: none;
+}
+
+.selected-time-button{
+    width: 240px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--mikan);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    will-change: transform, box-shadow, filter;
+}
+
+.selected-time-button:hover {
+    cursor: pointer;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 12px 24px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.05);
+}
+
+.selected-time-button p{
+    width: 100%;
+    height: 48px;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
