@@ -207,3 +207,25 @@ main{
     background-color: transparent;
     z-index: 9999;
 }
+
+@media (max-width: 1024px){
+    body{
+        display: block;
+    }
+
+    main{
+        width: 100%;
+        height: auto;
+    }
+
+    #toRegisterMedicine{
+        position: fixed;
+        top: auto;
+        bottom: 24px;
+        right: 24px;
+    }
+
+    .tab-content{
+        padding: 0 0 60px 0;
+    }
+}
