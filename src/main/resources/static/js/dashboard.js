@@ -4,6 +4,12 @@ const selectedTimeContent = document.getElementById("selected-time-content");
 const timingButton = document.getElementById("timing-button");
 const selectedTimeButton = document.getElementById("selected-time-button");
 
+const toRegisterMedicine = document.getElementById("toRegisterMedicine");
+
+toRegisterMedicine.addEventListener("click", function() {
+    window.location.href = "/register_medicine";
+});
+
 timingButton.addEventListener("click", function() {
     timingContent.style.display = "grid";
     selectedTimeContent.style.display = "none";
