@@ -29,10 +29,7 @@ public class USER_MEDICINE {
     private String prescriptionDays;
 
     @Column
-    private String prescriptionPerDay;
-
-    @Column
-    private int medicationMethod;
+    private String medicationMethod;
 
     @Column
     private String userComment;
@@ -41,12 +38,11 @@ public class USER_MEDICINE {
     }
 
     public USER_MEDICINE(USER_DATABASE user, String medicineUserInput, String medicineOfficialName, String prescriptionDays,
-                         String prescriptionPerDay, int medicationMethod, String userComment) {
+                         String medicationMethod, String userComment) {
         this.user = user;
         this.medicineUserInput = medicineUserInput;
         this.medicineOfficialName = medicineOfficialName;
         this.prescriptionDays = prescriptionDays;
-        this.prescriptionPerDay = prescriptionPerDay;
         this.medicationMethod = medicationMethod;
         this.userComment = userComment;
     }
