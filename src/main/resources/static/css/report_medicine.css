@@ -45,29 +45,29 @@ form{
     font-size: 16px;
     letter-spacing: 1px;
     font-size: 20px;
+    pointer-events: none;
+}
+
+.input-group input[type="radio"]{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.radio-group{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.radio-group p{
+    font-size: 20px;
 }
 
 input::placeholder{
     letter-spacing: 1px;
-}
-
-.radio-group{
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.radio-group input{
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-}
-
-.radio-group label{
-    font-size: 20px;
-    margin-bottom: 0;
 }
 
 .input-group select{
@@ -79,6 +79,7 @@ input::placeholder{
     font-size: 16px;
     letter-spacing: 1px;
     font-size: 20px;
+    pointer-events: none;
 }
 
 #medication-method-selected-time-select-group{
@@ -122,7 +123,7 @@ input::placeholder{
 }
 
 #button-container button:last-of-type {
-    background-color: var(--mikan);
+    background-color: var(--line-green);
     margin-left: 48px;
 }
 
@@ -148,7 +149,7 @@ input::placeholder{
 }
 
 #button-container button:last-of-type:hover {
-    background-color: var(--mikan);
+    background-color: var(--red);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -156,13 +157,6 @@ input::placeholder{
 .asterisk{
     font-size: 20px;
     color: var(--red);
-}
-
-.error-message{
-    display: none;
-    font-size: 16px;
-    color: var(--red);
-    margin-left: 8px;
 }
 
 @media (max-width: 1024px){
