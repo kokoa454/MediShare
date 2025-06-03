@@ -24,4 +24,13 @@ public class MEDICINE {
 
     private String urlKusurinoShiori;
 
+    public MEDICINE(){
+
+    }
+    public MEDICINE(MEDICINE medicine, int medicineId, String urlKusurinoShiori){
+        this.medicine = medicine;
+        this.medicineId = medicineId;
+        this.urlKusurinoShiori = urlKusurinoShiori;
+    }
+
 }
