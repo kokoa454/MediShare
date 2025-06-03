@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.authorization.AuthenticatedAuthorizationManager.rememberMe;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -33,6 +35,11 @@ public class SecurityConfig {
                         .failureUrl("/login_error")
                         .usernameParameter("username")
                         .passwordParameter("password")
+                        .permitAll()
+                )
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .permitAll()
                 )
                 .rememberMe(r -> r
