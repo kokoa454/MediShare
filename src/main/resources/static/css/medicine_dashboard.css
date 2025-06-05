@@ -71,7 +71,7 @@ main{
 }
 
 #search-container input{
-    width: 600px;
+    width: 520px;
     height: 40px;
     border: 2px solid var(--gray-middle);
     border-radius: 8px;
@@ -180,4 +180,37 @@ main{
     position: absolute;
     top: 16px;
     right: 16px;
+}
+
+@media (max-width: 1024px){
+    body{
+        display: block;
+    }
+
+    main{
+        width: 100%;
+        height: auto;
+    }
+
+    #toReportMedicine{
+        position: fixed;
+        top: auto;
+        bottom: 24px;
+        right: 24px;
+    }
+
+    #search-container input{
+        width: 320px;
+    }
+
+    #medicine-list-container{
+        height: auto;
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 550px){
+    .medicine-group{
+        width: 320px;
+    }
 }
