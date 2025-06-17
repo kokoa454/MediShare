@@ -82,3 +82,21 @@ main{
     line-height: 1.5;
     font-weight: bold;
 }
+
+@media (max-width: 1024px){
+    main{
+        width: 100%;
+        height: auto;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    #settings-section{
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #about-medishare-title, #about-kusurinoshiori-title{
+        flex-direction: column;
+    }
+}
