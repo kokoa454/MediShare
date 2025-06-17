@@ -19,7 +19,7 @@ main{
     margin-bottom: 48px;
 }
 
-form{
+form[id="edit-medicine-form"]{
     width: 80%;
 }
 

@@ -19,7 +19,7 @@ main{
     margin-bottom: 48px;
 }
 
-form{
+form[id="medicine-details-form"]{
     width: 80%;
 }
 

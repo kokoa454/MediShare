@@ -7,7 +7,7 @@
         <h1 id="page-title">設定</h1>
         <section id="settings-section">
             <p>あなたのメールアドレス</p>
-            <p id="email">example@domain</p>
+            <p id="email" th:text="${#authentication.name}"></p>
         </section>
         <section id="about-medishare">
             <div id="about-medishare-title">

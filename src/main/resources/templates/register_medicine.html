@@ -5,7 +5,7 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
     <main>
         <h1 id="page-title">お薬の登録</h1>
-        <form action="#" method="post">
+        <form action="#" method="post" id="register-medicine-form">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称<span class="error-message" id="medicine-official-name-error">正しいお薬の名前を入力してください</span></label>
                 <input type="text" id="medicine-name" name="medicine-name" placeholder="カロナール錠200 など">

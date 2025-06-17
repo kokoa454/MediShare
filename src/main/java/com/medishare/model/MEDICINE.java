@@ -13,22 +13,17 @@ public class MEDICINE {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int medicineId;
 
-    @OneToOne
-    @JoinColumn(
-            name = "medicineOfficialName",                  // このテーブル側の列名
-            referencedColumnName = "medicineOfficialName",  // 参照先のカラム名
-            nullable = false,
-            unique = true                                     // 1対1制約をつけるために unique を追加
-    )
-    private MEDICINE medicine;
+    @Column(unique = true, nullable = false)
+    public String medicineOfficialName;
 
+    @Column(unique = true ,nullable = false)
     private String urlKusurinoShiori;
 
     public MEDICINE(){
 
     }
-    public MEDICINE(MEDICINE medicine, int medicineId, String urlKusurinoShiori){
-        this.medicine = medicine;
+    public MEDICINE(String medicineOfficialName, int medicineId, String urlKusurinoShiori){
+        this.medicineOfficialName = medicineOfficialName;
         this.medicineId = medicineId;
         this.urlKusurinoShiori = urlKusurinoShiori;
     }

@@ -37,8 +37,14 @@ public class USER_MEDICINE {
     public USER_MEDICINE() {
     }
 
-    public USER_MEDICINE(USER_DATABASE user, String medicineUserInput, String medicineOfficialName, String prescriptionDays,
-                         String medicationMethod, String userComment) {
+    public USER_MEDICINE(
+        USER_DATABASE user, 
+        String medicineUserInput, 
+        String medicineOfficialName, 
+        String prescriptionDays,
+        String medicationMethod, 
+        String userComment
+        ) {
         this.user = user;
         this.medicineUserInput = medicineUserInput;
         this.medicineOfficialName = medicineOfficialName;

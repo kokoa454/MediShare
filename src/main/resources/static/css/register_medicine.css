@@ -19,7 +19,7 @@ main{
     margin-bottom: 48px;
 }
 
-form{
+form[id="register-medicine-form"]{
     width: 80%;
 }
 
