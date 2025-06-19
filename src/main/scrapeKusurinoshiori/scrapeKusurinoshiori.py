@@ -17,6 +17,9 @@ class MEDICINE:
             "medicineOfficialName": self.medicineOfficialName,
             "urlKusurinoShiori": self.urlKusurinoShiori
         }
+    
+    def __repr__(self):
+        return f"MEDICINE(name='{self.medicineOfficialName}', url='{self.urlKusurinoShiori}')"
 
 url = "https://www.rad-ar.or.jp/siori/search?dj0xMDAmcj1rJms9dCZwPTEmZz0wJnc9"
 
@@ -42,7 +45,7 @@ medicines = soup.find("div", {"class": "c-search-results"}).find_all("div", {"cl
 
 for medicine in medicines:
     medicineOfficialName = medicine.find("div", {"class": "c-search-result__name"}).text
-    urlKusurinoShiori = medicine.find("a", {"class": "c-search-result__link"}).get("href")
+    urlKusurinoShiori = medicine.find("a", {"class": "c-serch-result__link"}).get("href")
     medicineList.append(MEDICINE(medicineOfficialName, urlKusurinoShiori))
 
 print(medicineList)
