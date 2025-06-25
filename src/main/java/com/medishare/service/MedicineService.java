@@ -1,19 +1,24 @@
 package com.medishare.service;
 
-import com.medishare.dto.TimingGroupDTO;
-import com.medishare.model.USER_MEDICINE;
-import com.medishare.repository.MedicineRepository;
-import lombok.RequiredArgsConstructor;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.medishare.dto.TimingGroupDTO;
+import com.medishare.model.USER_MEDICINE;
+import com.medishare.repository.UserMedicineRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class MedicineService {
 
-    private final MedicineRepository medicineRepository;
+    private final UserMedicineRepository medicineRepository;
 
     public List<TimingGroupDTO> getGroupedMedicinesByUser(int userId) {
         List<USER_MEDICINE> allMedicines = medicineRepository.findByUserUserId(userId);

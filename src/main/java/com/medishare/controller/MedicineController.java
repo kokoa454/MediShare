@@ -1,12 +1,14 @@
 package com.medishare.controller;
 
-import com.medishare.model.USER_DATABASE;
-import com.medishare.model.USER_MEDICINE;
-import com.medishare.repository.MedicineRepository;
-import com.medishare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.medishare.model.USER_DATABASE;
+import com.medishare.model.USER_MEDICINE;
+import com.medishare.repository.UserMedicineRepository;
+import com.medishare.repository.UserRepository;
 
 @Controller
 public class MedicineController {
@@ -15,7 +17,7 @@ public class MedicineController {
     private UserRepository userRepository;
 
     @Autowired
-    private MedicineRepository userMedicineRepository;
+    private UserMedicineRepository userMedicineRepository;
 
     @PostMapping("/register_medicine")
     public String registerMedicine(
