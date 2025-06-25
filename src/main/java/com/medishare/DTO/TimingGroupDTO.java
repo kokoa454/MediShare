@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class TimingGroupDTO {
-    private String timingLabel;
+    private String groupLabel;
     private List<USER_MEDICINE> medicines;
 }

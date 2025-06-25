@@ -54,28 +54,17 @@ public class MedicineController {
 
     // 🔁 タイミングコード変換処理
     private String convertTimingCodeToLabel(String code) {
-        switch (code) {
-            case "000":
-                return "起床時";
-            case "001":
-                return "朝食前";
-            case "002":
-                return "朝食後";
-            case "003":
-                return "昼食前";
-            case "004":
-                return "昼食後";
-            case "005":
-                return "夕食前";
-            case "006":
-                return "夕食後";
-            case "007":
-                return "就寝前";
-            case "008":
-                return "食間";
-            default:
-                return (Integer.parseInt(code) - 100) + "時"; // 時間指定処理
-
-        }
+        return switch (code) {
+            case "000" -> "起床時";
+            case "001" -> "朝食前";
+            case "002" -> "朝食後";
+            case "003" -> "昼食前";
+            case "004" -> "昼食後";
+            case "005" -> "夕食前";
+            case "006" -> "夕食後";
+            case "007" -> "就寝前";
+            case "008" -> "食間";
+            default -> (Integer.parseInt(code) - 100) + "時"; // 時間指定処理
+        };
     }
 }
