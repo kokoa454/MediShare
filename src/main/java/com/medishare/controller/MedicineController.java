@@ -33,9 +33,7 @@ public class MedicineController {
         // ユーザー取得
         Authentication userData = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = userData.getName(); // ログインユーザーのメールアドレスを取得
-        System.out.println("ユーザメアド" + userEmail);
         USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
-        System.out.println("ユーザー情報" + user);
 
         // タイミングコード → 日本語ラベルに変換
         String medicationMethod = convertTimingCodeToLabel(timingCode);
