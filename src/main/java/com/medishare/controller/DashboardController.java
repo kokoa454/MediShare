@@ -3,16 +3,15 @@ package com.medishare.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.medishare.dto.TimingGroupDTO;
 import com.medishare.service.MedicineService;
 import com.medishare.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.ui.Model;
-import com.medishare.dto.TimingGroupDTO;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,7 +29,7 @@ public class DashboardController {
 
         // モデルにデータを追加し、ビュー(Thymeleaf側)に渡す
         model.addAttribute("timingMedicines", timingMedicines);
-        model.addAttribute("medicines", selectedTimeMedicines);
+        model.addAttribute("selectedTimeMedicines", selectedTimeMedicines);
 
         return "dashboard";  // dashboard.html を表示
     }
