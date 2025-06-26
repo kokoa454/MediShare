@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.medishare.model.USER_DATABASE;
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.repository.UserMedicineRepository;
@@ -21,35 +24,35 @@ public class MedicineController {
 
     @PostMapping("/register_medicine")
     public String registerMedicine(
-            @RequestParam("userEmail") String userEmail,
-            @RequestParam("medicineUserInput") String userInput,
-            @RequestParam("medicineOfficialName") String officialName,
-            @RequestParam("prescriptionDays") String days,
-            @RequestParam("userComment") String comment,
+            @RequestParam("medicineUserInput") String medicineUserInput,
+            @RequestParam("medicineOfficialName") String medicineOfficialName,
+            @RequestParam("prescriptionDays") String prescriptionDays,
+            @RequestParam("userComment") String userComment,
             @RequestParam("timingCode") String timingCode
     ) {
         // ユーザー取得
-        USER_DATABASE user = userRepository.findByUserEmail(userEmail);
-        if (user == null) {
-            return "error";
-        }
+        Authentication userData = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = userData.getName(); // ログインユーザーのメールアドレスを取得
+        System.out.println("ユーザメアド" + userEmail);
+        USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
+        System.out.println("ユーザー情報" + user);
 
         // タイミングコード → 日本語ラベルに変換
-        String method = convertTimingCodeToLabel(timingCode);
+        String medicationMethod = convertTimingCodeToLabel(timingCode);
 
         // エンティティに詰めて保存
         USER_MEDICINE medicine = new USER_MEDICINE(
                 user,
-                userInput,
-                officialName,
-                days,
-                method,
-                comment
+                medicineUserInput,
+                medicineOfficialName,
+                prescriptionDays,
+                medicationMethod,
+                userComment
         );
 
         userMedicineRepository.save(medicine);
 
-        return ""; // 遷移先指定
+        return "redirect:/dashboard"; // 遷移先指定
     }
 
     // 🔁 タイミングコード変換処理
