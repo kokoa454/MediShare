@@ -15,63 +15,63 @@
         <section class="tab-content" id="timing-content" th:classappend="${#lists.isEmpty(timingMedicines)} ? 'no-data' : 'grid-layout'">
             <h4 class="no-medicines" th:if="${#lists.isEmpty(timingMedicines)}">お薬は登録されていません</h4>
                 <div class="button-content" id="wake-up-content" th:if="${hasWakeUpContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=wakeUp}'|">
                         <img th:src="@{/img/wake-up-photo.png}" alt="wake-up-photo">
                         <p>起床時</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="wake-up-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="before-breakfast-content" th:if="${hasBeforeBreakfastContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=beforeBreakfast}'|">
                         <img th:src="@{/img/before-breakfast-photo.png}" alt="before-breakfast-photo">
                         <p>朝食前</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-breakfast-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="after-breakfast-content" th:if="${hasAfterBreakfastContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=afterBreakfast}'|">
                         <img th:src="@{/img/after-breakfast-photo.png}" alt="after-breakfast-photo">
                         <p>朝食後</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-breakfast-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="before-lunch-content" th:if="${hasBeforeLunchContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=beforeLunch}'|">
                         <img th:src="@{/img/before-lunch-photo.png}" alt="before-lunch-photo">
                         <p>昼食前</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-lunch-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="after-lunch-content" th:if="${hasAfterLunchContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=afterLunch}'|">
                         <img th:src="@{/img/after-lunch-photo.png}" alt="after-lunch-photo">
                         <p>昼食後</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-lunch-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="before-dinner-content" th:if="${hasBeforeDinnerContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=beforeDinner}'|">
                         <img th:src="@{/img/before-dinner-photo.png}" alt="before-dinner-photo">
                         <p>夕食前</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-dinner-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="after-dinner-content" th:if="${hasAfterDinnerContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=afterDinner}'|">
                         <img th:src="@{/img/after-dinner-photo.png}" alt="after-dinner-photo">
                         <p>夕食後</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="after-dinner-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="before-sleep-content" th:if="${hasBeforeSleepContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=beforeSleep}'|">
                         <img th:src="@{/img/before-sleep-photo.png}" alt="before-sleep-photo">
                         <p>就寝前</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="before-sleep-icon" class="completed-icon">
                     </button>
                 </div>
                 <div class="button-content" id="between-meal-content" th:if="${hasBetweenMealContent}">
-                    <button class="timing-button" type="menu">
+                    <button class="timing-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=betweenMeal}'|">
                         <img th:src="@{/img/between-meal-photo.png}" alt="between-meal-photo">
                         <p>食間</p>
                         <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="between-meal-icon" class="completed-icon">
@@ -81,145 +81,145 @@
         <section class="tab-content" id="selected-time-content" th:classappend="${#lists.isEmpty(selectedTimeMedicines)} ? 'no-data' : 'grid-layout'">
             <h4 class="no-medicines" th:if="${#lists.isEmpty(selectedTimeMedicines)}">お薬は登録されていません</h4>
             <div class="button-content" id="zero-oclock-content" th:if="${hasZeroOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=zeroOClock}'|">
                     <p>0時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="zero-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="one-oclock-content" th:if="${hasOneOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=oneOClock}'|">
                     <p>1時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="one-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="two-oclock-content" th:if="${hasTwoOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twoOClock}'|">
                     <p>2時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="two-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="three-oclock-content" th:if="${hasThreeOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=threeOClock}'|">
                     <p>3時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="three-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="four-oclock-content" th:if="${hasFourOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=fourOClock}'|">
                     <p>4時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="four-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="five-oclock-content" th:if="${hasFiveOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=fiveOClock}'|">
                     <p>5時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="five-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="six-oclock-content" th:if="${hasSixOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=sixOClock}'|">
                     <p>6時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="six-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="seven-oclock-content" th:if="${hasSevenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=sevenOClock}'|">
                     <p>7時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="seven-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="eight-oclock-content" th:if="${hasEightOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=eightOClock}'|">
                     <p>8時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="eight-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="nine-oclock-content" th:if="${hasNineOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=nineOClock}'|">
                     <p>9時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="nine-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="ten-oclock-content" th:if="${hasTenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=tenOClock}'|">
                     <p>10時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="ten-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="eleven-oclock-content" th:if="${hasElevenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=elevenOClock}'|">
                     <p>11時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="eleven-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="twelve-oclock-content" th:if="${hasTwelveOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twelveOClock}'|">
                     <p>12時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="twelve-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="thirteen-oclock-content" th:if="${hasThirteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=thirteenOClock}'|">
                     <p>13時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="thirteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="fourteen-oclock-content" th:if="${hasFourteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=fourteenOClock}'|">
                     <p>14時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="fourteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="fifteen-oclock-content" th:if="${hasFifteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=fifteenOClock}'|">
                     <p>15時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="fifteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="sixteen-oclock-content" th:if="${hasSixteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=sixteenOClock}'|">
                     <p>16時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="sixteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="seventeen-oclock-content" th:if="${hasSeventeenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=seventeenOClock}'|">
                     <p>17時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="seventeen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="eighteen-oclock-content" th:if="${hasEighteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=eighteenOClock}'|">
                     <p>18時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="eighteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="nineteen-oclock-content" th:if="${hasNineteenOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=nineteenOClock}'|">
                     <p>19時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="nineteen-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="twenty-oclock-content" th:if="${hasTwentyOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twentyOClock}'|">
                     <p>20時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="twenty-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="twenty-one-oclock-content" th:if="${hasTwentyOneOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twentyOneOClock}'|">
                     <p>21時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="twenty-one-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="twenty-two-oclock-content" th:if="${hasTwentyTwoOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twentyTwoOClock}'|">
                     <p>22時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="twenty-two-oclock-icon" class="completed-icon">
                 </button>
             </div>
             <div class="button-content" id="twenty-three-oclock-content" th:if="${hasTwentyThreeOClockContent}">
-                <button class="selected-time-button" type="menu">
+                <button class="selected-time-button" type="menu" th:onclick="|location.href='@{/medicine_dashboard?method=twentyThreeOClock}'|">
                     <p>23時</p>
                     <img th:src="@{/img/completed-icon.png}" alt="完了済アイコン" id="twenty-three-oclock-icon" class="completed-icon">
                 </button>

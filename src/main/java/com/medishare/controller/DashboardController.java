@@ -63,7 +63,7 @@ public class DashboardController {
         boolean hasTwentyTwoOClockContent = selectedTimeMedicines.stream().anyMatch(timingGroup -> timingGroup.getGroupLabel().equals("22時"));
         boolean hasTwentyThreeOClockContent = selectedTimeMedicines.stream().anyMatch(timingGroup -> timingGroup.getGroupLabel().equals("23時"));
 
-        // モデルにデータを追加し、ビュー(Thymeleaf側)に渡す
+        // モデルにデータを追加し、ビュー(HTML)に渡す
         model.addAttribute("timingMedicines", timingMedicines);
         model.addAttribute("hasWakeUpContent", hasWakeUpContent);
         model.addAttribute("hasBeforeBreakfastContent", hasBeforeBreakfastContent);
