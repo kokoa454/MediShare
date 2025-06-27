@@ -28,7 +28,7 @@ public class MedicineController {
             @RequestParam("medicineOfficialName") String medicineOfficialName,
             @RequestParam("prescriptionDays") String prescriptionDays,
             @RequestParam("userComment") String userComment,
-            @RequestParam("timingCode") String timingCode
+            @RequestParam("methodCode") String methodCode
     ) {
         // ユーザー取得
         Authentication userData = SecurityContextHolder.getContext().getAuthentication();
@@ -36,7 +36,7 @@ public class MedicineController {
         USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
 
         // タイミングコード → 日本語ラベルに変換
-        String medicationMethod = convertTimingCodeToLabel(timingCode);
+        String medicationMethod = convertTimingCodeToLabel(methodCode);
 
         // エンティティに詰めて保存
         USER_MEDICINE medicine = new USER_MEDICINE(
@@ -54,8 +54,8 @@ public class MedicineController {
     }
 
     // 🔁 タイミングコード変換処理
-    private String convertTimingCodeToLabel(String code) {
-        return switch (code) {
+    private String convertTimingCodeToLabel(String methodCode) {
+        return switch (methodCode) {
             case "000" -> "起床時";
             case "001" -> "朝食前";
             case "002" -> "朝食後";
@@ -65,7 +65,7 @@ public class MedicineController {
             case "006" -> "夕食後";
             case "007" -> "就寝前";
             case "008" -> "食間";
-            default -> (Integer.parseInt(code) - 100) + "時"; // 時間指定処理
+            default -> (Integer.parseInt(methodCode) - 100) + "時"; // 時間指定処理
         };
     }
 }

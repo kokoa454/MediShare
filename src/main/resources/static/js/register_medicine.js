@@ -9,7 +9,7 @@ timingRadio.addEventListener("change", function() {
     timingSelectGroup.style.display = "block";
     selectedTimeSelectGroup.style.display = "none";
     
-    selectTiming.setAttribute("name", "timingCode")
+    selectTiming.setAttribute("name", "methodCode")
     selectSelectedTime.removeAttribute("name")
 
     selectTiming.setAttribute("required", "required")
@@ -24,7 +24,7 @@ selectedTimeRadio.addEventListener("change", function() {
     selectedTimeSelectGroup.style.display = "block";
 
     selectTiming.removeAttribute("name")
-    selectSelectedTime.setAttribute("name", "timingCode")
+    selectSelectedTime.setAttribute("name", "methodCode")
 
     selectTiming.removeAttribute("required")
     selectSelectedTime.setAttribute("required", "required")
