@@ -1,119 +1,73 @@
 package com.medishare.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ui.Model;
+
+import com.medishare.model.USER_MEDICINE;
+import com.medishare.service.MedicineService;
+import com.medishare.service.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/medicine_dashboard")
+@RequiredArgsConstructor
 public class MedicineDashboardController {
+    private final MedicineService medicineService;
+    private final UserService userService;
+
     @GetMapping
     public String medicineDashboardPage(@RequestParam(name = "method", required = true) String method ,Model model) {
-        switch(method){
-            case "wakeUp":
-                model.addAttribute("titleName", "起床時");
-                break;
-            case "beforeBreakfast":
-                model.addAttribute("titleName", "朝食前");
-                break;
-            case "afterBreakfast":
-                model.addAttribute("titleName", "朝食後");
-                break;
-            case "beforeLunch":
-                model.addAttribute("titleName", "昼食前");
-                break;
-            case "afterLunch":
-                model.addAttribute("titleName", "昼食後");
-                break;
-            case "beforeDinner":
-                model.addAttribute("titleName", "夕食前");
-                break;
-            case "afterDinner":
-                model.addAttribute("titleName", "夕食後");
-                break;
-            case "beforeSleep":
-                model.addAttribute("titleName", "就寝前");
-                break;
-            case "betweenMeal":
-                model.addAttribute("titleName", "食間");
-                break;
+        // ログインユーザーのIDを取得
+        int userId = userService.getLoginUserId();
+        String titleName = "";
 
-            case "zeroOClock":
-                model.addAttribute("titleName", "0時");
-                break;
-            case "oneOClock":
-                model.addAttribute("titleName", "1時");
-                break;
-            case "twoOClock":
-                model.addAttribute("titleName", "2時");
-                break;
-            case "threeOClock":
-                model.addAttribute("titleName", "3時");
-                break;
-            case "fourOClock":
-                model.addAttribute("titleName", "4時");
-                break;
-            case "fiveOClock":
-                model.addAttribute("titleName", "5時");
-                break;
-            case "sixOClock":
-                model.addAttribute("titleName", "6時");
-                break;
-            case "sevenOClock":
-                model.addAttribute("titleName", "7時");
-                break;
-            case "eightOClock":
-                model.addAttribute("titleName", "8時");
-                break;
-            case "nineOClock":
-                model.addAttribute("titleName", "9時");
-                break;
-            case "tenOClock":
-                model.addAttribute("titleName", "10時");
-                break;
-            case "elevenOClock":
-                model.addAttribute("titleName", "11時");
-                break;
-            case "twelveOClock":
-                model.addAttribute("titleName", "12時");
-                break;
-            case "thirteenOClock":
-                model.addAttribute("titleName", "13時");
-                break;
-            case "fourteenOClock":
-                model.addAttribute("titleName", "14時");
-                break;
-            case "fifteenOClock":
-                model.addAttribute("titleName", "15時");
-                break;
-            case "sixteenOClock":
-                model.addAttribute("titleName", "16時");
-                break;
-            case "seventeenOClock":
-                model.addAttribute("titleName", "17時");
-                break;
-            case "eighteenOClock":
-                model.addAttribute("titleName", "18時");
-                break;
-            case "nineteenOClock":
-                model.addAttribute("titleName", "19時");
-                break;
-            case "twentyOClock":
-                model.addAttribute("titleName", "20時");
-                break;
-            case "twentyOneOClock":
-                model.addAttribute("titleName", "21時");
-                break;
-            case "twentyTwoOClock":
-                model.addAttribute("titleName", "22時");
-                break;
-            case "twentyThreeOClock":
-                model.addAttribute("titleName", "23時");
-                break;
-            }
-        
+        switch(method){
+            case "wakeUp" -> titleName = "起床時";
+            case "beforeBreakfast" -> titleName = "朝食前";
+            case "afterBreakfast" -> titleName = "朝食後";
+            case "beforeLunch" -> titleName = "昼食前";
+            case "afterLunch" -> titleName = "昼食後";
+            case "beforeDinner" -> titleName = "夕食前";
+            case "afterDinner" -> titleName = "夕食後";
+            case "beforeSleep" -> titleName = "就寝前";
+            case "betweenMeal" -> titleName = "食間";
+            case "zeroOClock" -> titleName = "0時";
+            case "oneOClock" -> titleName = "1時";
+            case "twoOClock" -> titleName = "2時";
+            case "threeOClock" -> titleName = "3時";
+            case "fourOClock" -> titleName = "4時";
+            case "fiveOClock" -> titleName = "5時";
+            case "sixOClock" -> titleName = "6時";
+            case "sevenOClock" -> titleName = "7時";
+            case "eightOClock" -> titleName = "8時";
+            case "nineOClock" -> titleName = "9時";
+            case "tenOClock" -> titleName = "10時";
+            case "elevenOClock" -> titleName = "11時";
+            case "twelveOClock" -> titleName = "12時";
+            case "thirteenOClock" -> titleName = "13時";
+            case "fourteenOClock" -> titleName = "14時";
+            case "fifteenOClock" -> titleName = "15時";
+            case "sixteenOClock" -> titleName = "16時";
+            case "seventeenOClock" -> titleName = "17時";
+            case "eighteenOClock" -> titleName = "18時";
+            case "nineteenOClock" -> titleName = "19時";
+            case "twentyOClock" -> titleName = "20時";
+            case "twentyOneOClock" -> titleName = "21時";
+            case "twentyTwoOClock" -> titleName = "22時";
+            case "twentyThreeOClock" -> titleName = "23時";
+        }
+
+        model.addAttribute("titleName", titleName);
+
+        List<USER_MEDICINE> medicines = medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
+        model.addAttribute("medicines", medicines);
+        System.out.println(medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName));
         return "medicine_dashboard";
     }
 }

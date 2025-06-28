@@ -3,7 +3,7 @@ const medicineList = document.querySelectorAll('#medicine-list-container .medici
 medicineList.forEach(medicine => {
     prescriptionDays = medicine.querySelector('.prescription-days-text').textContent;
     prescriptionDays = prescriptionDays.replace('残り ', '');
-    prescriptionDays = prescriptionDays.replace('日', '');
+    prescriptionDays = prescriptionDays.replace('日分', '');
     prescriptionDays = parseInt(prescriptionDays);
 
     console.log(prescriptionDays);

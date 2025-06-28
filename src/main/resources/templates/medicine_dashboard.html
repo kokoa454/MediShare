@@ -12,13 +12,13 @@
             </button>
         </div>
         <div id="medicine-list-container">
-            <div class="medicine-group">
+            <div class="medicine-group" th:each="medicine : ${medicines}">
                 <img th:src="@{/img/pills-icon.png}" alt="お薬アイコン">
                 <div class="medicine-name">
-                    <h3 class="medicine-name-text">強心剤</h3>
+                    <h3 class="medicine-name-text" th:text="${medicine.medicineUserInput}"></h3>
                     <div class="prescription-days-container">
                         <img th:src="@{/img/calender-icon.png}" alt="カレンダーアイコン">
-                        <p class="prescription-days-text">残り 5日</p>
+                        <p class="prescription-days-text" th:text="'残り ' + ${medicine.prescriptionDays} + '日分'"></p>
                     </div>
                 </div>
                 <input type="checkbox" class="medicine-checkbox">

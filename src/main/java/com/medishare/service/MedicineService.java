@@ -67,4 +67,9 @@ public class MedicineService {
     private boolean isSelectedTimeMethod(String method) {
         return Arrays.asList("0時", "1時", "2時", "3時", "4時", "5時", "6時", "7時", "8時", "9時", "10時", "11時", "12時", "13時", "14時", "15時", "16時", "17時", "18時", "19時", "20時", "21時", "22時", "23時").contains(method);
     }
+
+    public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethod(int userId, String medicationMethod) {
+        // ユーザーIDと投薬方法でフィルタリング
+        return  medicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+    }
 }
