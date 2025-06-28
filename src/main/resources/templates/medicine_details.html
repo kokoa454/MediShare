@@ -8,71 +8,27 @@
         <form action="#" method="post" id="medicine-details-form">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称</label>
-                <input type="text" id="medicine-name" name="medicine-name" placeholder="登録されていません" readonly>
+                <input type="text" id="medicine-name" name="medicine-name" placeholder="登録されていません" th:value="${medicine.medicineOfficialName}" readonly>
             </div>
             <div class="input-group">
                 <label for="medicine-user-input">お薬の名前</label>
-                <input type="text" id="medicine-name" name="medicine-name" readonly>
+                <input type="text" id="medicine-name" name="medicine-name" th:value="${medicine.medicineUserInput}" readonly>
             </div>
             <div class="input-group">
                 <label for="prescription-days">何日分（数字のみ）</label>
-                <input type="number" id="prescription-days" name="prescription-days" readonly>
+                <input type="number" id="prescription-days" name="prescription-days" th:value="${medicine.prescriptionDays}" readonly>
             </div>
             <div class="input-group">
-                <p>お薬の飲み方</p>
-                <p class="medication-method" id="medication-method-timing">タイミング</p>
-                <p class="medication-method" id="medication-method-selected-time">時間指定</p>
-            </div>
-            <div class="input-group" id="medication-method-timing-select-group">
-                <label for="mediciation-method-timing-select">お薬を飲むタイミング</label>
-                <select name="medication-method-timing-select" id="mediciation-method-timing-select">
-                    <option value="000">起床時</option>
-                    <option value="001">朝食前</option>
-                    <option value="002">朝食後</option>
-                    <option value="003">昼食前</option>
-                    <option value="004">昼食後</option>
-                    <option value="005">夕食前</option>
-                    <option value="006">夕食後</option>
-                    <option value="007">就寝前</option>
-                    <option value="008">食間</option>
-                </select>
-            </div>
-            <div class="input-group" id="medication-method-selected-time-select-group">
-                <label for="medication-method-selected-time-select">お薬を飲むタイミング</span></label>
-                <select name="medication-method-selected-time-select" id="medication-method-selected-time-select">
-                    <option value="100">0時</option>
-                    <option value="101">1時</option>
-                    <option value="102">2時</option>
-                    <option value="103">3時</option>
-                    <option value="104">4時</option>
-                    <option value="105">5時</option>
-                    <option value="106">6時</option>
-                    <option value="107">7時</option>
-                    <option value="108">8時</option>
-                    <option value="109">9時</option>
-                    <option value="110">10時</option>
-                    <option value="111">11時</option>
-                    <option value="112">12時</option>
-                    <option value="113">13時</option>
-                    <option value="114">14時</option>
-                    <option value="115">15時</option>
-                    <option value="116">16時</option>
-                    <option value="117">17時</option>
-                    <option value="118">18時</option>
-                    <option value="119">19時</option>
-                    <option value="120">20時</option>
-                    <option value="121">21時</option>
-                    <option value="122">22時</option>
-                    <option value="123">23時</option>
-                </select>
+                <label for="medication-method">お薬の飲み方</label>
+                <input type="text" id="medication-method" name="medicination-method" th:value="${medicine.medicationMethod}" readonly>
             </div>
             <div class="input-group">
                 <label for="user-comment">その他コメント</label>
-                <textarea id="user-comment" name="user-comment" placeholder="コメントは登録されていません" readonly></textarea>
+                <textarea id="user-comment" name="user-comment" placeholder="コメントは登録されていません" th:value="${medicine.userComment}" readonly></textarea>
             </div>
             <div id="button-container">
                 <button type="button" onclick="history.back()">戻る</button>
-                <button type="submit">削除</button>
+                <button type="button" th:attr="onclick=|location.href='@{/edit_medicine(userMedicineId=${medicine.userMedicineId})}'|">編集</button>
             </div>
         </form>
     </main>

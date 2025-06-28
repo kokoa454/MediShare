@@ -14,5 +14,7 @@ public interface UserMedicineRepository extends JpaRepository<USER_MEDICINE, Int
     List<USER_MEDICINE> findByUserUserIdOrderByUserMedicineIdAsc(int userId);
     // ユーザーIDと投薬方法でフィルタリング
     List<USER_MEDICINE> findByUserUserIdAndMedicationMethod(int userId, String medicationMethod);
+    //userMedicineIdで薬を取得
+    USER_MEDICINE findByUserMedicineId(int userMedicineId);
 }
 

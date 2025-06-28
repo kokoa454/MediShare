@@ -12,7 +12,7 @@
             </button>
         </div>
         <div id="medicine-list-container">
-            <div class="medicine-group" th:each="medicine : ${medicines}">
+            <div class="medicine-group" th:each="medicine : ${medicines}" th:attr="onclick=|location.href='@{/medicine_details(userMedicineId=${medicine.userMedicineId})}'|">
                 <img th:src="@{/img/pills-icon.png}" alt="お薬アイコン">
                 <div class="medicine-name">
                     <h3 class="medicine-name-text" th:text="${medicine.medicineUserInput}"></h3>
@@ -21,8 +21,12 @@
                         <p class="prescription-days-text" th:text="'残り ' + ${medicine.prescriptionDays} + '日分'"></p>
                     </div>
                 </div>
-                <input type="checkbox" class="medicine-checkbox">
+                <input type="checkbox" class="medicine-checkbox" onclick="event.stopPropagation();">
             </div>
+        </div>
+        <div id="button-container">
+                <button type="button" onclick="history.back()">戻る</button>
+                <button type="submit">削除</button>
         </div>
         <button id="toReportMedicine" type="button">
             <img th:src="@{/img/report-icon.png}" alt="報告アイコン">
