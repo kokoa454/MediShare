@@ -5,77 +5,48 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
     <main>
         <h1 id="page-title">お薬の登録</h1>
-        <form th:action="@{/register_medicine}" method="post" id="register-medicine-form">
+        <form th:action="@{/register_medicine}" th:object="${userMedicine}" method="post" id="register-medicine-form">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称<span class="error-message" id="medicine-official-name-error">正しいお薬の名前を入力してください</span></label>
-                <input type="text" id="medicine-official-name" name="medicineOfficialName" placeholder="カロナール錠200 など">
+                <input type="text" id="medicine-official-name" th:field="*{medicineOfficialName}" placeholder="カロナール錠200 など">
                 <p>お薬の正式名称を登録することで、<br>「くすりのしおり」と連携することができます</p>
             </div>
             <div class="input-group">
                 <label for="medicine-user-input">お薬の名前 <span class="asterisk">*</span></label>
-                <input type="text" id="medicine-user-input" name="medicineUserInput" placeholder="風邪薬 など" required>
+                <input type="text" id="medicine-user-input" th:field="*{medicineUserInput}" placeholder="風邪薬 など" required>
             </div>
             <div class="input-group">
                 <label for="prescription-days">何日分（数字のみ） <span class="asterisk">*</span></label>
-                <input type="number" id="prescription-days" name="prescriptionDays" placeholder="5 など" required>
+                <input type="number" id="prescription-days" th:field="*{prescriptionDays}" placeholder="5 など" required>
             </div>
             <div class="input-group">
                 <p>お薬の飲み方 <span class="asterisk">*</span></p>
                 <div class="radio-group">
-                    <input type="radio" id="medication-method-timing" value="timing" checked>
-                    <label for="timing">タイミング</label>
+                    <input type="radio" id="medication-method-timing" name="methodType" value="timing" checked onchange="switchSelectGroup()">
+                    <label>タイミング</label>
                 </div>
                 <div class="radio-group">
-                    <input type="radio" id="medication-method-selected-time" value="selected-time">
-                    <label for="selected-time">時間指定</label>
+                    <input type="radio" id="medication-method-selected-time" name="methodType" value="selected-time" onchange="switchSelectGroup()">
+                    <label>時間指定</label>
                 </div>
             </div>
-            <div class="input-group" id="medication-method-timing-select-group">
-                <label for="medication-method-timing-select">お薬を飲むタイミング <span class="asterisk">*</span></label>
-                <select name="methodCode" id="medication-method-timing-select" required>
-                    <option value="000">起床時</option>
-                    <option value="001">朝食前</option>
-                    <option value="002">朝食後</option>
-                    <option value="003">昼食前</option>
-                    <option value="004">昼食後</option>
-                    <option value="005">夕食前</option>
-                    <option value="006">夕食後</option>
-                    <option value="007">就寝前</option>
-                    <option value="008">食間</option>
-                </select>
-            </div>
-            <div class="input-group" id="medication-method-selected-time-select-group">
-                <label for="medication-method-selected-time-select">お薬を飲むタイミング <span class="asterisk">*</span></label>
-                <select id="medication-method-selected-time-select">
-                    <option value="100">0時</option>
-                    <option value="101">1時</option>
-                    <option value="102">2時</option>
-                    <option value="103">3時</option>
-                    <option value="104">4時</option>
-                    <option value="105">5時</option>
-                    <option value="106">6時</option>
-                    <option value="107">7時</option>
-                    <option value="108">8時</option>
-                    <option value="109">9時</option>
-                    <option value="110">10時</option>
-                    <option value="111">11時</option>
-                    <option value="112">12時</option>
-                    <option value="113">13時</option>
-                    <option value="114">14時</option>
-                    <option value="115">15時</option>
-                    <option value="116">16時</option>
-                    <option value="117">17時</option>
-                    <option value="118">18時</option>
-                    <option value="119">19時</option>
-                    <option value="120">20時</option>
-                    <option value="121">21時</option>
-                    <option value="122">22時</option>
-                    <option value="123">23時</option>
+            <div class="input-group" id="medication-method-select-group">
+                <label for="medicationMethod">お薬を飲むタイミング <span class="asterisk">*</span></label>
+                <select th:field="*{medicationMethod}" id="medicationMethod" required>
+                    <option value="起床時">起床時</option>
+                    <option value="朝食前">朝食前</option>
+                    <option value="朝食後">朝食後</option>
+                    <option value="昼食前">昼食前</option>
+                    <option value="昼食後">昼食後</option>
+                    <option value="夕食前">夕食前</option>
+                    <option value="夕食後">夕食後</option>
+                    <option value="就寝前">就寝前</option>
+                    <option value="食間">食間</option>
                 </select>
             </div>
             <div class="input-group">
                 <label for="user-comment">その他コメント</label>
-                <textarea id="user-comment" name="userComment" placeholder="今日あった出来事も報告してみましょう^^"></textarea>
+                <textarea id="user-comment" th:field="*{userComment}" placeholder="今日あった出来事も報告してみましょう^^"></textarea>
             </div>
             <div id="button-container">
                 <button type="button" onclick="history.back()">戻る</button>

@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.medishare.dto.TimingGroupDTO;
+import com.medishare.model.USER_DATABASE;
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.repository.UserMedicineRepository;
+import com.medishare.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,19 +22,36 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MedicineService {
 
-    private final UserMedicineRepository medicineRepository;
+    private final UserMedicineRepository userMedicineRepository;
+    private final UserRepository userRepository;
 
-    // // 時間帯の表示順を固定（任意）
-    // private int getTimingOrder(String timingLabel) {
-    //     List<String> order = Arrays.asList(
-    //             "起床時", "朝食前", "朝食後", "昼食前", "昼食後", "夕食前", "夕食後", "就寝前", "食間"
-    //     );
-    //     return order.indexOf(timingLabel); // 見つからないと -1
-    // }
+    public void registerMedicine(
+            String medicineUserInput,
+            String medicineOfficialName,
+            String prescriptionDays,
+            String userComment,
+            String medicationMethod
+    ) {
+        Authentication userData = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = userData.getName(); // ログインユーザーのメールアドレスを取得
+        USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
 
+        // エンティティに詰めて保存
+        USER_MEDICINE medicine = new USER_MEDICINE(
+                user,
+                medicineUserInput,
+                medicineOfficialName,
+                prescriptionDays,
+                medicationMethod,
+                userComment
+        );
+
+        userMedicineRepository.save(medicine);
+    }
+    
     // 時間帯の薬のみをフィルタリングし、グループ化
     public List<TimingGroupDTO> getTimingMedicinesByUser(int userId){
-        List<USER_MEDICINE> allMedicines = medicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
+        List<USER_MEDICINE> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
         Map<String, List<USER_MEDICINE>> groupedMedicines = allMedicines.stream()
             .filter(medicine -> isTimingMethod(medicine.getMedicationMethod())) // 時間帯の薬のみフィルタリング
             .collect(Collectors.groupingBy(USER_MEDICINE::getMedicationMethod));
@@ -50,7 +71,7 @@ public class MedicineService {
 
     // 時間指定の薬のみをフィルタリングし、グループ化
     public List<TimingGroupDTO> getSelectedTimeMedicinesByUser(int userId){
-        List<USER_MEDICINE> allMedicines = medicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
+        List<USER_MEDICINE> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
         Map<String, List<USER_MEDICINE>> groupedMedicines = allMedicines.stream()
             .filter(medicine -> isSelectedTimeMethod(medicine.getMedicationMethod())) // 時間帯の薬のみフィルタリング
             .collect(Collectors.groupingBy(USER_MEDICINE::getMedicationMethod));
@@ -70,12 +91,12 @@ public class MedicineService {
 
     // ユーザーIDと投薬方法でフィルタリング
     public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethod(int userId, String medicationMethod) {
-        return  medicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+        return  userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
     }
 
     // USER_MEDICINEのuserMedicineIdで薬を取得
     public USER_MEDICINE getMedicineDetailsByUserMedicineId(int userMedicineId) {
-        return medicineRepository.findByUserMedicineId(userMedicineId);
+        return userMedicineRepository.findByUserMedicineId(userMedicineId);
     }
 
     // medicine.medicationMethodがタイミングの薬か時間指定の薬かを判定
@@ -93,49 +114,23 @@ public class MedicineService {
         }
     }
 
-    // タイミング薬か時間指定薬によって、htmlのvalueに応じた値を返す
-    public String getMedicationMethodValue(String medicationMethod, USER_MEDICINE medicine) {
-        return switch (medicationMethod) {
-            case "timing" -> switch (medicine.getMedicationMethod()) {
-                case "起床時" -> "000";
-                case "朝食前" -> "001";
-                case "朝食後" -> "002";
-                case "昼食前" -> "003";
-                case "昼食後" -> "004";
-                case "夕食前" -> "005";
-                case "夕食後" -> "006";
-                case "就寝前" -> "007";
-                case "食間" -> "008";
-                default -> "error";
-            };
-            case "selectedTime" -> switch (medicine.getMedicationMethod()) {
-                case "0時" -> "100";
-                case "1時" -> "101";
-                case "2時" -> "102";
-                case "3時" -> "103";
-                case "4時" -> "104";
-                case "5時" -> "105";
-                case "6時" -> "106";
-                case "7時" -> "107";
-                case "8時" -> "108";
-                case "9時" -> "109";
-                case "10時" -> "110";
-                case "11時" -> "111";
-                case "12時" -> "112";
-                case "13時" -> "113";
-                case "14時" -> "114";
-                case "15時" -> "115";
-                case "16時" -> "116";
-                case "17時" -> "117";
-                case "18時" -> "118";
-                case "19時" -> "119";
-                case "20時" -> "120";
-                case "21時" -> "121";
-                case "22時" -> "122";
-                case "23時" -> "123";
-                default -> "error";
-            };
-            default -> "error";
-        };
+    // 薬の情報を更新
+    public void updateMedicine(
+            int userMedicineId,
+            String medicineUserInput,
+            String medicineOfficialName,
+            String prescriptionDays,
+            String userComment,
+            String medicationMethod
+    ) {
+        USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
+        if (medicine != null) {
+            medicine.setMedicineUserInput(medicineUserInput);
+            medicine.setMedicineOfficialName(medicineOfficialName);
+            medicine.setPrescriptionDays(prescriptionDays);
+            medicine.setUserComment(userComment);
+            medicine.setMedicationMethod(medicationMethod);
+            userMedicineRepository.save(medicine);
+        }
     }
 }

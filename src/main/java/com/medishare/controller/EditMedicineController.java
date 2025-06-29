@@ -3,9 +3,12 @@ package com.medishare.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.medishare.model.USER_MEDICINE;
 import com.medishare.service.MedicineService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,9 +27,24 @@ public class EditMedicineController {
         // タイミングの薬か時間指定の薬かを判定
         model.addAttribute("medicationMethod", medicineService.isTimingOrSelectedTimeMedicine(medicineService.getMedicineDetailsByUserMedicineId(userMedicineId)));
         
-        // htmlのvalueに応じた値を返す
-        model.addAttribute("medicationMethodValue", medicineService.getMedicationMethodValue(medicineService.isTimingOrSelectedTimeMedicine(medicineService.getMedicineDetailsByUserMedicineId(userMedicineId)), medicineService.getMedicineDetailsByUserMedicineId(userMedicineId)));
+        USER_MEDICINE medicine = medicineService.getMedicineDetailsByUserMedicineId(userMedicineId);
+        model.addAttribute("userMedicine", medicine);
 
         return "edit_medicine";  // edit_medicine.html を表示
+    }
+
+    @PostMapping
+    public String editMedicine(@ModelAttribute("userMedicine") USER_MEDICINE userMedicine) {        
+        // 薬の情報を更新
+        medicineService.updateMedicine(
+            userMedicine.getUserMedicineId(),
+            userMedicine.getMedicineUserInput(),
+            userMedicine.getMedicineOfficialName(),
+            userMedicine.getPrescriptionDays(),
+            userMedicine.getUserComment(),
+            userMedicine.getMedicationMethod()
+        );
+
+        return "redirect:/dashboard";  // dashboardへリダイレクト
     }
 }
