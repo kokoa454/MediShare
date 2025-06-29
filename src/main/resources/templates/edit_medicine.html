@@ -8,68 +8,68 @@
         <form action="#" method="post" id="edit-medicine-form">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称<span class="error-message" id="medicine-official-name-error">正しいお薬の名前を入力してください</span></label>
-                <input type="text" id="medicine-name" name="medicine-name" placeholder="カロナール錠200 など">
+                <input type="text" id="medicine-name" name="medicine-name" placeholder="カロナール錠200 など" th:value="${medicine.medicineOfficialName}">
             </div>
             <div class="input-group">
                 <label for="medicine-user-input">お薬の名前 <span class="asterisk">*</span></label>
-                <input type="text" id="medicine-name" name="medicine-name" placeholder="風邪薬 など" required>
+                <input type="text" id="medicine-name" name="medicine-name" placeholder="風邪薬 など" th:value="${medicine.medicineUserInput}" required>
             </div>
             <div class="input-group">
                 <label for="prescription-days">何日分（数字のみ） <span class="asterisk">*</span></label>
-                <input type="number" id="prescription-days" name="prescription-days" placeholder="5 など" required>
+                <input type="number" id="prescription-days" name="prescription-days" placeholder="5 など" th:value="${medicine.prescriptionDays}" required>
             </div>
             <div class="input-group">
                 <p>お薬の飲み方 <span class="asterisk">*</span></p>
                 <div class="radio-group">
-                    <input type="radio" id="medication-method-timing" name="medication-method" value="timing" checked>
+                    <input type="radio" id="medication-method-timing" name="medication-method" value="timing" th:checked="${medicationMethod == 'timing'}" required>
                     <label for="timing">タイミング</label>
                 </div>
                 <div class="radio-group">
-                    <input type="radio" id="medication-method-selected-time" name="medication-method" value="selected-time">
+                    <input type="radio" id="medication-method-selected-time" name="medication-method" value="selected-time" th:checked="${medicationMethod == 'selectedTime'}" required>
                     <label for="selected-time">時間指定</label>
                 </div>
             </div>
-            <div class="input-group" id="medication-method-timing-select-group">
+            <div class="input-group" id="medication-method-timing-select-group" th:attr="style=${medicationMethod == 'timing'} ? '' : 'display:none;'">
                 <label for="mediciation-method-timing-select">お薬を飲むタイミング <span class="asterisk">*</span></label>
                 <select name="medication-method-timing-select" id="mediciation-method-timing-select" required>
-                    <option value="000">起床時</option>
-                    <option value="001">朝食前</option>
-                    <option value="002">朝食後</option>
-                    <option value="003">昼食前</option>
-                    <option value="004">昼食後</option>
-                    <option value="005">夕食前</option>
-                    <option value="006">夕食後</option>
-                    <option value="007">就寝前</option>
-                    <option value="008">食間</option>
+                    <option value="000" th:selected="${medicationMethodValue == '000'}">起床時</option>
+                    <option value="001" th:selected="${medicationMethodValue == '001'}">朝食前</option>
+                    <option value="002" th:selected="${medicationMethodValue == '002'}">朝食後</option>
+                    <option value="003" th:selected="${medicationMethodValue == '003'}">昼食前</option>
+                    <option value="004" th:selected="${medicationMethodValue == '004'}">昼食後</option>
+                    <option value="005" th:selected="${medicationMethodValue == '005'}">夕食前</option>
+                    <option value="006" th:selected="${medicationMethodValue == '006'}">夕食後</option>
+                    <option value="007" th:selected="${medicationMethodValue == '007'}">就寝前</option>
+                    <option value="008" th:selected="${medicationMethodValue == '008'}">食間</option>
                 </select>
             </div>
-            <div class="input-group" id="medication-method-selected-time-select-group">
+            <div class="input-group" id="medication-method-selected-time-select-group" th:attr="style=${medicationMethod == 'selectedTime'} ? '' : 'display:none;'">
                 <label for="medication-method-selected-time-select">お薬を飲むタイミング <span class="asterisk">*</span></label>
-                <select name="medication-method-selected-time-select" id="medication-method-selected-time-select" required>
-                    <option value="100">0時</option>
-                    <option value="101">1時</option>
-                    <option value="102">2時</option>
-                    <option value="103">3時</option>
-                    <option value="104">4時</option>
-                    <option value="105">5時</option>
-                    <option value="106">6時</option>
-                    <option value="107">7時</option>
-                    <option value="108">8時</option>
-                    <option value="109">9時</option>
-                    <option value="110">10時</option>
-                    <option value="111">11時</option>
-                    <option value="112">12時</option>
-                    <option value="113">13時</option>
-                    <option value="114">14時</option>
-                    <option value="115">15時</option>
-                    <option value="116">16時</option>
-                    <option value="117">17時</option>
-                    <option value="118">18時</option>
-                    <option value="119">19時</option>
-                    <option value="120">20時</option>
-                    <option value="121">21時</option>
-                    <option value="122">22時</option>
-                    <option value="123">23時</option>
+                <select name="medication-method-selected-time-select" id="medication-method-selected-time-select">
+                    <option value="100" th:selected="${medicationMethodValue == '100'}">0時</option>
+                    <option value="101" th:selected="${medicationMethodValue == '101'}">1時</option>
+                    <option value="102" th:selected="${medicationMethodValue == '102'}">2時</option>
+                    <option value="103" th:selected="${medicationMethodValue == '103'}">3時</option>
+                    <option value="104" th:selected="${medicationMethodValue == '104'}">4時</option>
+                    <option value="105" th:selected="${medicationMethodValue == '105'}">5時</option>
+                    <option value="106" th:selected="${medicationMethodValue == '106'}">6時</option>
+                    <option value="107" th:selected="${medicationMethodValue == '107'}">7時</option>
+                    <option value="108" th:selected="${medicationMethodValue == '108'}">8時</option>
+                    <option value="109" th:selected="${medicationMethodValue == '109'}">9時</option>
+                    <option value="110" th:selected="${medicationMethodValue == '110'}">10時</option>
+                    <option value="111" th:selected="${medicationMethodValue == '111'}">11時</option>
+                    <option value="112" th:selected="${medicationMethodValue == '112'}">12時</option>
+                    <option value="113" th:selected="${medicationMethodValue == '113'}">13時</option>
+                    <option value="114" th:selected="${medicationMethodValue == '114'}">14時</option>
+                    <option value="115" th:selected="${medicationMethodValue == '115'}">15時</option>
+                    <option value="116" th:selected="${medicationMethodValue == '116'}">16時</option>
+                    <option value="117" th:selected="${medicationMethodValue == '117'}">17時</option>
+                    <option value="118" th:selected="${medicationMethodValue == '118'}">18時</option>
+                    <option value="119" th:selected="${medicationMethodValue == '119'}">19時</option>
+                    <option value="120" th:selected="${medicationMethodValue == '120'}">20時</option>
+                    <option value="121" th:selected="${medicationMethodValue == '121'}">21時</option>
+                    <option value="122" th:selected="${medicationMethodValue == '122'}">22時</option>
+                    <option value="123" th:selected="${medicationMethodValue == '123'}">23時</option>
                 </select>
             </div>
             <div class="input-group">
