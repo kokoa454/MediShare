@@ -133,4 +133,10 @@ public class MedicineService {
             userMedicineRepository.save(medicine);
         }
     }
+
+    public void deleteMedicine(List<Integer> userMedicineIds) {
+        for (Integer userMedicineId : userMedicineIds) {
+            userMedicineRepository.deleteById(userMedicineId);
+        }
+    }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -69,5 +71,11 @@ public class MedicineDashboardController {
         model.addAttribute("medicines", medicines);
         System.out.println(medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName));
         return "medicine_dashboard";
+    }
+
+    @PostMapping("/delete_medicine")
+    public String deleteMedicine(@RequestBody List<Integer> userMedicineIds) {
+        medicineService.deleteMedicine(userMedicineIds);
+        return "redirect:/dashboard";
     }
 }
