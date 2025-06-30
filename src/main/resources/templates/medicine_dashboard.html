@@ -28,13 +28,32 @@
             </div>
         </div>
         <div id="button-container">
-                <button type="button" onclick="history.back()">戻る</button>
-                <button type="submit" id="delete-button">削除</button>
+            <button type="button" onclick="history.back()">戻る</button>
+            <button type="button" id="toDeleteMedicine">削除</button>
         </div>
+        <dialog id="confirm-dialog">
+            <h2>以下の薬を削除しますか？</h2>
+            <div id="delete-medicine-name"></div>
+            <div id="button-group">
+                <button id="confirm-delete-button">OK</button>
+                <button id="cancel-delete-button">キャンセル</button>
+            </div>
+        </dialog>
+        <dialog id="success-dialog">
+            <h2>薬を削除しました</h2>
+            <p>ダッシュボード画面に戻ります</p>
+            <button id="success-close-dialog">OK</button>
+        </dialog>
+        <dialog id="error-dialog">
+            <h2 id="error-message">薬の削除に失敗しました</h2>
+            <button id="error-close-dialog">OK</button>
+        </dialog>
+
         <button id="toReportMedicine" type="button">
             <img th:src="@{/img/report-icon.png}" alt="報告アイコン">
         </button>
     </main>
+
     <script th:src="@{/js/medicine_dashboard.js}"></script>
 </body>
 </html>
