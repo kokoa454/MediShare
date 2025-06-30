@@ -67,6 +67,8 @@ public class MedicineDashboardController {
 
         model.addAttribute("titleName", titleName);
 
+        model.addAttribute("method", method);
+
         List<USER_MEDICINE> medicines = medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
         model.addAttribute("medicines", medicines);
         System.out.println(medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName));

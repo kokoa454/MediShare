@@ -45,11 +45,10 @@
             <button id="success-close-dialog">OK</button>
         </dialog>
         <dialog id="error-dialog">
-            <h2 id="error-message">薬の削除に失敗しました</h2>
+            <h2 id="error-message"></h2>
             <button id="error-close-dialog">OK</button>
         </dialog>
-
-        <button id="toReportMedicine" type="button">
+        <button id="toReportMedicine" type="button" th:onclick="|location.href='@{/report_medicine(method=${method})}'|">
             <img th:src="@{/img/report-icon.png}" alt="報告アイコン">
         </button>
     </main>

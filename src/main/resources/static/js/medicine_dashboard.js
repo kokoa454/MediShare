@@ -3,6 +3,7 @@ const toDeleteMedicine = document.querySelector('#toDeleteMedicine');
 const confirmDialog = document.querySelector('#confirm-dialog');
 const successDialog = document.querySelector('#success-dialog');
 const errorDialog = document.querySelector('#error-dialog');
+const toReportMedicine = document.querySelector('#toReportMedicine');
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
 
@@ -72,3 +73,36 @@ function showError(message) {
     errorDialog.showModal();
     document.querySelector('#error-close-dialog').onclick = () => errorDialog.close();
 }
+
+toReportMedicine.addEventListener('click', () => {
+    const selectedIds = [];
+    const selectedNames = [];
+
+    medicineList.forEach(medicine => {
+        if (medicine.querySelector('input[type="checkbox"]').checked) {
+            selectedIds.push(medicine.querySelector('.hidden-user-medicine-id').value);
+            selectedNames.push(medicine.querySelector('.medicine-name-text').textContent);
+        }
+    });
+
+    if (selectedIds.length === 0) {
+        showError('報告する薬を選択してください');
+        return;
+    } else {
+        fetch('/medicine_dashboard/report_medicine', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken
+            },
+            body: JSON.stringify(selectedIds)
+        })
+        .then(response => {
+            if (response.ok) {
+                return
+            } else {
+                showError('通信エラーが発生しました');
+            }
+        })
+    }
+});
