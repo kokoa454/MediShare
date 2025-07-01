@@ -8,7 +8,7 @@
     <main>
         <h1 id="page-title" th:text="${titleName} + 'のお薬'"></h1>
         <div id="search-container">
-            <input type="text" id="search-input" placeholder="薬剤名を入力してください">
+            <input type="text" id="search-input" placeholder="薬剤名を入力してください" th:value="${searchKeyword}">
             <button id="search-button" type="button">
                 <img th:src="@{/img/search-icon.png}" alt="検索アイコン">
             </button>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div id="button-container">
-            <button type="button" onclick="history.back()">戻る</button>
+            <button type="button" th:onclick="|location.href='@{/dashboard}'|">戻る</button>
             <button type="button" id="toDeleteMedicine">削除</button>
         </div>
         <dialog id="confirm-dialog">

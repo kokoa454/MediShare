@@ -134,13 +134,20 @@ public class MedicineService {
         }
     }
 
+    // 薬を削除
     public void deleteMedicine(List<Integer> userMedicineIds) {
         for (Integer userMedicineId : userMedicineIds) {
             userMedicineRepository.deleteById(userMedicineId);
         }
     }
 
+    // userMedicineIdで薬を取得
     public String getMedicineUserInputByUserMedicineId(int userMedicineId) {
         return userMedicineRepository.findByUserMedicineId(userMedicineId).getMedicineUserInput();
+    }
+
+    //キーワードで薬を検索
+    public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethodAndSearch(int userId, String medicationMethod, String searchKeyword) {
+        return userMedicineRepository.findByUserUserIdAndMedicationMethodAndMedicineUserInputContaining(userId, medicationMethod, searchKeyword);
     }
 }

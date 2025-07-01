@@ -6,6 +6,7 @@ const errorDialog = document.querySelector('#error-dialog');
 const toReportMedicine = document.querySelector('#toReportMedicine');
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+const searchButton = document.querySelector('#search-button');
 
 medicineList.forEach(medicine => {
     let days = parseInt(medicine.querySelector('.prescription-days-text').textContent.replace('残り ', '').replace('日分', ''));
@@ -93,4 +94,10 @@ toReportMedicine.addEventListener('click', (event) => {
         const userMedicineIds = selectedIds.join(',')
         location.href = `/report_medicine?method=${method}&userMedicineIds=${userMedicineIds}`
     }
+})
+
+searchButton.addEventListener('click', () => {
+    const searchKeyword = document.querySelector('#search-input').value
+    location.href = `/medicine_dashboard?method=${method}&search=${encodeURIComponent(searchKeyword)}`
+    document.querySelector('#search-input').value = ''
 })

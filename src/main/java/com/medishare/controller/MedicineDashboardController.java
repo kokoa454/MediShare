@@ -24,7 +24,7 @@ public class MedicineDashboardController {
     private final UserService userService;
 
     @GetMapping
-    public String medicineDashboardPage(@RequestParam(name = "method", required = true) String method ,Model model) {
+    public String medicineDashboardPage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "search", required = false) String searchKeyword ,Model model) {
         // ログインユーザーのIDを取得
         int userId = userService.getLoginUserId();
         String titleName = "";
@@ -69,9 +69,15 @@ public class MedicineDashboardController {
 
         model.addAttribute("method", method);
 
-        List<USER_MEDICINE> medicines = medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
-        model.addAttribute("medicines", medicines);
-        System.out.println(medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName));
+        List<USER_MEDICINE> medicines;
+
+        if(searchKeyword != null) {
+            medicines = medicineService.getMedicineListByUserAndMedicationMethodAndSearch(userId, titleName, searchKeyword);
+        } else {
+            medicines = medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
+        }
+        model.addAttribute("medicines", medicines);        
+
         return "medicine_dashboard";
     }
 
