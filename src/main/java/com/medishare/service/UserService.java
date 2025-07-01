@@ -43,4 +43,33 @@ public class UserService {
         }
         return user.getUserId();
     }
+
+    // ユーザーIDから家族メールアドレスを取得
+    public String getFamilyEmail(int userId){
+        USER_DATABASE user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return user.getFamilyEmail();
+    }
+
+    // ユーザIDからユーザメールアドレスを更新
+    public void updateUserEmail(int userId, String userEmail){
+        USER_DATABASE user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        user.setUserEmail(userEmail);
+        userRepository.save(user);
+    }
+
+    //ユーザIDから家族メールアドレスを更新
+    public void updateFamilyEmail(int userId, String familyEmail){
+        USER_DATABASE user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        user.setFamilyEmail(familyEmail);
+        userRepository.save(user);
+    }
 }

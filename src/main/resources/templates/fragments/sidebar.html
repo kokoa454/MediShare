@@ -7,7 +7,7 @@
             <section id="email-container-mobile">
                 <h3 id="email" th:text="${#authentication.name}"></h3>
                 <button id="logout-btn">ログアウト</button>
-                <p><a href="#">設定</a></p>
+                <p><a th:href="@{/settings}">設定</a></p>
             </section>
             <section id="tips-containers-mobile">
                 <h4 id="tips-title">よくある質問</h4>

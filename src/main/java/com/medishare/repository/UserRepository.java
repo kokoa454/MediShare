@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<USER_DATABASE, Integer> {
     // ユーザーが存在するか確認
     boolean existsByUserEmail(String userEmail);
 
+    // ユーザーIDでユーザーを検索する
+    USER_DATABASE findByUserId(int userId);
 }

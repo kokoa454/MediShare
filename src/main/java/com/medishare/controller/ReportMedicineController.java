@@ -2,13 +2,19 @@ package com.medishare.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.ui.Model;
+
+import com.medishare.dto.ReportDTO;
 import com.medishare.service.MedicineService;
+import com.medishare.service.UserService;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,6 +24,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class ReportMedicineController {
     private final MedicineService medicineService;
+    private final UserService userService;
 
     @GetMapping
     public String report_medicinePage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds, Model model) {
@@ -68,6 +75,16 @@ public class ReportMedicineController {
 
         model.addAttribute("medicines", medicines);
 
+        int userId = userService.getLoginUserId();
+        String familyEmail = userService.getFamilyEmail(userId);
+        
+        model.addAttribute("familyEmail", familyEmail);
+
         return "report_medicine";
+    }
+
+    @PostMapping
+    public void report_medicinePage(@ModelAttribute("reportData") ReportDTO reportData) {
+        System.out.println("reportData: " + reportData);
     }
 }
