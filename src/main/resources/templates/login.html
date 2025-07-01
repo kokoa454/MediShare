@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('login', 'headerAndFooter')"></head>
+<head th:replace="~{fragments/head :: head('login', 'headerAndFooter')}"></head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
     <main>
         <div id="wrapper1">
             <div id="wrapper2">
@@ -50,7 +50,14 @@
             </div>
         </dialog>
     </main>
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
     <script th:src="@{/js/login.js}"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker登録成功', reg))
+            .catch(err => console.log('Service Worker登録失敗', err));
+        }
+    </script>
 </body>
 </html>

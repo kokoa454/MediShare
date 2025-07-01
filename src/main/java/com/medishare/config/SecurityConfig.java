@@ -20,7 +20,8 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/img/**",
-                                "/register_account"
+                                "/register_account",
+                                "/manifest.json"
                         )
                         .permitAll()
                         .anyRequest()

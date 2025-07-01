@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('register_account', 'headerAndFooter')"></head>
+<head th:replace="~{fragments/head :: head('register_account', 'headerAndFooter')}"></head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
     <main>
         <div id="wrapper1">
             <div id="wrapper2">
@@ -63,7 +63,7 @@
             </div>
         </dialog>
     </main>
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
     <script th:src="@{/js/register_account.js}"></script>
     <script th:src="@{/js/zxcvbn.js}"></script>
 </body>
