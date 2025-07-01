@@ -74,7 +74,7 @@ function showError(message) {
     document.querySelector('#error-close-dialog').onclick = () => errorDialog.close();
 }
 
-toReportMedicine.addEventListener('click', () => {
+toReportMedicine.addEventListener('click', (event) => {
     const selectedIds = [];
     const selectedNames = [];
 
@@ -86,23 +86,11 @@ toReportMedicine.addEventListener('click', () => {
     });
 
     if (selectedIds.length === 0) {
-        showError('報告する薬を選択してください');
-        return;
+        event.preventDefault();
+        showError('報告する薬を選択してください')
+        return
     } else {
-        fetch('/medicine_dashboard/report_medicine', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                [csrfHeader]: csrfToken
-            },
-            body: JSON.stringify(selectedIds)
-        })
-        .then(response => {
-            if (response.ok) {
-                return
-            } else {
-                showError('通信エラーが発生しました');
-            }
-        })
+        const userMedicineIds = selectedIds.join(',')
+        location.href = `/report_medicine?method=${method}&userMedicineIds=${userMedicineIds}`
     }
-});
+})

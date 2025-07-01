@@ -139,4 +139,8 @@ public class MedicineService {
             userMedicineRepository.deleteById(userMedicineId);
         }
     }
+
+    public String getMedicineUserInputByUserMedicineId(int userMedicineId) {
+        return userMedicineRepository.findByUserMedicineId(userMedicineId).getMedicineUserInput();
+    }
 }

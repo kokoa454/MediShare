@@ -4,13 +4,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.ui.Model;
+import com.medishare.service.MedicineService;
+
+import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/report_medicine")
+@RequiredArgsConstructor
 public class ReportMedicineController {
+    private final MedicineService medicineService;
+
     @GetMapping
-    public String report_medicinePage(@RequestParam(name = "method", required = true) String method, Model model) {
+    public String report_medicinePage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds, Model model) {
         String medicationMethod = "";
 
         switch(method){
@@ -50,6 +60,13 @@ public class ReportMedicineController {
         }
 
         model.addAttribute("medicationMethod", medicationMethod);
+
+        List<String> medicines = new ArrayList<>();
+        for(String userMedicineId : userMedicineIds.split(",")) {
+            medicines.add(medicineService.getMedicineUserInputByUserMedicineId(Integer.parseInt(userMedicineId)).split(",")[0]);
+        }
+
+        model.addAttribute("medicines", medicines);
 
         return "report_medicine";
     }

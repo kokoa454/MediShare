@@ -8,7 +8,7 @@
         <form action="#" method="post" id="report-medicine-form">
             <div class="input-group">
                 <label for="medicine-user-input">服用したお薬の名前</label>
-                <p class="medicine-name"></p>
+                <p class="medicine-name" th:each="medicine : ${medicines}" th:text="${medicine}"></p>
             </div>
             <div class="input-group" id="medication-methodselect-group">
                 <label for="mediciation-method-timing-select">お薬を服用したタイミング</label>

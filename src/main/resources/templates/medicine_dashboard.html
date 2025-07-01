@@ -48,11 +48,13 @@
             <h2 id="error-message"></h2>
             <button id="error-close-dialog">OK</button>
         </dialog>
-        <button id="toReportMedicine" type="button" th:onclick="|location.href='@{/report_medicine(method=${method})}'|">
+        <button id="toReportMedicine" type="button">
             <img th:src="@{/img/report-icon.png}" alt="報告アイコン">
         </button>
     </main>
-
+    <script th:inline="javascript">
+        const method = /*[[${method}]]*/ '';
+    </script>
     <script th:src="@{/js/medicine_dashboard.js}"></script>
 </body>
 </html>
