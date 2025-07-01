@@ -1,23 +1,22 @@
 package com.medishare.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.ui.Model;
-
 import com.medishare.dto.ReportDTO;
+import com.medishare.service.MailService;
 import com.medishare.service.MedicineService;
 import com.medishare.service.UserService;
 
-import java.util.List;
-import java.util.ArrayList;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/report_medicine")
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 public class ReportMedicineController {
     private final MedicineService medicineService;
     private final UserService userService;
+    private final MailService mailService;
 
     @GetMapping
     public String report_medicinePage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds, Model model) {
@@ -84,7 +84,16 @@ public class ReportMedicineController {
     }
 
     @PostMapping
-    public void report_medicinePage(@ModelAttribute("reportData") ReportDTO reportData) {
-        System.out.println("reportData: " + reportData);
+    public void report_medicinePage(@RequestBody ReportDTO reportData) {
+        String userEmail = reportData.getUserEmail();
+        String familyEmail = reportData.getFamilyEmail();
+        List<String> medicineNames = reportData.getMedicines();
+        String medicationMethod = reportData.getMedicationMethod();
+        String userCondition = reportData.getUserCondition();
+        String userComment = reportData.getUserComment();
+
+        System.out.println(reportData);
+
+        mailService.sendMail(userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
     }
 }

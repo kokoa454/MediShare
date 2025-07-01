@@ -35,9 +35,10 @@
                 <label for="user-comment">その他コメント</label>
                 <textarea id="user-comment" name="user-comment" placeholder="本日の出来事を報告してみましょう^^"></textarea>
             </div>
+            <input type="hidden" id="family-email" th:value="${familyEmail}">
+            <input type="hidden" id="user-email" th:value="${#authentication.name}">
             <div id="button-container">
                 <button type="button" onclick="history.back()">戻る</button>
-                <input type="hidden" id="family-email" th:value="${familyEmail}">
                 <button type="button" id="send-mail-button">メール送信</button>
             </div>
         </form>

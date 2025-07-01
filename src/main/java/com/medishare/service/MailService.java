@@ -12,16 +12,23 @@ public class MailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendMail(String to, List<String> medicineNames, String medicationMethod) {
+    public void sendMail( String userName,String to, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("medishare.reporter@gmail.com");
         message.setTo(to);
-        message.setSubject("【Medishare】 " + to + "さんの服薬レポート");
+        message.setSubject("【Medishare】" + userName + "さんの服薬レポートをお届けします");
         message.setText(
-            "以下の薬を服用しました。\n\n" +
+            userName + "さんの服薬状況をお知らせいたします。\n\n" +
+            "■ 服用したお薬\n" +
             String.join("\n", medicineNames) + "\n\n" +
-            "服用したタイミング・または時間: " + medicationMethod + "\n\n" +
-            "このメールは自動送信されています。"
+            "■ 飲んだタイミング・時間\n" +
+            medicationMethod + "\n\n" +
+            "■ 体調のご様子\n" +
+            userCondition + "\n\n" +
+            "■ コメント\n" +
+            userComment + "\n\n" +
+            "Medishareがご家族の皆さまの安心につながれば幸いです。\n" +
+            "本メールは自動送信です。ご不明点がございましたら、アプリ開発者(hm-c24036@sist.ac.jpかhm-c24063@sist.ac.jp)へご相談ください。"
         );
         try {
             mailSender.send(message);
