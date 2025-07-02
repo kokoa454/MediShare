@@ -13,6 +13,17 @@ medicineList.forEach(medicine => {
     if (days <= 5) {
         medicine.querySelector('.prescription-days-text').style.color = 'var(--red)';
     }
+
+    let isCompleted = medicine.querySelector('.hidden-is-completed').value;
+    if (isCompleted == 'true') {
+        medicine.style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.medicine-icon').style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.medicine-name').style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.medicine-name-text').style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.prescription-days-container').style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.prescription-days-text').style.backgroundColor = 'var(--mikan)';
+        medicine.querySelector('.calender-icon').style.backgroundColor = 'var(--mikan)';
+    }
 });
 
 toDeleteMedicine.addEventListener('click', () => {

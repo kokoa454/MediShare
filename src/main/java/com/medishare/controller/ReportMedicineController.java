@@ -84,7 +84,7 @@ public class ReportMedicineController {
     }
 
     @PostMapping
-    public void report_medicinePage(@RequestBody ReportDTO reportData) {
+    public void report_medicinePage(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
         String userEmail = reportData.getUserEmail();
         String familyEmail = reportData.getFamilyEmail();
         List<String> medicineNames = reportData.getMedicines();
@@ -95,5 +95,9 @@ public class ReportMedicineController {
         System.out.println(reportData);
 
         mailService.sendMail(userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
+
+        for(String userMedicineId : userMedicineIds.split(",")) {
+            medicineService.completeMedicine(Integer.parseInt(userMedicineId));
+        }
     }
 }

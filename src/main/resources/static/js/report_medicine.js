@@ -7,6 +7,10 @@ const userEmail = document.getElementById("user-email").value
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
 
+const urlParams = new URLSearchParams(window.location.search);
+const userMedicineIds = urlParams.get('userMedicineIds');
+
+
 reportButton.addEventListener("click", function() {
     if (!familyEmail) {
         showError('設定画面からご家族のメールアドレスを入力してください');
@@ -49,7 +53,7 @@ reportButton.addEventListener("click", function() {
         };
 
         document.querySelector('#confirm-report-button').onclick = function() {
-            fetch('/report_medicine', {
+            fetch('/report_medicine?userMedicineIds=' + userMedicineIds, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

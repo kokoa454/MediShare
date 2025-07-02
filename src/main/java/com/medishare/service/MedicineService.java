@@ -36,6 +36,8 @@ public class MedicineService {
         String userEmail = userData.getName(); // ログインユーザーのメールアドレスを取得
         USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
 
+        boolean isCompleted = false;
+
         // エンティティに詰めて保存
         USER_MEDICINE medicine = new USER_MEDICINE(
                 user,
@@ -43,7 +45,8 @@ public class MedicineService {
                 medicineOfficialName,
                 prescriptionDays,
                 medicationMethod,
-                userComment
+                userComment,
+                isCompleted
         );
 
         userMedicineRepository.save(medicine);
@@ -149,5 +152,11 @@ public class MedicineService {
     //キーワードで薬を検索
     public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethodAndSearch(int userId, String medicationMethod, String searchKeyword) {
         return userMedicineRepository.findByUserUserIdAndMedicationMethodAndMedicineUserInputContaining(userId, medicationMethod, searchKeyword);
+    }
+
+    public void completeMedicine(int userMedicineId) {
+        USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
+        medicine.setCompleted(true);
+        userMedicineRepository.save(medicine);
     }
 }

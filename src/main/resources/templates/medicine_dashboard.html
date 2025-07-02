@@ -16,11 +16,12 @@
         <div id="medicine-list-container">
             <div class="medicine-group" th:each="medicine : ${medicines}" th:attr="onclick=|location.href='@{/medicine_details(userMedicineId=${medicine.userMedicineId})}'|">
                 <input type="hidden" class="hidden-user-medicine-id" th:value="${medicine.userMedicineId}">
-                <img th:src="@{/img/pills-icon.png}" alt="お薬アイコン">
+                <input type="hidden" class="hidden-is-completed" th:value="${medicine.isCompleted}">
+                <img th:src="@{/img/pills-icon.png}" alt="お薬アイコン" class="medicine-icon">
                 <div class="medicine-name">
                     <h3 class="medicine-name-text" th:text="${medicine.medicineUserInput}"></h3>
                     <div class="prescription-days-container">
-                        <img th:src="@{/img/calender-icon.png}" alt="カレンダーアイコン">
+                        <img th:src="@{/img/calender-icon.png}" alt="カレンダーアイコン" class="calender-icon">
                         <p class="prescription-days-text" th:text="'残り ' + ${medicine.prescriptionDays} + '日分'"></p>
                     </div>
                 </div>

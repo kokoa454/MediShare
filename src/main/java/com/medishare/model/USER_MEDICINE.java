@@ -43,6 +43,9 @@ public class USER_MEDICINE {
     @Column
     private String userComment;
 
+    @Column
+    private boolean isCompleted;
+
     public USER_MEDICINE() {
     }
 
@@ -52,7 +55,8 @@ public class USER_MEDICINE {
         String medicineOfficialName, 
         String prescriptionDays,
         String medicationMethod, 
-        String userComment
+        String userComment,
+        boolean isCompleted
         ) {
         this.user = user;
         this.medicineUserInput = medicineUserInput;
@@ -60,5 +64,6 @@ public class USER_MEDICINE {
         this.prescriptionDays = prescriptionDays;
         this.medicationMethod = medicationMethod;
         this.userComment = userComment;
+        this.isCompleted = isCompleted;
     }
 }
