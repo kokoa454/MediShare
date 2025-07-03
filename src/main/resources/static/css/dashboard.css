@@ -123,7 +123,6 @@ main{
     margin-bottom: 24px;
 }
 
-
 .button-content{
     position: relative;
 }
@@ -173,7 +172,6 @@ main{
 }
 
 .timing-button .completed-icon{
-    display: none;
     width: 120px;
     height: 120px;
     position: absolute;
@@ -222,7 +220,6 @@ main{
 }
 
 .selected-time-button .completed-icon{
-    display: none;
     width: 80px;
     height: 80px;
     position: absolute;

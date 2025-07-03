@@ -89,15 +89,24 @@ function showError(message) {
 toReportMedicine.addEventListener('click', (event) => {
     const selectedIds = [];
     const selectedNames = [];
+    let hasCompleted = false;
 
     medicineList.forEach(medicine => {
         if (medicine.querySelector('input[type="checkbox"]').checked) {
-            selectedIds.push(medicine.querySelector('.hidden-user-medicine-id').value);
-            selectedNames.push(medicine.querySelector('.medicine-name-text').textContent);
+            if(medicine.querySelector('.hidden-is-completed').value == 'true') {
+                hasCompleted = true;
+            } else{
+                selectedIds.push(medicine.querySelector('.hidden-user-medicine-id').value);
+                selectedNames.push(medicine.querySelector('.medicine-name-text').textContent);
+            }
         }
     });
 
-    if (selectedIds.length === 0) {
+    if (hasCompleted == true) {
+        event.preventDefault();
+        showError('本日服用した薬は報告できません')
+        return
+    } else if (selectedIds.length === 0) {
         event.preventDefault();
         showError('報告する薬を選択してください')
         return

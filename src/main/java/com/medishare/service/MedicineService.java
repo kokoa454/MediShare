@@ -154,9 +154,20 @@ public class MedicineService {
         return userMedicineRepository.findByUserUserIdAndMedicationMethodAndMedicineUserInputContaining(userId, medicationMethod, searchKeyword);
     }
 
+    // 服薬を完了させる
     public void completeMedicine(int userMedicineId) {
         USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
         medicine.setCompleted(true);
         userMedicineRepository.save(medicine);
+    }
+
+    // すべての服薬が完了しているかを判定
+    public boolean isAllMedicinesCompleted(int userId, String medicationMethod) {
+        List<USER_MEDICINE> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+        if(medicines.stream().allMatch(USER_MEDICINE::isCompleted)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
