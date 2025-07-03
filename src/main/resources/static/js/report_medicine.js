@@ -37,13 +37,20 @@ reportButton.addEventListener("click", function() {
             userComment = userEmail + "さんからのコメントはありません。"
         }
 
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
         const reportData = {
             userEmail: userEmail,
             familyEmail: familyEmail,
             medicines: medicines,
             medicationMethod: method,
             userCondition: userCondition,
-            userComment: userComment
+            userComment: userComment,
+            completedDate: formattedDate
         };
 
         confirmDialog.showModal();

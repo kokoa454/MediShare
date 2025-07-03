@@ -16,4 +16,5 @@ public class ReportDTO {
     private String medicationMethod;
     private String userCondition;
     private String userComment;
+    private String completedDate;
 }

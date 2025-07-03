@@ -90,11 +90,14 @@ toReportMedicine.addEventListener('click', (event) => {
     const selectedIds = [];
     const selectedNames = [];
     let hasCompleted = false;
+    let noMoreMedicine = false;
 
     medicineList.forEach(medicine => {
         if (medicine.querySelector('input[type="checkbox"]').checked) {
             if(medicine.querySelector('.hidden-is-completed').value == 'true') {
                 hasCompleted = true;
+            } else if (medicine.querySelector('.prescription-days-text').textContent == '残り 0日分') {
+                noMoreMedicine = true;
             } else{
                 selectedIds.push(medicine.querySelector('.hidden-user-medicine-id').value);
                 selectedNames.push(medicine.querySelector('.medicine-name-text').textContent);
@@ -105,6 +108,10 @@ toReportMedicine.addEventListener('click', (event) => {
     if (hasCompleted == true) {
         event.preventDefault();
         showError('本日服用した薬は報告できません')
+        return
+    } else if (noMoreMedicine == true) {
+        event.preventDefault();
+        showError('残りがない薬は報告できません')
         return
     } else if (selectedIds.length === 0) {
         event.preventDefault();

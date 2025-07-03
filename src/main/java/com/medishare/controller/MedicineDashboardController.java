@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.medishare.model.USER_MEDICINE;
+import com.medishare.repository.UserMedicineRepository;
 import com.medishare.service.MedicineService;
 import com.medishare.service.UserService;
 
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class MedicineDashboardController {
     private final MedicineService medicineService;
     private final UserService userService;
+    private final UserMedicineRepository userMedicineRepository;
 
     @GetMapping
     public String medicineDashboardPage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "search", required = false) String searchKeyword ,Model model) {

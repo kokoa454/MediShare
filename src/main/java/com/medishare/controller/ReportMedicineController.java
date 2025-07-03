@@ -91,13 +91,14 @@ public class ReportMedicineController {
         String medicationMethod = reportData.getMedicationMethod();
         String userCondition = reportData.getUserCondition();
         String userComment = reportData.getUserComment();
+        String completedDate = reportData.getCompletedDate();
 
         System.out.println(reportData);
 
         mailService.sendMail(userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
 
         for(String userMedicineId : userMedicineIds.split(",")) {
-            medicineService.completeMedicine(Integer.parseInt(userMedicineId));
+            medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
         }
     }
 }

@@ -66,104 +66,138 @@ public class DashboardController {
         // 各服薬方法の中の薬がすべてisCompletedか調べる
         if(hasWakeUpContent){
             boolean isWakeUpContentCompleted = medicineService.isAllMedicinesCompleted(userId, "起床時");
+            medicineService.checkLastMedicineTime(userId, "起床時");
             model.addAttribute("isWakeUpCompleted", isWakeUpContentCompleted);
         } if(hasBeforeBreakfastContent){
             boolean isBeforeBreakfastContentCompleted = medicineService.isAllMedicinesCompleted(userId, "朝食前");
+            medicineService.checkLastMedicineTime(userId, "朝食前");
             model.addAttribute("isBeforeBreakfastCompleted", isBeforeBreakfastContentCompleted);
         } if(hasAfterBreakfastContent){
             boolean isAfterBreakfastContentCompleted = medicineService.isAllMedicinesCompleted(userId, "朝食後");
+            medicineService.checkLastMedicineTime(userId, "朝食後");
             model.addAttribute("isAfterBreakfastCompleted", isAfterBreakfastContentCompleted);
         } if(hasBeforeLunchContent){
             boolean isBeforeLunchContentCompleted = medicineService.isAllMedicinesCompleted(userId, "昼食前");
+            medicineService.checkLastMedicineTime(userId, "昼食前");
             model.addAttribute("isBeforeLunchCompleted", isBeforeLunchContentCompleted);
         } if(hasAfterLunchContent){
             boolean isAfterLunchContentCompleted = medicineService.isAllMedicinesCompleted(userId, "昼食後");
+            medicineService.checkLastMedicineTime(userId, "昼食後");
             model.addAttribute("isAfterLunchCompleted", isAfterLunchContentCompleted);
         } if(hasBeforeDinnerContent){
             boolean isBeforeDinnerContentCompleted = medicineService.isAllMedicinesCompleted(userId, "夕食前");
+            medicineService.checkLastMedicineTime(userId, "夕食前");
             model.addAttribute("isBeforeDinnerCompleted", isBeforeDinnerContentCompleted);
         } if(hasAfterDinnerContent){
             boolean isAfterDinnerContentCompleted = medicineService.isAllMedicinesCompleted(userId, "夕食後");
+            medicineService.checkLastMedicineTime(userId, "夕食後");
             model.addAttribute("isAfterDinnerCompleted", isAfterDinnerContentCompleted);
         } if(hasBeforeSleepContent){
             boolean isBeforeSleepContentCompleted = medicineService.isAllMedicinesCompleted(userId, "就寝前");
+            medicineService.checkLastMedicineTime(userId, "就寝前");
             model.addAttribute("isBeforeSleepCompleted", isBeforeSleepContentCompleted);
         } if(hasBetweenMealContent){
             boolean isBetweenMealContentCompleted = medicineService.isAllMedicinesCompleted(userId, "食間");
+            medicineService.checkLastMedicineTime(userId, "食間");
             model.addAttribute("isBetweenMealCompleted", isBetweenMealContentCompleted);
         }
 
         if(hasZeroOClockContent){
             boolean isZeroOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "0時");
+            medicineService.checkLastMedicineTime(userId, "0時");
             model.addAttribute("isZeroOClockCompleted", isZeroOClockContentCompleted);
         } if(hasOneOClockContent){
             boolean isOneOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "1時");
+            medicineService.checkLastMedicineTime(userId, "1時");
             model.addAttribute("isOneOClockCompleted", isOneOClockContentCompleted);
         } if(hasTwoOClockContent){
             boolean isTwoOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "2時");
+            medicineService.checkLastMedicineTime(userId, "2時");
             model.addAttribute("isTwoOClockCompleted", isTwoOClockContentCompleted);
         } if(hasThreeOClockContent){
             boolean isThreeOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "3時");
+            medicineService.checkLastMedicineTime(userId, "3時");
             model.addAttribute("isThreeOClockCompleted", isThreeOClockContentCompleted);
         } if(hasFourOClockContent){
             boolean isFourOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "4時");
+            medicineService.checkLastMedicineTime(userId, "4時");
             model.addAttribute("isFourOClockCompleted", isFourOClockContentCompleted);
         } if(hasFiveOClockContent){
             boolean isFiveOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "5時");
+            medicineService.checkLastMedicineTime(userId, "5時");
             model.addAttribute("isFiveOClockCompleted", isFiveOClockContentCompleted);
         } if(hasSixOClockContent){
             boolean isSixOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "6時");
+            medicineService.checkLastMedicineTime(userId, "6時");
             model.addAttribute("isSixOClockCompleted", isSixOClockContentCompleted);
         } if(hasSevenOClockContent){
             boolean isSevenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "7時");
+            medicineService.checkLastMedicineTime(userId, "7時");
             model.addAttribute("isSevenOClockCompleted", isSevenOClockContentCompleted);
         } if(hasEightOClockContent){
             boolean isEightOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "8時");
+            medicineService.checkLastMedicineTime(userId, "8時");
             model.addAttribute("isEightOClockCompleted", isEightOClockContentCompleted);
         } if(hasNineOClockContent){
             boolean isNineOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "9時");
+            medicineService.checkLastMedicineTime(userId, "9時");
             model.addAttribute("isNineOClockCompleted", isNineOClockContentCompleted);
         } if(hasTenOClockContent){
             boolean isTenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "10時");
+            medicineService.checkLastMedicineTime(userId, "10時");
             model.addAttribute("isTenOClockCompleted", isTenOClockContentCompleted);
         } if(hasElevenOClockContent){
             boolean isElevenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "11時");
+            medicineService.checkLastMedicineTime(userId, "11時");
             model.addAttribute("isElevenOClockCompleted", isElevenOClockContentCompleted);
         } if(hasTwelveOClockContent){
             boolean isTwelveOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "12時");
+            medicineService.checkLastMedicineTime(userId, "12時");
+            model.addAttribute("isTwelveOClockCompleted", isTwelveOClockContentCompleted);
             model.addAttribute("isTwelveOClockCompleted", isTwelveOClockContentCompleted);
         } if(hasThirteenOClockContent){
             boolean isThirteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "13時");
+            medicineService.checkLastMedicineTime(userId, "13時");
             model.addAttribute("isThirteenOClockCompleted", isThirteenOClockContentCompleted);
         } if(hasFourteenOClockContent){
             boolean isFourteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "14時");
+            medicineService.checkLastMedicineTime(userId, "14時");
             model.addAttribute("isFourteenOClockCompleted", isFourteenOClockContentCompleted);
         } if(hasFifteenOClockContent){
             boolean isFifteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "15時");
+            medicineService.checkLastMedicineTime(userId, "15時");
             model.addAttribute("isFifteenOClockCompleted", isFifteenOClockContentCompleted);
         } if(hasSixteenOClockContent){
             boolean isSixteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "16時");
+            medicineService.checkLastMedicineTime(userId, "16時");
             model.addAttribute("isSixteenOClockCompleted", isSixteenOClockContentCompleted);
         } if(hasSeventeenOClockContent){
             boolean isSeventeenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "17時");
+            medicineService.checkLastMedicineTime(userId, "17時");
             model.addAttribute("isSeventeenOClockCompleted", isSeventeenOClockContentCompleted);
         } if(hasEighteenOClockContent){
             boolean isEighteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "18時");
+            medicineService.checkLastMedicineTime(userId, "18時");
             model.addAttribute("isEighteenOClockCompleted", isEighteenOClockContentCompleted);
         } if(hasNineteenOClockContent){
             boolean isNineteenOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "19時");
+            medicineService.checkLastMedicineTime(userId, "19時");
             model.addAttribute("isNineteenOClockCompleted", isNineteenOClockContentCompleted);
         } if(hasTwentyOClockContent){
             boolean isTwentyOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "20時");
+            medicineService.checkLastMedicineTime(userId, "20時");
             model.addAttribute("isTwentyOClockCompleted", isTwentyOClockContentCompleted);
         } if(hasTwentyOneOClockContent){
             boolean isTwentyOneOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "21時");
+            medicineService.checkLastMedicineTime(userId, "21時");
             model.addAttribute("isTwentyOneOClockCompleted", isTwentyOneOClockContentCompleted);
         } if(hasTwentyTwoOClockContent){
             boolean isTwentyTwoOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "22時");
+            medicineService.checkLastMedicineTime(userId, "22時");
             model.addAttribute("isTwentyTwoOClockCompleted", isTwentyTwoOClockContentCompleted);
         } if(hasTwentyThreeOClockContent){
             boolean isTwentyThreeOClockContentCompleted = medicineService.isAllMedicinesCompleted(userId, "23時");
+            medicineService.checkLastMedicineTime(userId, "23時");
             model.addAttribute("isTwentyThreeOClockCompleted", isTwentyThreeOClockContentCompleted);
         }
 

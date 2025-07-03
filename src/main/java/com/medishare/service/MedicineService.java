@@ -1,5 +1,6 @@
 package com.medishare.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +26,7 @@ public class MedicineService {
     private final UserMedicineRepository userMedicineRepository;
     private final UserRepository userRepository;
 
+    // 薬を登録
     public void registerMedicine(
             String medicineUserInput,
             String medicineOfficialName,
@@ -37,6 +39,7 @@ public class MedicineService {
         USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
 
         boolean isCompleted = false;
+        String completedDate = null;
 
         // エンティティに詰めて保存
         USER_MEDICINE medicine = new USER_MEDICINE(
@@ -46,7 +49,8 @@ public class MedicineService {
                 prescriptionDays,
                 medicationMethod,
                 userComment,
-                isCompleted
+                isCompleted,
+                completedDate
         );
 
         userMedicineRepository.save(medicine);
@@ -155,19 +159,31 @@ public class MedicineService {
     }
 
     // 服薬を完了させる
-    public void completeMedicine(int userMedicineId) {
+    public void completeMedicine(int userMedicineId, String completedDate) {
         USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
         medicine.setCompleted(true);
+        medicine.setCompletedDate(completedDate);
+        int prescriptionDays = Integer.parseInt(medicine.getPrescriptionDays());
+        medicine.setPrescriptionDays(String.valueOf(prescriptionDays - 1));
         userMedicineRepository.save(medicine);
     }
 
     // すべての服薬が完了しているかを判定
     public boolean isAllMedicinesCompleted(int userId, String medicationMethod) {
         List<USER_MEDICINE> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
-        if(medicines.stream().allMatch(USER_MEDICINE::isCompleted)) {
-            return true;
-        } else {
-            return false;
+        return medicines.stream().allMatch(USER_MEDICINE::isCompleted);
+    }
+
+    // 最終服薬時間をチェック
+    public void checkLastMedicineTime(int userId, String medicationMethod) {
+        List<USER_MEDICINE> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+        String formattedDate = LocalDate.now().toString();
+
+        for(USER_MEDICINE medicine: medicines) {
+            if (medicine.getCompletedDate() != null && !medicine.getCompletedDate().equals(formattedDate)) {
+                medicine.setCompleted(false);
+                userMedicineRepository.save(medicine);
+            }
         }
     }
 }
