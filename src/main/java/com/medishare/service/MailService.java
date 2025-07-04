@@ -13,11 +13,11 @@ public class MailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendMail( String userName,String to, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
+    public void sendMail(String userName, String userEmail ,String to, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("medishare.reporter@gmail.com");
         message.setTo(to);
-        message.setSubject("【Medishare】" + userName + "さんの服薬レポートをお届けします");
+        message.setSubject("【Medishare】" + userName + "(" + userEmail + ")" + "さんの服薬レポートをお届けします");
         message.setText(
             userName + "さんの服薬状況をお知らせいたします。\n\n" +
             "■ 服用したお薬\n" +

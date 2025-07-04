@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.medishare.dto.ReportDTO;
+import com.medishare.repository.UserRepository;
+import com.medishare.service.LineService;
 import com.medishare.service.MailService;
 import com.medishare.service.MedicineService;
 import com.medishare.service.UserService;
@@ -25,6 +27,8 @@ public class ReportMedicineController {
     private final MedicineService medicineService;
     private final UserService userService;
     private final MailService mailService;
+    private final LineService lineService;
+    private final UserRepository userRepository;
 
     @GetMapping
     public String report_medicinePage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds, Model model) {
@@ -92,10 +96,13 @@ public class ReportMedicineController {
         String userCondition = reportData.getUserCondition();
         String userComment = reportData.getUserComment();
         String completedDate = reportData.getCompletedDate();
+        String userName = userRepository.findByUserEmail(userEmail).getUserName();
+        String familyLineId = userRepository.findByUserEmail(userEmail).getFamilyLineId();
 
         System.out.println(reportData);
 
-        mailService.sendMail(userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
+        mailService.sendMail(userName, userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
+        lineService.sendLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
 
         for(String userMedicineId : userMedicineIds.split(",")) {
             medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
