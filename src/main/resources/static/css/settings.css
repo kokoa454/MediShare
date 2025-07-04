@@ -24,8 +24,16 @@ main{
     gap: 24px;
 }
 
-#family-email-container{
+#family-line-container{
     margin-bottom: 60px;
+}
+
+#user-name-container p:first-of-type{
+    margin-right: 96px;
+}
+
+#family-line-container p:first-of-type{
+    margin-right: 62px;
 }
 
 .settings-section p{
@@ -53,18 +61,18 @@ main{
     pointer-events: none;
 }
 
-.email-container{
+.email-container, .name-container, .line-container{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 24px;
 }
 
-#confirm-user-email, #confirm-family-email{
+#confirm-user-email, #confirm-family-email, #confirm-user-name, #confirm-family-line{
     display: none;
 }
 
-#user-email-error, #family-email-error{
+#user-email-error, #family-email-error, #user-name-error, #family-line-error{
     display: none;
     color: var(--red);
     font-size: 16px;
@@ -193,6 +201,23 @@ dialog {
     z-index: 9999;
 }
 
+#how-to-register-family-line-dialog{
+    height: 460px;
+
+}
+
+#how-to-register-family-line-dialog img{
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+#how-to-register-family-line-dialog p:first-of-type{
+    margin-bottom: 8px;
+}
+
 dialog::backdrop {
     backdrop-filter: blur(6px);
     background-color: rgba(0, 0, 0, 0.3);
@@ -273,7 +298,11 @@ dialog button:hover {
         width: 120px;
     }
 
-    .email-container{
+    #user-name-container p:first-of-type, #family-line-container p:first-of-type{
+        margin-right: 0;
+    }
+
+    .email-container, .name-container, .line-container{
         flex-direction: column;
         margin-bottom: 24px;
     }

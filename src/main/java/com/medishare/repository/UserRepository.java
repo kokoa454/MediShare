@@ -1,8 +1,9 @@
 package com.medishare.repository;
 
-import com.medishare.model.USER_DATABASE;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.medishare.model.USER_DATABASE;
 
 @Repository
 public interface UserRepository extends JpaRepository<USER_DATABASE, Integer> {

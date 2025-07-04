@@ -21,7 +21,8 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/img/**",
                                 "/register_account",
-                                "/manifest.json"
+                                "/manifest.json",
+                                "/callback"
                         )
                         .permitAll()
                         .anyRequest()
@@ -44,7 +45,11 @@ public class SecurityConfig {
                         .key("your-remember-key")
                         .rememberMeParameter("remember-me")
                         .tokenValiditySeconds(60 * 60 * 24 * 14) // valid for 14 days
+                )
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/callback")
                 );
+                
         return http.build();
         }
 }

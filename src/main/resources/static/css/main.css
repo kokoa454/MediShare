@@ -16,28 +16,28 @@
 
 @font-face {
     font-family: 'LineSeed-Regular';
-    src: url('/fonts/LINESeedJP_OTF_Rg.woff2') format('woff2');
+    src: url('/fonts/line-seed/LINESeedJP_OTF_Rg.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'LineSeed-Bold';
-    src: url('/fonts/LINESeedJP_OTF_Bd.woff2') format('woff2');
+    src: url('/fonts/line-seed/LINESeedJP_OTF_Bd.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'LineSeed-ExtraBold';
-    src: url('/fonts/LINESeedJP_OTF_Eb.woff2') format('woff2');
+    src: url('/fonts/line-seed/LINESeedJP_OTF_Eb.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'LineSeed-Thin';
-    src: url('/fonts/LINESeedJP_OTF_Th.woff2') format('woff2');
+    src: url('/fonts/line-seed/LINESeedJP_OTF_Th.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
 }
