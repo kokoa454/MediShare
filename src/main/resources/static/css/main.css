@@ -14,10 +14,54 @@
     line-height: 1;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, label, span, input, button{
-    font-family: 'Sawarabi Gothic', sans-serif;
-    color: var(--black);
+@font-face {
+    font-family: 'LineSeed-Regular';
+    src: url('/fonts/LINESeedJP_OTF_Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
+
+@font-face {
+    font-family: 'LineSeed-Bold';
+    src: url('/fonts/LINESeedJP_OTF_Bd.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LineSeed-ExtraBold';
+    src: url('/fonts/LINESeedJP_OTF_Eb.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LineSeed-Thin';
+    src: url('/fonts/LINESeedJP_OTF_Th.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+h1, h2 {
+    font-family: 'LineSeed-ExtraBold', sans-serif;
+    font-weight: 800;
+}
+
+h3, h4 {
+    font-family: 'LineSeed-Bold', sans-serif;
+    font-weight: bold;
+}
+
+h5, h6, p {
+    font-family: 'LineSeed-Regular', sans-serif;
+    font-weight: normal;
+}
+
+a, label, span, input, button {
+    font-family: 'LineSeed-Thin', sans-serif;
+    font-weight: 300;
+}
+
 
 :root{
     --white: #ffffff;
