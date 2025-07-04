@@ -1,9 +1,14 @@
 const reportButton = document.getElementById("send-mail-button");
 const confirmDialog = document.getElementById("confirm-dialog");
 const successDialog = document.getElementById("success-dialog");
+const selectReportDialog = document.getElementById("select-report-dialog");
 const errorDialog = document.getElementById("error-dialog");
 const familyEmail = document.getElementById("family-email").value
+const familyLineId = document.getElementById("family-line-id").value
 const userEmail = document.getElementById("user-email").value
+const selectEmail = document.getElementById("select-report-mail-button");
+const selectLine = document.getElementById("select-report-line-button");
+const sendingMessage = document.getElementById("sending-message");
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
 
@@ -12,8 +17,10 @@ const userMedicineIds = urlParams.get('userMedicineIds');
 
 
 reportButton.addEventListener("click", function() {
-    if (!familyEmail) {
-        showError('設定画面からご家族のメールアドレスを入力してください');
+    sendingMessage.style.display = "none";
+
+    if (!familyEmail && !familyLineId) {
+        showError('設定画面からご家族のメールアドレスかLINE IDを入力してください');
         return;
     } else {
         const medicineElements = document.querySelectorAll('.medicine-name');
@@ -43,16 +50,6 @@ reportButton.addEventListener("click", function() {
         const day = String(now.getDate()).padStart(2, '0');
         const formattedDate = `${year}-${month}-${day}`;
 
-        const reportData = {
-            userEmail: userEmail,
-            familyEmail: familyEmail,
-            medicines: medicines,
-            medicationMethod: method,
-            userCondition: userCondition,
-            userComment: userComment,
-            completedDate: formattedDate
-        };
-
         confirmDialog.showModal();
 
         document.querySelector('#cancel-report-button').onclick = function() {
@@ -60,30 +57,97 @@ reportButton.addEventListener("click", function() {
         };
 
         document.querySelector('#confirm-report-button').onclick = function() {
-            fetch('/report_medicine?userMedicineIds=' + userMedicineIds, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    [csrfHeader]: csrfToken
-                },
-                body: JSON.stringify(reportData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    successDialog.showModal();
-                    document.querySelector('#success-close-dialog').onclick = () => location.href = '/dashboard';
+            confirmDialog.close();
+            selectReportDialog.showModal();
+            document.querySelector('#select-report-mail-button').onclick = function() {
+                if(familyEmail){
+                    const reportData = {
+                        userEmail: userEmail,
+                        familyEmail: familyEmail,
+                        medicines: medicines,
+                        medicationMethod: method,
+                        userCondition: userCondition,
+                        userComment: userComment,
+                        completedDate: formattedDate
+                    };
+
+                    sendingMessage.style.display = "block";
+
+                    fetch('/report_medicine/send_mail?userMedicineIds=' + userMedicineIds, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            [csrfHeader]: csrfToken
+                        },
+                        body: JSON.stringify(reportData)
+                    })
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        else return response.text().then(msg => { throw new Error(msg); });
+                    })
+                    .then(message => {
+                            selectReportDialog.close();
+                            showSuccess(message);
+                            document.querySelector('#success-close-dialog').onclick = () => location.href = '/dashboard';
+                    })
+                    .catch((error) => {
+                        selectReportDialog.close();
+                        showError(error.message || '通信エラーが発生しました');
+                    });
                 } else {
-                    confirmDialog.close()
-                    showError('服薬の報告に失敗しました');
+                    selectReportDialog.close();
+                    showError('設定画面からご家族のメールアドレスを入力してください');
                 }
-            })
-            .catch(() => {
-                confirmDialog.close()
-                showError('通信エラーが発生しました');
-            });
+
+            };
+            document.querySelector('#select-report-line-button').onclick = function() {
+                if(familyLineId){
+                    const reportData = {
+                        userEmail: userEmail,
+                        medicines: medicines,
+                        medicationMethod: method,
+                        userCondition: userCondition,
+                        userComment: userComment,
+                        completedDate: formattedDate
+                    };
+
+                    sendingMessage.style.display = "block";
+
+                    fetch('/report_medicine/send_line?userMedicineIds=' + userMedicineIds, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            [csrfHeader]: csrfToken
+                        },
+                        body: JSON.stringify(reportData)
+                    })
+                    .then(response => {
+                        if (response.ok) return response.text();
+                        else return response.text().then(msg => { throw new Error(msg); });
+                    })
+                    .then(message => {
+                            selectReportDialog.close();
+                            showSuccess(message);
+                            document.querySelector('#success-close-dialog').onclick = () => location.href = '/dashboard';
+                    })
+                    .catch((error) => {
+                        selectReportDialog.close();
+                        showError(error.message || '通信エラーが発生しました');
+                    });
+                } else {                    
+                    selectReportDialog.close();
+                    showError('設定画面からご家族のLINE IDを入力してください');
+                }
+            }
         };
     }
 });
+
+function showSuccess(message) {
+    document.querySelector('#success-message').textContent = message;
+    successDialog.showModal();
+    document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+}
 
 function showError(message) {
     document.querySelector('#error-message').textContent = message;

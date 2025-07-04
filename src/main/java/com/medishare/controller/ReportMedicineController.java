@@ -3,6 +3,7 @@ package com.medishare.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,14 +84,43 @@ public class ReportMedicineController {
         String familyEmail = userService.getFamilyEmail(userId);
         
         model.addAttribute("familyEmail", familyEmail);
+        
+        String familyLineId = userService.getFamilyLineId(userId);
+        model.addAttribute("familyLineId", familyLineId);
 
         return "report_medicine";
     }
 
-    @PostMapping
-    public void report_medicinePage(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
+    @PostMapping("/send_mail")
+    public ResponseEntity<String> report_medicineWithMail(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
         String userEmail = reportData.getUserEmail();
         String familyEmail = reportData.getFamilyEmail();
+        List<String> medicineNames = reportData.getMedicines();
+        String medicationMethod = reportData.getMedicationMethod();
+        String userCondition = reportData.getUserCondition();
+        String userComment = reportData.getUserComment();
+        String completedDate = reportData.getCompletedDate();
+        String userName = userRepository.findByUserEmail(userEmail).getUserName();
+        System.out.println(reportData);
+
+        try {
+            mailService.sendMail(userName, userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
+
+            for(String userMedicineId : userMedicineIds.split(",")) {
+                medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
+            }
+
+            return ResponseEntity.ok("メールで報告しました");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("メールの送信に失敗しました");
+        }
+
+
+    }
+
+    @PostMapping("/send_line")
+    public ResponseEntity<String> report_medicineWithLine(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
+        String userEmail = reportData.getUserEmail();
         List<String> medicineNames = reportData.getMedicines();
         String medicationMethod = reportData.getMedicationMethod();
         String userCondition = reportData.getUserCondition();
@@ -101,11 +131,16 @@ public class ReportMedicineController {
 
         System.out.println(reportData);
 
-        mailService.sendMail(userName, userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
-        lineService.sendLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
+        try {
+            lineService.sendLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
 
-        for(String userMedicineId : userMedicineIds.split(",")) {
-            medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
+            for(String userMedicineId : userMedicineIds.split(",")) {
+                medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
+            }
+
+            return ResponseEntity.ok("LINEで報告しました");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("LINEの送信に失敗しました");
         }
     }
 }

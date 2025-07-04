@@ -190,6 +190,10 @@ dialog p {
     color: #333;
 }
 
+#select-report-dialog p{
+    display: none;
+}
+
 dialog button {
     margin: 8px;
     margin-top: 20px;

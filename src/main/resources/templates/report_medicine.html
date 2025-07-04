@@ -37,9 +37,10 @@
             </div>
             <input type="hidden" id="family-email" th:value="${familyEmail}">
             <input type="hidden" id="user-email" th:value="${#authentication.name}">
+            <input type="hidden" id="family-line-id" th:value="${familyLineId}">
             <div id="button-container">
                 <button type="button" onclick="history.back()">戻る</button>
-                <button type="button" id="send-mail-button">メール送信</button>
+                <button type="button" id="send-mail-button">報告</button>
             </div>
         </form>
         <dialog id="confirm-dialog">
@@ -50,8 +51,16 @@
                 <button id="cancel-report-button">キャンセル</button>
             </div>
         </dialog>
+        <dialog id="select-report-dialog">
+            <h2>どちらで報告しますか？</h2>
+            <p id="sending-message">送信中・・・</p>
+            <div id="button-group">
+                <button id="select-report-mail-button">メール</button>
+                <button id="select-report-line-button">LINE</button>
+            </div>
+        </dialog>
         <dialog id="success-dialog">
-            <h2>服薬を報告しました</h2>
+            <h2 id="success-message"></h2>
             <p>ダッシュボード画面に戻ります</p>
             <button id="success-close-dialog">OK</button>
         </dialog>

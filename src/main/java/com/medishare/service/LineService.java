@@ -9,7 +9,6 @@ import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-import com.medishare.repository.UserMedicineRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LineService {
     private final LineMessagingClient lineMessagingClient;
-    private final UserMedicineRepository userMedicineRepository;
 
     @EventMapping
     public void handleFollowEvent(FollowEvent followEvent) {
@@ -38,18 +36,25 @@ public class LineService {
 
     public void sendLine(String userName, String userEmail, String familyLineId, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
         String message = String.format(
-            "%s(%s)さんの服薬状況をお知らせいたします。\n\n" +
-            "■ 服用したお薬\n" +
-            "%s\n\n" +
-            "■ 飲んだタイミング・時間\n" +
-            "%s\n\n" +
-            "■ 体調のご様子\n" +
-            "%s\n\n" +
-            "■ コメント\n" +
-            "%s\n\n" +
-            "Medishareがご家族の皆さまの安心につながれば幸いです。\n" +
-            "本メールは自動送信です。ご不明点がございましたら、アプリ開発者(hm-c24036@sist.ac.jpかhm-c24063@sist.ac.jp)へご相談ください。"
-            , userName, userEmail, String.join("\n", medicineNames), medicationMethod, userCondition, userComment);
+            """
+            %s(%s)さんの服薬状況をお知らせいたします。
+
+            ■ 服用したお薬
+            %s
+
+            ■ 飲んだタイミング・時間
+            %s
+
+            ■ 体調のご様子
+            %s
+
+            ■ コメント
+            %s
+
+            Medishareがご家族の皆さまの安心につながれば幸いです。
+            本メールは自動送信です。ご不明点がございましたら、アプリ開発者(hm-c24036@sist.ac.jpかhm-c24063@sist.ac.jp)へご相談ください。
+            """,
+            userName, userEmail, String.join("\n", medicineNames), medicationMethod, userCondition, userComment);
 
         lineMessagingClient.pushMessage(new PushMessage(
             familyLineId, 
