@@ -32,6 +32,10 @@ public class SettingsController {
         if(userName == null) userName = "登録されていません";
         model.addAttribute("userName", userName);
 
+        String userLineId = userService.getUserLineId(userId);
+        if(userLineId == null) userLineId = "登録されていません";
+        model.addAttribute("userLineId", userLineId);
+
         String familyLineId = userService.getFamilyLineId(userId);
         if(familyLineId == null) familyLineId = "登録されていません";
         model.addAttribute("familyLineId", familyLineId);
@@ -91,6 +95,18 @@ public class SettingsController {
             return ResponseEntity.ok("ユーザー名を更新しました");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("ユーザー名の更新に失敗しました");
+        }
+    }
+
+    @PostMapping("/userLineId")
+    public ResponseEntity<String> updateUserLineId(@RequestBody Map<String, String> body) {
+        int userId = userService.getLoginUserId();
+        try{
+            String userLineId = body.get("confirmedUserLineId");
+            userService.updateUserLineId(userId, userLineId);
+            return ResponseEntity.ok("ユーザーラインIDを更新しました");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("ユーザーラインIDの更新に失敗しました");
         }
     }
 

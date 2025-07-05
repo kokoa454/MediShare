@@ -22,12 +22,21 @@ public class LineService {
         String userId = followEvent.getSource().getUserId();
         String replyToken = followEvent.getReplyToken();
         
-        String message = "あなたのLINEのユーザーIDは以下の通りです。\n" + userId;
+        String message = "あなたのLINEのユーザーIDは以下の通りです↴";
         
         lineMessagingClient.replyMessage(new ReplyMessage(
             replyToken, 
             new TextMessage(message))
         ).whenComplete((response, exception) -> {
+            if (exception != null) {
+                System.out.println( exception.getMessage());
+            }
+        });
+
+        lineMessagingClient.pushMessage(new PushMessage(
+            userId, 
+            new TextMessage(userId)
+        )).whenComplete((response, exception) -> {
             if (exception != null) {
                 System.out.println( exception.getMessage());
             }
@@ -66,7 +75,25 @@ public class LineService {
         });
     }
 
-    public void notifyBeforeMedicationLine(String userLineId, String message) {
-        
+    public void notifyUserBeforeMedicationLine(String userLineId, String message) {
+        lineMessagingClient.pushMessage(new PushMessage(
+            userLineId, 
+            new TextMessage(message)
+        )).whenComplete((response, exception) -> {
+            if (exception != null) {
+                System.out.println( exception.getMessage());
+            }
+        });
+    }
+
+    public void notifyFamilyBeforeMedicationLine(String familyLineId, String message) {
+        lineMessagingClient.pushMessage(new PushMessage(
+            familyLineId, 
+            new TextMessage(message)
+        )).whenComplete((response, exception) -> {
+            if (exception != null) {
+                System.out.println( exception.getMessage());
+            }
+        });
     }
 }

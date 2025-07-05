@@ -1,21 +1,25 @@
 const userEmailInput = document.getElementById("user-email");
 const userNameInput = document.getElementById("user-name");
+const userLineInput = document.getElementById("user-line");
 
 const familyEmailInput = document.getElementById("family-email");
 const familyLineInput = document.getElementById("family-line");
 
 const changeUserEmailButton = document.getElementById("change-user-email");
 const changeUserNameButton = document.getElementById("change-user-name");
+const changeUserLineButton = document.getElementById("change-user-line");
 const changeFamilyEmailButton = document.getElementById("change-family-email");
 const changeFamilyLineButton = document.getElementById("change-family-line");
 
 const confirmUserEmailButton = document.getElementById("confirm-user-email");
 const confirmFamilyEmailButton = document.getElementById("confirm-family-email");
+const confirmUserLineButton = document.getElementById("confirm-user-line");
 const confirmUserNameButton = document.getElementById("confirm-user-name");
 const confirmFamilyLineButton = document.getElementById("confirm-family-line");
 
 const errorUserEmail = document.getElementById("user-email-error");
 const errorUserName = document.getElementById("user-name-error");
+const errorUserLine = document.getElementById("user-line-error");
 const errorFamilyEmail = document.getElementById("family-email-error");
 const errorFamilyLine = document.getElementById("family-line-error");
 
@@ -23,12 +27,14 @@ const successDialog = document.getElementById("success-dialog");
 const errorDialog = document.getElementById("error-dialog");
 
 const howToRegisterFamilyLineDialog = document.getElementById("how-to-register-family-line-dialog");
+const howToRegisterUserLineDialog = document.getElementById("how-to-register-user-line-dialog");
 
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
 
 const beforeInputUserEmail = userEmailInput.value;
 const beforeInputUserName = userNameInput.value;
+const beforeInputUserLine = userLineInput.value;
 const beforeInputFamilyEmail = familyEmailInput.value;
 const beforeInputFamilyLine = familyLineInput.value;
 
@@ -100,6 +106,15 @@ changeUserNameButton.addEventListener("click", () => {
     changeUserNameButton.style.display = "none";
     confirmUserNameButton.style.display = "block";
     if (userNameInput.value === "登録されていません") userNameInput.value = "";
+});
+
+changeUserLineButton.addEventListener("click", () => {
+    showHowToRegisterUserLineDialog();
+    userLineInput.removeAttribute("readonly");
+    changeUserLineButton.style.display = "none";
+    confirmUserLineButton.style.display = "block";
+    errorUserLine.style.display = "none";
+    if (userLineInput.value === "登録されていません") userLineInput.value = "";
 });
 
 changeFamilyLineButton.addEventListener("click", () => {
@@ -289,6 +304,44 @@ confirmUserNameButton.addEventListener("click", () => {
         showError(error.message || '通信エラーが発生しました');
     });
 });
+
+confirmUserLineButton.addEventListener("click", () => {
+    const confirmedUserLineId = userLineInput.value;
+
+    if (confirmedUserLineId === "") {
+        userLineInput.value = beforeInputUserLine;
+        showError('ユーザーLINE IDを入力してください');
+        return;
+    }
+
+    if (confirmedUserLineId.match(/^U[a-fA-F0-9]{32}$/)) {
+        errorUserLine.style.display = "none";
+
+        fetch('/settings/userLineId', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [csrfHeader]: csrfToken
+            },
+            body: JSON.stringify({ confirmedUserLineId })
+        })
+        .then(response => {
+            if (response.ok) return response.text();
+            else return response.text().then(msg => { throw new Error(msg); });
+        })
+        .then(message => {
+            userLineInput.setAttribute("readonly", true);
+            changeUserLineButton.style.display = "block";
+            confirmUserLineButton.style.display = "none";
+            showSuccess(message, null);
+            document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+        })
+        .catch(error => {
+            userLineInput.value = beforeInputUserLine;
+            showError(error.message || '通信エラーが発生しました');
+        })
+    }
+})
 
 confirmFamilyLineButton.addEventListener("click", () => {
     const confirmedFamilyLineId = familyLineInput.value;
@@ -666,4 +719,9 @@ function showSuccess(message, message2) {
 function showHowToRegisterFamilyLineDialog() {
     howToRegisterFamilyLineDialog.showModal();
     document.querySelector('#how-to-register-family-line-close-dialog').onclick = () => howToRegisterFamilyLineDialog.close();
+}
+
+function showHowToRegisterUserLineDialog() {
+    howToRegisterUserLineDialog.showModal();
+    document.querySelector('#how-to-register-user-line-close-dialog').onclick = () => howToRegisterUserLineDialog.close();
 }

@@ -25,6 +25,15 @@
                 <button type="button" id="confirm-user-email">完了</button>
             </div>
         </section>
+        <section class="settings-section" id="user-line-container">
+            <p>あなたのLINE ID</p>
+            <div class="line-container">
+                <input type="text" id="user-line" th:value="${userLineId}" readonly>
+                <button type="button" id="change-user-line">更新</button>
+                <p id="user-line-error">LINE IDの形式が違います</p>
+                <button type="button" id="confirm-user-line">完了</button>
+            </div>
+        </section>
         <section class="settings-section" id="family-email-container">
             <p>ご家族のメールアドレス</p>
             <div class="email-container">
@@ -133,6 +142,13 @@
         <dialog id="error-dialog">
             <h2 id="error-message"></h2>
             <button id="error-close-dialog">OK</button>
+        </dialog>
+        <dialog id="how-to-register-user-line-dialog">
+            <h2>LINEを登録する方法</h2>
+            <img src="/img/medishare-line-qr.png" alt="MediShare LINE QRコード">
+            <p>LINEでこのQRコードをお友達登録してください</p>
+            <p>その後、送られてきたLINEユーザIDを入力してください</p>
+            <button id="how-to-register-user-line-close-dialog">OK</button>
         </dialog>
         <dialog id="how-to-register-family-line-dialog">
             <h2>ご家族のLINEを登録する方法</h2>

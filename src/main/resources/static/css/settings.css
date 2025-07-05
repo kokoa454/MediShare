@@ -24,7 +24,7 @@ main{
     gap: 24px;
 }
 
-#family-line-container, #betweenMeals-timetable-container{
+#family-line-container, #betweenMeals-timetable-container, #user-line-container{
     margin-bottom: 60px;
 }
 
@@ -32,7 +32,7 @@ main{
     margin-right: 96px;
 }
 
-#family-line-container p:first-of-type{
+#family-line-container p:first-of-type, #user-line-container p:first-of-type{
     margin-right: 62px;
 }
 
@@ -72,11 +72,11 @@ main{
     gap: 24px;
 }
 
-#confirm-user-email, #confirm-family-email, #confirm-user-name, #confirm-family-line, #confirm-wakeUp, #confirm-beforeBreakfast, #confirm-betweenMeals, #confirm-afterBreakfast, #confirm-beforeLunch, #confirm-afterLunch, #confirm-beforeDinner, #confirm-afterDinner, #confirm-beforeSleep{
+#confirm-user-email, #confirm-family-email, #confirm-user-name, #confirm-user-line, #confirm-family-line, #confirm-wakeUp, #confirm-beforeBreakfast, #confirm-betweenMeals, #confirm-afterBreakfast, #confirm-beforeLunch, #confirm-afterLunch, #confirm-beforeDinner, #confirm-afterDinner, #confirm-beforeSleep{
     display: none;
 }
 
-#user-email-error, #family-email-error, #user-name-error, #family-line-error, #wakeUp-error, #beforeBreakfast-error, #betweenMeals-error, #afterBreakfast-error, #beforeLunch-error, #afterLunch-error, #beforeDinner-error, #afterDinner-error, #beforeSleep-error{
+#user-email-error, #family-email-error, #user-name-error, #user-line-error, #family-line-error, #wakeUp-error, #beforeBreakfast-error, #betweenMeals-error, #afterBreakfast-error, #beforeLunch-error, #afterLunch-error, #beforeDinner-error, #afterDinner-error, #beforeSleep-error{
     display: none;
     color: var(--red);
     font-size: 16px;
@@ -155,12 +155,12 @@ dialog {
     z-index: 9999;
 }
 
-#how-to-register-family-line-dialog{
+#how-to-register-family-line-dialog, #how-to-register-user-line-dialog{
     height: 460px;
 
 }
 
-#how-to-register-family-line-dialog img{
+#how-to-register-family-line-dialog img, #how-to-register-user-line-dialog img{
     width: 200px;
     height: 200px;
     margin-top: 20px;
@@ -168,7 +168,7 @@ dialog {
     object-fit: contain;
 }
 
-#how-to-register-family-line-dialog p:first-of-type{
+#how-to-register-family-line-dialog p:first-of-type, #how-to-register-user-line-dialog p:first-of-type{
     margin-bottom: 8px;
 }
 
@@ -252,7 +252,7 @@ dialog button:hover {
         width: 120px;
     }
 
-    #user-name-container p:first-of-type, #family-line-container p:first-of-type{
+    #user-name-container p:first-of-type, #family-line-container p:first-of-type, #family-email-container p:first-of-type, #wakeUp-timetable-container p:first-of-type, #betweenMeals-timetable-container p:first-of-type{
         margin-right: 0;
     }
 

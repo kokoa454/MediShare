@@ -66,18 +66,24 @@ function deleteMedicine(selectedIds) {
         body: JSON.stringify(selectedIds)
     })
     .then(response => {
-        confirmDialog.close();
-        if (response.ok) {
-            successDialog.showModal();
-            document.querySelector('#success-close-dialog').onclick = () => location.href = '/dashboard';
-        } else {
-            showError('薬の削除に失敗しました');
-        }
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
     })
-    .catch(() => {
+    .then(message => {
         confirmDialog.close();
-        showError('通信エラーが発生しました');
+        showSuccess(message);
+        document.querySelector('#success-close-dialog').onclick = () => location.href = '/dashboard';
+    })
+    .catch((error) => {
+        confirmDialog.close();
+        showError(error.message || '通信エラーが発生しました');
     });
+}
+
+function showSuccess(message) {
+    document.querySelector('#success-message').textContent = message;
+    successDialog.showModal();
+    document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
 }
 
 function showError(message) {

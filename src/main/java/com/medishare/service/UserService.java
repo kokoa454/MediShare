@@ -89,12 +89,22 @@ public class UserService {
     }
 
     // ユーザIDからユーザLINEIDを取得
-    public String getUserLineIdByUserId(int userId){
+    public String getUserLineId(int userId){
         USER_DATABASE user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
         return user.getUserLineId();
+    }
+
+    // ユーザIDからユーザLINEIDを更新
+    public void updateUserLineId(int userId, String userLineId){
+        USER_DATABASE user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        user.setUserLineId(userLineId);
+        userRepository.save(user);
     }
 
     // すべてのユーザIDを取得

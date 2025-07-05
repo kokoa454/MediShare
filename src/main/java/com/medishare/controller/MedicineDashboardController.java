@@ -2,6 +2,7 @@ package com.medishare.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,8 +83,12 @@ public class MedicineDashboardController {
     }
 
     @PostMapping("/delete_medicine")
-    public String deleteMedicine(@RequestBody List<Integer> userMedicineIds) {
-        medicineService.deleteMedicine(userMedicineIds);
-        return "redirect:/dashboard";
+    public ResponseEntity<String> deleteMedicine(@RequestBody List<Integer> userMedicineIds) {
+        try {
+            medicineService.deleteMedicine(userMedicineIds);
+            return ResponseEntity.ok("お薬を削除しました");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("お薬の削除に失敗しました");
+        }
     }
 }
