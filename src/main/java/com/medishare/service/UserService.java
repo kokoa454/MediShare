@@ -8,19 +8,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.medishare.model.USER_DATABASE;
+import com.medishare.model.USER_TIMETABLE;
 import com.medishare.repository.UserRepository;
-
+import com.medishare.repository.UserTimetableRepository;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserTimetableRepository userTimetableRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserTimetableRepository userTimetableRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userTimetableRepository = userTimetableRepository;
     }
 
     // ユーザー登録処理
@@ -31,7 +34,9 @@ public class UserService {
 
         String encodedPassword = passwordEncoder.encode(password);
         USER_DATABASE user = new USER_DATABASE(userEmail, encodedPassword, null, null, null);
+        USER_TIMETABLE timetable = new USER_TIMETABLE(user, "07:00", "08:00", "09:00", "11:30", "13:00", "18:00", "19:30", "22:00", "15:00");
         userRepository.save(user);
+        userTimetableRepository.save(timetable);
         return true;
     }
 
