@@ -9,39 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#f08300">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <!-- OneSignal SDK -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-        appId: "ec99f1ff-95c6-4f17-beaf-320ad7d2b5fa",
-        safari_web_id: "web.onesignal.auto.3db514d6-c75f-4a27-ad99-adae19a9a814",
-        notifyButton: {
-            enable: true,
-            text: {
-                'tip.state.unsubscribed': '通知を受け取る',
-                'tip.state.subscribed': '通知は有効になっています',
-                'tip.state.blocked': '通知がブロックされています',
-                'message.prenotify': '通知を受け取るにはクリックしてください',
-                'message.action.subscribed': '通知を有効にしてくださりありがとうございます！',
-                'message.action.resubscribed': '通知を再開しました',
-                'message.action.unsubscribed': '通知を停止しました',
-                'dialog.main.title': '通知を有効にしますか？',
-                'dialog.main.button.subscribe': '通知を受け取る',
-                'dialog.main.button.unsubscribe': '通知を停止する',
-            }
-        },
-        welcomeNotification: {
-            title: "MediShare",
-            message: "MediShareにようこそ",
-            imageUrl: "/img/medishare-icon.png"
-        }
-        });
-    });
-    </script>
+    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- fragment css -->
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/header.css}">

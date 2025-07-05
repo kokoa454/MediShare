@@ -34,7 +34,7 @@ public class LineService {
         });
     }
 
-    public void sendLine(String userName, String userEmail, String familyLineId, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
+    public void reportLine(String userName, String userEmail, String familyLineId, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
         String message = String.format(
             """
             %s(%s)さんの服薬状況をお知らせいたします。
@@ -64,5 +64,9 @@ public class LineService {
                 System.out.println( exception.getMessage());
             }
         });
+    }
+
+    public void notifyBeforeMedicationLine(String userLineId, String message) {
+        
     }
 }

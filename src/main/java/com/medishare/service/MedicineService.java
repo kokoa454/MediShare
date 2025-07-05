@@ -148,9 +148,14 @@ public class MedicineService {
         }
     }
 
-    // userMedicineIdで薬を取得
+    // userMedicineIdで薬のuserInputを取得
     public String getMedicineUserInputByUserMedicineId(int userMedicineId) {
         return userMedicineRepository.findByUserMedicineId(userMedicineId).getMedicineUserInput();
+    }
+
+    //userIdでそのユーザの全薬を取得
+    public List<USER_MEDICINE> getAllMedicinesByUserId(int userId) {
+        return userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
     }
 
     //キーワードで薬を検索

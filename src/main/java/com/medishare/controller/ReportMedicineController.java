@@ -132,7 +132,7 @@ public class ReportMedicineController {
         System.out.println(reportData);
 
         try {
-            lineService.sendLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
+            lineService.reportLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
 
             for(String userMedicineId : userMedicineIds.split(",")) {
                 medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);

@@ -1,5 +1,6 @@
 package com.medishare.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserService {
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        USER_DATABASE user = new USER_DATABASE(userEmail, encodedPassword, null, null, null);
+        USER_DATABASE user = new USER_DATABASE(userEmail, encodedPassword, null, null, null, null);
         USER_TIMETABLE timetable = new USER_TIMETABLE(user, "07:00", "08:00", "09:00", "11:30", "13:00", "18:00", "19:30", "22:00", "15:00");
         userRepository.save(user);
         userTimetableRepository.save(timetable);
@@ -85,6 +86,25 @@ public class UserService {
             throw new NoSuchElementException("No such user found with the given id.");
         }
         return user.getUserName();
+    }
+
+    // ユーザIDからユーザLINEIDを取得
+    public String getUserLineIdByUserId(int userId){
+        USER_DATABASE user = userRepository.findByUserId(userId);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return user.getUserLineId();
+    }
+
+    // すべてのユーザIDを取得
+    public List<Integer> getAllUserIds(){
+        return userRepository.findAllUserIds();
+    }
+
+    // ユーザIDからタイムテーブルを取得
+    public USER_TIMETABLE getUserTimetableByUserId(int userId){
+        return userTimetableRepository.findByUserUserId(userId);
     }
 
     // ユーザIDからユーザ名を更新

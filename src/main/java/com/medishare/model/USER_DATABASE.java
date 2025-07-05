@@ -36,6 +36,9 @@ public class USER_DATABASE {
     private String userName;
 
     @Column(nullable = true)
+    private String userLineId;
+
+    @Column(nullable = true)
     private String familyLineId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -44,11 +47,12 @@ public class USER_DATABASE {
     public USER_DATABASE(){
 
     }
-    public USER_DATABASE(String userEmail, String password, String familyEmail, String userName, String familyLineId) {
+    public USER_DATABASE(String userEmail, String password, String familyEmail, String userName, String userLineId, String familyLineId) {
         this.userEmail = userEmail;
         this.password = password;
         this.familyEmail = familyEmail;
         this.userName = userName;
+        this.userLineId = userLineId;
         this.familyLineId = familyLineId;
     }
 
