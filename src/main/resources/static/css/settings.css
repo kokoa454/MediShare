@@ -24,7 +24,7 @@ main{
     gap: 24px;
 }
 
-#family-line-container{
+#family-line-container, #betweenMeals-timetable-container{
     margin-bottom: 60px;
 }
 
@@ -34,6 +34,10 @@ main{
 
 #family-line-container p:first-of-type{
     margin-right: 62px;
+}
+
+#wakeUp-timetable-container p:first-of-type, #betweenMeals-timetable-container p:first-of-type{
+    margin-right: 19px;
 }
 
 .settings-section p{
@@ -61,18 +65,18 @@ main{
     pointer-events: none;
 }
 
-.email-container, .name-container, .line-container{
+.email-container, .name-container, .line-container, .timetable-container{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 24px;
 }
 
-#confirm-user-email, #confirm-family-email, #confirm-user-name, #confirm-family-line{
+#confirm-user-email, #confirm-family-email, #confirm-user-name, #confirm-family-line, #confirm-wakeUp, #confirm-beforeBreakfast, #confirm-betweenMeals, #confirm-afterBreakfast, #confirm-beforeLunch, #confirm-afterLunch, #confirm-beforeDinner, #confirm-afterDinner, #confirm-beforeSleep{
     display: none;
 }
 
-#user-email-error, #family-email-error, #user-name-error, #family-line-error{
+#user-email-error, #family-email-error, #user-name-error, #family-line-error, #wakeUp-error, #beforeBreakfast-error, #betweenMeals-error, #afterBreakfast-error, #beforeLunch-error, #afterLunch-error, #beforeDinner-error, #afterDinner-error, #beforeSleep-error{
     display: none;
     color: var(--red);
     font-size: 16px;
@@ -252,7 +256,7 @@ dialog button:hover {
         margin-right: 0;
     }
 
-    .email-container, .name-container, .line-container{
+    .email-container, .name-container, .line-container, .timetable-container{
         flex-direction: column;
         margin-bottom: 24px;
     }

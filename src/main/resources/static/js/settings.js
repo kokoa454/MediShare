@@ -1,28 +1,86 @@
 const userEmailInput = document.getElementById("user-email");
 const userNameInput = document.getElementById("user-name");
+
 const familyEmailInput = document.getElementById("family-email");
 const familyLineInput = document.getElementById("family-line");
+
 const changeUserEmailButton = document.getElementById("change-user-email");
 const changeUserNameButton = document.getElementById("change-user-name");
 const changeFamilyEmailButton = document.getElementById("change-family-email");
 const changeFamilyLineButton = document.getElementById("change-family-line");
+
 const confirmUserEmailButton = document.getElementById("confirm-user-email");
 const confirmFamilyEmailButton = document.getElementById("confirm-family-email");
 const confirmUserNameButton = document.getElementById("confirm-user-name");
 const confirmFamilyLineButton = document.getElementById("confirm-family-line");
+
 const errorUserEmail = document.getElementById("user-email-error");
 const errorUserName = document.getElementById("user-name-error");
 const errorFamilyEmail = document.getElementById("family-email-error");
 const errorFamilyLine = document.getElementById("family-line-error");
+
 const successDialog = document.getElementById("success-dialog");
 const errorDialog = document.getElementById("error-dialog");
+
 const howToRegisterFamilyLineDialog = document.getElementById("how-to-register-family-line-dialog");
+
 const csrfToken = document.querySelector('meta[name="_csrf"]').content;
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+
 const beforeInputUserEmail = userEmailInput.value;
 const beforeInputUserName = userNameInput.value;
 const beforeInputFamilyEmail = familyEmailInput.value;
 const beforeInputFamilyLine = familyLineInput.value;
+
+const wakeUpInput = document.getElementById("wakeUp");
+const beforeBreakfastInput = document.getElementById("beforeBreakfast");
+const afterBreakfastInput = document.getElementById("afterBreakfast");
+const beforeLunchInput = document.getElementById("beforeLunch");
+const afterLunchInput = document.getElementById("afterLunch");
+const beforeDinnerInput = document.getElementById("beforeDinner");
+const afterDinnerInput = document.getElementById("afterDinner");
+const beforeSleepInput = document.getElementById("beforeSleep");
+const betweenMealsInput = document.getElementById("betweenMeals");
+
+const changeWakeUpButton = document.getElementById("change-wakeUp");
+const changeBeforeBreakfastButton = document.getElementById("change-beforeBreakfast");
+const changeAfterBreakfastButton = document.getElementById("change-afterBreakfast");
+const changeBeforeLunchButton = document.getElementById("change-beforeLunch");
+const changeAfterLunchButton = document.getElementById("change-afterLunch");
+const changeBeforeDinnerButton = document.getElementById("change-beforeDinner");
+const changeAfterDinnerButton = document.getElementById("change-afterDinner");
+const changeBeforeSleepButton = document.getElementById("change-beforeSleep");
+const changeBetweenMealsButton = document.getElementById("change-betweenMeals");
+
+const confirmWakeUpButton = document.getElementById("confirm-wakeUp");
+const confirmBeforeBreakfastButton = document.getElementById("confirm-beforeBreakfast");
+const confirmAfterBreakfastButton = document.getElementById("confirm-afterBreakfast");
+const confirmBeforeLunchButton = document.getElementById("confirm-beforeLunch");
+const confirmAfterLunchButton = document.getElementById("confirm-afterLunch");
+const confirmBeforeDinnerButton = document.getElementById("confirm-beforeDinner");
+const confirmAfterDinnerButton = document.getElementById("confirm-afterDinner");
+const confirmBeforeSleepButton = document.getElementById("confirm-beforeSleep");
+const confirmBetweenMealsButton = document.getElementById("confirm-betweenMeals");
+
+const errorWakeUp = document.getElementById("wakeUp-error");
+const errorBeforeBreakfast = document.getElementById("beforeBreakfast-error");
+const errorAfterBreakfast = document.getElementById("afterBreakfast-error");
+const errorBeforeLunch = document.getElementById("beforeLunch-error");
+const errorAfterLunch = document.getElementById("afterLunch-error");
+const errorBeforeDinner = document.getElementById("beforeDinner-error");
+const errorAfterDinner = document.getElementById("afterDinner-error");
+const errorBeforeSleep = document.getElementById("beforeSleep-error");
+const errorBetweenMeals = document.getElementById("betweenMeals-error");
+
+const beforeInputWakeup = wakeUpInput.value;
+const beforeInputBeforeBreakfast = beforeBreakfastInput.value;
+const beforeInputAfterBreakfast = afterBreakfastInput.value;
+const beforeInputBeforeLunch = beforeLunchInput.value;
+const beforeInputAfterLunch = afterLunchInput.value;
+const beforeInputBeforeDinner = beforeDinnerInput.value;
+const beforeInputAfterDinner = afterDinnerInput.value;
+const beforeInputBeforeSleep = beforeSleepInput.value;
+const beforeInputBetweenMeals = betweenMealsInput.value;
 
 changeUserEmailButton.addEventListener("click", () => {
     userEmailInput.removeAttribute("readonly");
@@ -51,6 +109,69 @@ changeFamilyLineButton.addEventListener("click", () => {
     confirmFamilyLineButton.style.display = "block";
     errorFamilyLine.style.display = "none";
     if (familyLineInput.value === "登録されていません") familyLineInput.value = "";
+});
+
+changeWakeUpButton.addEventListener("click", () => {
+    wakeUpInput.removeAttribute("readonly");
+    changeWakeUpButton.style.display = "none";
+    confirmWakeUpButton.style.display = "block";
+    errorWakeUp.style.display = "none";
+});
+
+changeBeforeBreakfastButton.addEventListener("click", () => {
+    beforeBreakfastInput.removeAttribute("readonly");
+    changeBeforeBreakfastButton.style.display = "none";
+    confirmBeforeBreakfastButton.style.display = "block";
+    errorBeforeBreakfast.style.display = "none";
+});
+
+changeAfterBreakfastButton.addEventListener("click", () => {
+    afterBreakfastInput.removeAttribute("readonly");
+    changeAfterBreakfastButton.style.display = "none";
+    confirmAfterBreakfastButton.style.display = "block";
+    errorAfterBreakfast.style.display = "none";
+});
+
+changeBeforeLunchButton.addEventListener("click", () => {
+    beforeLunchInput.removeAttribute("readonly");
+    changeBeforeLunchButton.style.display = "none";
+    confirmBeforeLunchButton.style.display = "block";
+    errorBeforeLunch.style.display = "none";
+});
+
+changeAfterLunchButton.addEventListener("click", () => {
+    afterLunchInput.removeAttribute("readonly");
+    changeAfterLunchButton.style.display = "none";
+    confirmAfterLunchButton.style.display = "block";
+    errorAfterLunch.style.display = "none";
+});
+
+changeBeforeDinnerButton.addEventListener("click", () => {
+    beforeDinnerInput.removeAttribute("readonly");
+    changeBeforeDinnerButton.style.display = "none";
+    confirmBeforeDinnerButton.style.display = "block";
+    errorBeforeDinner.style.display = "none";
+});
+
+changeAfterDinnerButton.addEventListener("click", () => {
+    afterDinnerInput.removeAttribute("readonly");
+    changeAfterDinnerButton.style.display = "none";
+    confirmAfterDinnerButton.style.display = "block";
+    errorAfterDinner.style.display = "none";
+});
+
+changeBeforeSleepButton.addEventListener("click", () => {
+    beforeSleepInput.removeAttribute("readonly");
+    changeBeforeSleepButton.style.display = "none";
+    confirmBeforeSleepButton.style.display = "block";
+    errorBeforeSleep.style.display = "none";
+});
+
+changeBetweenMealsButton.addEventListener("click", () => {
+    betweenMealsInput.removeAttribute("readonly");
+    changeBetweenMealsButton.style.display = "none";
+    confirmBetweenMealsButton.style.display = "block";
+    errorBetweenMeals.style.display = "none";
 });
 
 confirmUserEmailButton.addEventListener("click", () => {
@@ -208,6 +329,330 @@ confirmFamilyLineButton.addEventListener("click", () => {
         errorFamilyLine.style.display = "block";
     }
 });
+
+confirmWakeUpButton.addEventListener("click", () => {
+    const confirmedWakeUpTime = wakeUpInput.value;
+
+    if (confirmedWakeUpTime === "") {
+        wakeUpInput.value = beforeInputWakeup;
+        showError('起床時間を入力してください');
+        return;
+    }
+
+    errorWakeUp.style.display = "none";
+
+    fetch('/settings/wakeUpTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedWakeUpTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        wakeUpInput.setAttribute("readonly", true);
+        changeWakeUpButton.style.display = "block";
+        confirmWakeUpButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        wakeUpInput.value = beforeInputWakeup;
+        showError(error.message || '通信エラーが発生しました');
+    });
+ })
+
+ confirmBeforeBreakfastButton.addEventListener("click", () => {
+    const confirmedBeforeBreakfastTime = beforeBreakfastInput.value;
+
+    if (confirmedBeforeBreakfastTime === "") {
+        beforeBreakfastInput.value = beforeInputBeforeBreakfast;
+        showError('朝食前時間を入力してください');
+        return;
+    }
+
+    errorBeforeBreakfast.style.display = "none";
+
+    fetch('/settings/beforeBreakfastTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedBeforeBreakfastTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        beforeBreakfastInput.setAttribute("readonly", true);
+        changeBeforeBreakfastButton.style.display = "block";
+        confirmBeforeBreakfastButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        beforeBreakfastInput.value = beforeInputBeforeBreakfast;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmAfterBreakfastButton.addEventListener("click", () => {
+    const confirmedAfterBreakfastTime = afterBreakfastInput.value;
+
+    if (confirmedAfterBreakfastTime === "") {
+        afterBreakfastInput.value = beforeInputAfterBreakfast;
+        showError('朝食後時間を入力してください');
+        return;
+    }
+
+    errorAfterBreakfast.style.display = "none";
+
+    fetch('/settings/afterBreakfastTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedAfterBreakfastTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        afterBreakfastInput.setAttribute("readonly", true);
+        changeAfterBreakfastButton.style.display = "block";
+        confirmAfterBreakfastButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        afterBreakfastInput.value = beforeInputAfterBreakfast;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmBeforeLunchButton.addEventListener("click", () => {
+    const confirmedBeforeLunchTime = beforeLunchInput.value;
+
+    if (confirmedBeforeLunchTime === "") {
+        beforeLunchInput.value = beforeInputBeforeLunch;
+        showError('昼食前時間を入力してください');
+        return;
+    }
+
+    errorBeforeLunch.style.display = "none";
+
+    fetch('/settings/beforeLunchTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedBeforeLunchTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        beforeLunchInput.setAttribute("readonly", true);
+        changeBeforeLunchButton.style.display = "block";
+        confirmBeforeLunchButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        beforeLunchInput.value = beforeInputBeforeLunch;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmAfterLunchButton.addEventListener("click", () => {
+    const confirmedAfterLunchTime = afterLunchInput.value;
+
+    if (confirmedAfterLunchTime === "") {
+        afterLunchInput.value = beforeInputAfterLunch;
+        showError('昼食後時間を入力してください');
+        return;
+    }
+
+    errorAfterLunch.style.display = "none";
+
+    fetch('/settings/afterLunchTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedAfterLunchTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        afterLunchInput.setAttribute("readonly", true);
+        changeAfterLunchButton.style.display = "block";
+        confirmAfterLunchButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        afterLunchInput.value = beforeInputAfterLunch;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmBeforeDinnerButton.addEventListener("click", () => {
+    const confirmedBeforeDinnerTime = beforeDinnerInput.value;
+
+    if (confirmedBeforeDinnerTime === "") {
+        beforeDinnerInput.value = beforeInputBeforeDinner;
+        showError('夕食前時間を入力してください');
+        return;
+    }
+
+    errorBeforeDinner.style.display = "none";
+
+    fetch('/settings/beforeDinnerTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedBeforeDinnerTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        beforeDinnerInput.setAttribute("readonly", true);
+        changeBeforeDinnerButton.style.display = "block";
+        confirmBeforeDinnerButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        beforeDinnerInput.value = beforeInputBeforeDinner;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+confirmAfterDinnerButton.addEventListener("click", () => {
+    const confirmedAfterDinnerTime = afterDinnerInput.value;
+
+    if (confirmedAfterDinnerTime === "") {
+        afterDinnerInput.value = beforeInputAfterDinner;
+        showError('夕食後時間を入力してください');
+        return;
+    }
+
+    errorAfterDinner.style.display = "none";
+
+    fetch('/settings/afterDinnerTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedAfterDinnerTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        afterDinnerInput.setAttribute("readonly", true);
+        changeAfterDinnerButton.style.display = "block";
+        confirmAfterDinnerButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        afterDinnerInput.value = beforeInputAfterDinner;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmBeforeSleepButton.addEventListener("click", () => {
+    const confirmedBeforeSleepTime = beforeSleepInput.value;
+
+    if (confirmedBeforeSleepTime === "") {
+        beforeSleepInput.value = beforeInputBeforeSleep;
+        showError('寝前時間を入力してください');
+        return;
+    }
+
+    errorBeforeSleep.style.display = "none";
+
+    fetch('/settings/beforeSleepTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedBeforeSleepTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        beforeSleepInput.setAttribute("readonly", true);
+        changeBeforeSleepButton.style.display = "block";
+        confirmBeforeSleepButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        beforeSleepInput.value = beforeInputBeforeSleep;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
+
+ confirmBetweenMealsButton.addEventListener("click", () => {
+    const confirmedBetweenMealsTime = betweenMealsInput.value;
+
+    if (confirmedBetweenMealsTime === "") {
+        betweenMealsInput.value = beforeInputBetweenMeals;
+        showError('食間時間を入力してください');
+        return;
+    }
+
+    errorBetweenMeals.style.display = "none";
+
+    fetch('/settings/betweenMealsTime', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ confirmedBetweenMealsTime })
+    })
+    .then(response => {
+        if (response.ok) return response.text();
+        else return response.text().then(msg => { throw new Error(msg); });
+    })
+    .then(message => {
+        betweenMealsInput.setAttribute("readonly", true);
+        changeBetweenMealsButton.style.display = "block";
+        confirmBetweenMealsButton.style.display = "none";
+        showSuccess(message, null);
+        document.querySelector('#success-close-dialog').onclick = () => successDialog.close();
+    })
+    .catch(error => {
+        betweenMealsInput.value = beforeInputBetweenMeals;
+        showError(error.message || '通信エラーが発生しました');
+    })
+ })
 
 function showError(message) {
     errorDialog.showModal();

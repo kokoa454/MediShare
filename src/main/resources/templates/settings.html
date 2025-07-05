@@ -43,6 +43,87 @@
                 <button type="button" id="confirm-family-line">完了</button>
             </div>
         </section>
+        <section class="settings-section" id="wakeUp-timetable-container">
+            <p>起床の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="wakeUp" th:value="${wakeUpTime}" readonly>
+                <button type="button" id="change-wakeUp">更新</button>
+                <p id="wakeUp-error">入力形式が違います</p>
+                <button type="button" id="confirm-wakeUp">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="beforeBreakfast-timetable-container">
+            <p>朝食前の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="beforeBreakfast" th:value="${beforeBreakfastTime}" readonly>
+                <button type="button" id="change-beforeBreakfast">更新</button>
+                <p id="beforeBreakfast-error">入力形式が違います</p>
+                <button type="button" id="confirm-beforeBreakfast">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="afterBreakfast-timetable-container">
+            <p>朝食後の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="afterBreakfast" th:value="${afterBreakfastTime}" readonly>
+                <button type="button" id="change-afterBreakfast">更新</button>
+                <p id="afterBreakfast-error">入力形式が違います</p>
+                <button type="button" id="confirm-afterBreakfast">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="beforeLunch-timetable-container">
+            <p>昼食前の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="beforeLunch" th:value="${beforeLunchTime}" readonly>
+                <button type="button" id="change-beforeLunch">更新</button>
+                <p id="beforeLunch-error">入力形式が違います</p>
+                <button type="button" id="confirm-beforeLunch">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="afterLunch-timetable-container">
+            <p>昼食後の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="afterLunch" th:value="${afterLunchTime}" readonly>
+                <button type="button" id="change-afterLunch">更新</button>
+                <p id="afterLunch-error">入力形式が違います</p>
+                <button type="button" id="confirm-afterLunch">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="beforeDinner-timetable-container">
+            <p>夕食前の時間</p>
+            <div class="timetable-container">                
+                <input type="text" id="beforeDinner" th:value="${beforeDinnerTime}" readonly>
+                <button type="button" id="change-beforeDinner">更新</button>
+                <p id="beforeDinner-error">入力形式が違います</p>
+                <button type="button" id="confirm-beforeDinner">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="afterDinner-timetable-container">
+            <p>夕食後の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="afterDinner" th:value="${afterDinnerTime}" readonly>
+                <button type="button" id="change-afterDinner">更新</button>
+                <p id="afterDinner-error">入力形式が違います</p>
+                <button type="button" id="confirm-afterDinner">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="beforeSleep-timetable-container">
+            <p>寝る前の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="beforeSleep" th:value="${beforeSleepTime}" readonly>
+                <button type="button" id="change-beforeSleep">更新</button>
+                <p id="beforeSleep-error">入力形式が違います</p>
+                <button type="button" id="confirm-beforeSleep">完了</button>
+            </div>
+        </section>
+        <section class="settings-section" id="betweenMeals-timetable-container">
+            <p>食間の時間</p>
+            <div class="timetable-container">
+                <input type="text" id="betweenMeals" th:value="${betweenMealsTime}" readonly>
+                <button type="button" id="change-betweenMeals">更新</button>
+                <p id="betweenMeals-error">入力形式が違います</p>
+                <button type="button" id="confirm-betweenMeals">完了</button>
+            </div>
+        </section>
         <button type="button" th:onclick="|location.href='@{/dashboard}'|">戻る</button>
         <dialog id="success-dialog">
             <h2 id="success-message"></h2>

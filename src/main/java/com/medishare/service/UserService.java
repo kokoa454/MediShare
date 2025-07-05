@@ -115,4 +115,175 @@ public class UserService {
         user.setFamilyLineId(familyLineId);
         userRepository.save(user);
     }
+
+    // ユーザIDから起床時のタイムテーブルを取得
+    public String getWakeUpTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getWakeUp();
+    }
+
+    // ユーザIDから起床時のタイムテーブルを更新
+    public void updateWakeUpTime(int userId, String wakeUpTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setWakeUp(wakeUpTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから朝食前のタイムテーブルを取得
+    public String getBeforeBreakfastTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getBeforeBreakfast();
+    }
+
+    // ユーザIDから朝食前のタイムテーブルを更新
+    public void updateBeforeBreakfastTime(int userId, String breakfastTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setBeforeBreakfast(breakfastTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから朝食後のタイムテーブルを取得
+    public String getAfterBreakfastTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getAfterBreakfast();
+    }
+
+    // ユーザIDから朝食後のタイムテーブルを更新
+    public void updateAfterBreakfastTime(int userId, String afterBreakfastTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setAfterBreakfast(afterBreakfastTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから昼食前のタイムテーブルを取得
+    public String getBeforeLunchTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getBeforeLunch();
+    }
+
+    // ユーザIDから昼食前のタイムテーブルを更新
+    public void updateBeforeLunchTime(int userId, String lunchTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setBeforeLunch(lunchTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから昼食後のタイムテーブルを取得
+    public String getAfterLunchTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getAfterLunch();
+    }
+
+    // ユーザIDから昼食後のタイムテーブルを更新
+    public void updateAfterLunchTime(int userId, String afterLunchTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setAfterLunch(afterLunchTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから夕食前のタイムテーブルを取得
+    public String getBeforeDinnerTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getBeforeDinner();
+    }
+
+    // ユーザIDから夕食前のタイムテーブルを更新
+    public void updateBeforeDinnerTime(int userId, String dinnerTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setBeforeDinner(dinnerTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから夕食後のタイムテーブルを取得
+    public String getAfterDinnerTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getAfterDinner();
+    }
+
+    // ユーザIDから夕食後のタイムテーブルを更新
+    public void updateAfterDinnerTime(int userId, String afterDinnerTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setAfterDinner(afterDinnerTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから就寝前のタイムテーブルを取得
+    public String getBeforeSleepTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getBeforeSleep();
+    }
+
+    // ユーザIDから就寝前のタイムテーブルを更新
+    public void updateBeforeSleepTime(int userId, String beforeSleepTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setBeforeSleep(beforeSleepTime);
+        userTimetableRepository.save(userTimetable);
+    }
+
+    // ユーザIDから食間のタイムテーブルを取得
+    public String getBetweenMealsTime(int userId){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        return userTimetable.getBetweenMeals();
+    }
+
+    // ユーザIDから食間のタイムテーブルを更新
+    public void updateBetweenMealsTime(int userId, String betweenMealsTime){
+        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        if (userTimetable == null) {
+            throw new NoSuchElementException("No such user found with the given id.");
+        }
+        userTimetable.setBetweenMeals(betweenMealsTime);
+        userTimetableRepository.save(userTimetable);
+    }
 }

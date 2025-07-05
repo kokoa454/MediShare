@@ -7,5 +7,6 @@ import com.medishare.model.USER_TIMETABLE;
 
 @Repository
 public interface UserTimetableRepository extends JpaRepository<USER_TIMETABLE, Integer>{
-    
+    // ユーザーIDでユーザーを検索する
+    USER_TIMETABLE findByUserUserId(int userId);
 }
