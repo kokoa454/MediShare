@@ -62,7 +62,7 @@ header *{
     margin-bottom: 40px;
 }
 
-#logout-btn {
+#logout-btn-mobile, #logout-btn-desktop {
     width: 160px;
     height: 40px;
     margin-top: 8px;
@@ -80,7 +80,7 @@ header *{
     overflow: hidden;
 }
 
-#logout-btn::before {
+#logout-btn-mobile::before, #logout-btn-desktop::before{
     content: "";
     position: absolute;
     top: 0;
@@ -91,11 +91,11 @@ header *{
     transition: all 0.3s ease;
 }
 
-#logout-btn:hover::before {
+#logout-btn-mobile:hover::before, #logout-btn-desktop:hover::before {
     left: 0;
 }
 
-#logout-btn:hover {
+#logout-btn-mobile:hover, #logout-btn-desktop:hover {
     background-color: #d97300;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }

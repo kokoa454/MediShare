@@ -6,7 +6,9 @@
             <p class="ForYourLife-text">For your life</p>
             <section id="email-container-mobile">
                 <h3 id="email" th:text="${#authentication.name}"></h3>
-                <button id="logout-btn">ログアウト</button>
+                <form th:action="@{/logout}" method="post" id="logout-form-mobile">
+                    <button id="logout-btn-mobile">ログアウト</button>
+                </form>
                 <p><a th:href="@{/settings}">設定</a></p>
             </section>
             <section id="tips-containers-mobile">
@@ -68,8 +70,8 @@
     </section>
     <section id="email-container-desktop">
         <h3 id="email" th:text="${#authentication.name}"></h3>
-        <form th:action="@{/logout}" method="post" id="logout-form">
-            <button id="logout-btn" >ログアウト</button>
+        <form th:action="@{/logout}" method="post" id="logout-form-desktop">
+            <button id="logout-btn-desktop">ログアウト</button>
         </form>
         <p><a th:href="@{/settings}">設定</a></p>
     </section>

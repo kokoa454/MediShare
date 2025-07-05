@@ -92,6 +92,7 @@ public class ReportMedicineController {
     }
 
     @PostMapping("/send_mail")
+    @SuppressWarnings("UseSpecificCatch")
     public ResponseEntity<String> report_medicineWithMail(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
         String userEmail = reportData.getUserEmail();
         String familyEmail = reportData.getFamilyEmail();
@@ -119,6 +120,7 @@ public class ReportMedicineController {
     }
 
     @PostMapping("/send_line")
+    @SuppressWarnings("UseSpecificCatch")
     public ResponseEntity<String> report_medicineWithLine(@RequestBody ReportDTO reportData, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds) {
         String userEmail = reportData.getUserEmail();
         List<String> medicineNames = reportData.getMedicines();

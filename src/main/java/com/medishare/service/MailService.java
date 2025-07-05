@@ -37,4 +37,17 @@ public class MailService {
             System.err.println("Failed to send email to " + to + ": " + e.getMessage());
         }
     }
+
+    public void sendPasswordResetEmail(String to, String resetLink) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("medishare.reporter@gmail.com");
+        message.setTo(to);
+        message.setSubject("【Medishare】パスワードリセット");
+        message.setText("こちらのURLからパスワードをリセットしてください。\n" + resetLink + "\n" + "リンクの有効期限は1時間です。\n" + "また、本メールは自動送信のため、ご返信はお控えください。");
+        try {
+            mailSender.send(message);
+        } catch (MailException e) {
+            System.err.println("Failed to send email to " + to + ": " + e.getMessage());
+        }
+    }
 }
