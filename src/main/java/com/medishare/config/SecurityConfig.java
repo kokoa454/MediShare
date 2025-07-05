@@ -21,6 +21,7 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/img/**",
                                 "/register_account",
+                                "/about_app",
                                 "/manifest.json",
                                 "/callback"
                         )

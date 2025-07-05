@@ -10,11 +10,28 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#f08300">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- OneSignal SDK -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+        appId: "ec99f1ff-95c6-4f17-beaf-320ad7d2b5fa",
+        safari_web_id: "web.onesignal.auto.3db514d6-c75f-4a27-ad99-adae19a9a814",
+        notifyButton: {
+            enable: true,
+        },
+        });
+    });
+    </script>
+
     <!-- fragment css -->
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/header.css}">
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:if="${currentPageFragments == 'sidebar'}" th:href="@{/css/fragments/sidebar.css}">
     <script th:if="${currentPageFragments == 'sidebar'}" th:src="@{/js/fragments/sidebar.js}" defer></script>
+    
     <!-- page css -->
     <link rel="stylesheet" th:if="${currentPage == 'login'}" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:if="${currentPage == 'register_account'}" th:href="@{/css/register_account.css}">
@@ -27,6 +44,7 @@
     <link rel="stylesheet" th:if="${currentPage == 'report_medicine'}" th:href="@{/css/report_medicine.css}">
     <link rel="stylesheet" th:if="${currentPage == 'medicine_dashboard'}" th:href="@{/css/medicine_dashboard.css}">
     <link rel="stylesheet" th:if="${currentPage == 'settings'}" th:href="@{/css/settings.css}">
+    <link rel="stylesheet" th:if="${currentPage == 'about_app'}" th:href="@{/css/about_app.css}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
