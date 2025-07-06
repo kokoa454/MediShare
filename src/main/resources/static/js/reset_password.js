@@ -1,4 +1,4 @@
-const form = document.getElementById("reset-password-form");
+const resetPassword = document.getElementById("reset-password-button");
 const successDialog = document.getElementById("reset-password-success-dialog");
 const errorDialog = document.getElementById("reset-password-error-dialog");
 const strengthBar = document.getElementById("password-strength-bar");
@@ -62,9 +62,7 @@ passwordInput.addEventListener("input", () => {
 });
 
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
+resetPassword.addEventListener("click", () => {
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
     let password = passwordInput.value;
@@ -94,7 +92,7 @@ form.addEventListener("submit", function(event) {
         token: token
     };
 
-    fetch("/reset_password/reset-password", {
+    fetch("/reset_password", {
         method: "POST",
         headers: {
             [csrfHeader]: csrfToken,
