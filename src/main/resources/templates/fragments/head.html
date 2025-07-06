@@ -11,6 +11,10 @@
     <meta name="theme-color" content="#f08300">
     <meta name="mobile-web-app-capable" content="yes">
 
+    <!-- common settings for csrf -->
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <!-- fragment css -->
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/header.css}">
     <link rel="stylesheet" th:if="${currentPageFragments == 'headerAndFooter'}" th:href="@{/css/fragments/footer.css}">
@@ -30,6 +34,7 @@
     <link rel="stylesheet" th:if="${currentPage == 'medicine_dashboard'}" th:href="@{/css/medicine_dashboard.css}">
     <link rel="stylesheet" th:if="${currentPage == 'settings'}" th:href="@{/css/settings.css}">
     <link rel="stylesheet" th:if="${currentPage == 'about_app'}" th:href="@{/css/about_app.css}">
+    <link rel="stylesheet" th:if="${currentPage == 'reset_password'}" th:href="@{/css/reset_password.css}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

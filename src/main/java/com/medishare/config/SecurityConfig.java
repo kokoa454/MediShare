@@ -22,6 +22,7 @@ public class SecurityConfig {
                                 "/img/**",
                                 "/register_account",
                                 "/login/reset_password",
+                                "/reset_password",
                                 "/about_app",
                                 "/manifest.json",
                                 "/callback"

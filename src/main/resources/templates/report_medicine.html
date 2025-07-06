@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/head :: head('report_medicine', 'sidebar')}"></head>
-<meta name="_csrf" th:content="${_csrf.token}">
-<meta name="_csrf_header" th:content="${_csrf.headerName}">
 <body>
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
     <main>
