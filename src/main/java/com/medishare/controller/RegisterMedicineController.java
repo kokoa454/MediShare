@@ -31,6 +31,7 @@ public class RegisterMedicineController {
         userMedicineService.registerMedicine(
             userMedicine.getMedicineUserInput(),
             userMedicine.getMedicineOfficialName(),
+            userMedicine.getUrlKusurinoshiori(),
             userMedicine.getPrescriptionDays(),
             userMedicine.getUserComment(),
             userMedicine.getMedicationMethod()

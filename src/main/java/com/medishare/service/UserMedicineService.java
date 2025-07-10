@@ -30,6 +30,7 @@ public class UserMedicineService {
     public void registerMedicine(
             String medicineUserInput,
             String medicineOfficialName,
+            String urlKusurinoshiori,
             String prescriptionDays,
             String userComment,
             String medicationMethod
@@ -46,6 +47,7 @@ public class UserMedicineService {
                 user,
                 medicineUserInput,
                 medicineOfficialName,
+                urlKusurinoshiori,
                 prescriptionDays,
                 medicationMethod,
                 userComment,

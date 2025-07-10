@@ -46,14 +46,14 @@ function switchSelectGroup() {
     }
 }
 
+const medicineNameMap = new Map()
+
 function searchMedicine(){
     const inputMedicineName = document.getElementById("medicine-official-name").value;
     const suggestionsList = document.getElementById("medicine-official-name-suggestions");
-    const errorMessage = document.getElementById("medicine-official-name-error");
 
     if( inputMedicineName.length < 1) {
-        suggestionsList.innerHTML = ""; // Clear suggestions if input is less than 2 characters
-        return;
+        suggestionsList.innerHTML = "";
     }
 
     fetch(`/searchMedicineOfficialName?name=${encodeURIComponent(inputMedicineName)}`)
@@ -64,9 +64,27 @@ function searchMedicine(){
                 const option = document.createElement("option");
                 option.value = medicine.medicineOfficialName;
                 suggestionsList.appendChild(option);
+                medicineNameMap.set(medicine.medicineOfficialName, medicine.urlKusurinoShiori);
             });
         }
     )
+
+    console.log("Mapの中身：", Array.from(medicineNameMap.entries()));
+console.log("選択された値：", inputMedicineName);
+console.log("取得結果：", medicineNameMap.get(inputMedicineName));
+
+}
+
+function setKusuriNoShioriUrl() {
+    const medicineOfficialNameInput = document.getElementById("medicine-official-name").value;
+    const urlKusurinoshioriInput = document.getElementById("url-kusurinoshiori");
+    const url = medicineNameMap.get(medicineOfficialNameInput);
+
+    if (url === undefined) {
+        urlKusurinoshioriInput.value = "";
+    } else {
+        urlKusurinoshioriInput.value = url;
+    }
 }
 
 function validateMedicineName() {

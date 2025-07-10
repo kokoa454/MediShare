@@ -1,5 +1,10 @@
 package com.medishare.model;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +19,7 @@ public class MEDICINE {
     private int medicineId;
 
     @Column(unique = true, nullable = false)
-    public String medicineOfficialName;
+    private String medicineOfficialName;
 
     @Column(unique = true ,nullable = false)
     private String urlKusurinoShiori;
@@ -22,9 +27,8 @@ public class MEDICINE {
     public MEDICINE(){
 
     }
-    public MEDICINE(String medicineOfficialName, int medicineId, String urlKusurinoShiori){
+    public MEDICINE(String medicineOfficialName,String urlKusurinoShiori){
         this.medicineOfficialName = medicineOfficialName;
-        this.medicineId = medicineId;
         this.urlKusurinoShiori = urlKusurinoShiori;
     }
 

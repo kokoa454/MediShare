@@ -31,6 +31,9 @@ public class USER_MEDICINE {
     @Column(nullable = false)
     private String medicineOfficialName;
 
+    @Column(nullable = false)
+    private String urlKusurinoshiori;
+
     @Column
     private String medicineUserInput;
 
@@ -56,6 +59,7 @@ public class USER_MEDICINE {
         USER_DATABASE user, 
         String medicineUserInput, 
         String medicineOfficialName, 
+        String urlKusurinoshiori,
         String prescriptionDays,
         String medicationMethod, 
         String userComment,
@@ -65,6 +69,7 @@ public class USER_MEDICINE {
         this.user = user;
         this.medicineUserInput = medicineUserInput;
         this.medicineOfficialName = medicineOfficialName;
+        this.urlKusurinoshiori = urlKusurinoshiori;
         this.prescriptionDays = prescriptionDays;
         this.medicationMethod = medicationMethod;
         this.userComment = userComment;
