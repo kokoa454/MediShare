@@ -5,10 +5,11 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
     <main>
         <h1 id="page-title">お薬の登録</h1>
-        <form th:action="@{/register_medicine}" th:object="${userMedicine}" method="post" id="register-medicine-form">
+        <form th:action="@{/register_medicine}" th:object="${userMedicine}" method="post" id="register-medicine-form" onsubmit="return validateMedicineName()">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称<span class="error-message" id="medicine-official-name-error">正しいお薬の名前を入力してください</span></label>
-                <input type="text" id="medicine-official-name" th:field="*{medicineOfficialName}" placeholder="カロナール錠200 など">
+                <input type="text" id="medicine-official-name" th:field="*{medicineOfficialName}" placeholder="カロナール錠200 など" list="medicine-official-name-suggestions" oninput="searchMedicine()">
+                <datalist id="medicine-official-name-suggestions"></datalist>
                 <p>お薬の正式名称を登録することで、<br>「くすりのしおり」と連携することができます</p>
             </div>
             <div class="input-group">

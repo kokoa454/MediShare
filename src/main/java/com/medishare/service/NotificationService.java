@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class NotificationService {
 
     private final UserService userService;
-    private final MedicineService medicineService;
+    private final UserMedicineService userMedicineService;
     private final LineService lineService;
 
     @Scheduled(fixedDelay = 60000) // 1分ごとに実行
@@ -30,7 +30,7 @@ public class NotificationService {
 
             if(userLineId != null) {
                 USER_TIMETABLE userTimetable = userService.getUserTimetableByUserId(userId);
-                List<USER_MEDICINE> medicines = medicineService.getAllMedicinesByUserId(userId);
+                List<USER_MEDICINE> medicines = userMedicineService.getAllMedicinesByUserId(userId);
                 java.util.Map<String, List<String>> medicinesForNotificationMap = new java.util.HashMap<>();
 
                 for (USER_MEDICINE medicine : medicines) {
@@ -90,7 +90,7 @@ public class NotificationService {
 
             if(userLineId != null) {
                 USER_TIMETABLE userTimetable = userService.getUserTimetableByUserId(userId);
-                List<USER_MEDICINE> medicines = medicineService.getAllMedicinesByUserId(userId);
+                List<USER_MEDICINE> medicines = userMedicineService.getAllMedicinesByUserId(userId);
                 java.util.Map<String, List<String>> medicinesForNotificationMap = new java.util.HashMap<>();
 
                 for (USER_MEDICINE medicine : medicines) {

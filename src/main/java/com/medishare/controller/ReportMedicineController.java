@@ -16,7 +16,7 @@ import com.medishare.dto.ReportDTO;
 import com.medishare.repository.UserRepository;
 import com.medishare.service.LineService;
 import com.medishare.service.MailService;
-import com.medishare.service.MedicineService;
+import com.medishare.service.UserMedicineService;
 import com.medishare.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/report_medicine")
 @RequiredArgsConstructor
 public class ReportMedicineController {
-    private final MedicineService medicineService;
+    private final UserMedicineService userMedicineService;
     private final UserService userService;
     private final MailService mailService;
     private final LineService lineService;
@@ -75,7 +75,7 @@ public class ReportMedicineController {
 
         List<String> medicines = new ArrayList<>();
         for(String userMedicineId : userMedicineIds.split(",")) {
-            medicines.add(medicineService.getMedicineUserInputByUserMedicineId(Integer.parseInt(userMedicineId)).split(",")[0]);
+            medicines.add(userMedicineService.getMedicineUserInputByUserMedicineId(Integer.parseInt(userMedicineId)).split(",")[0]);
         }
 
         model.addAttribute("medicines", medicines);
@@ -108,7 +108,7 @@ public class ReportMedicineController {
             mailService.sendMail(userName, userEmail ,familyEmail, medicineNames, medicationMethod, userCondition, userComment);
 
             for(String userMedicineId : userMedicineIds.split(",")) {
-                medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
+                userMedicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
             }
 
             return ResponseEntity.ok("メールで報告しました");
@@ -137,7 +137,7 @@ public class ReportMedicineController {
             lineService.reportLine(userName, userEmail, familyLineId, medicineNames, medicationMethod, userCondition, userComment);
 
             for(String userMedicineId : userMedicineIds.split(",")) {
-                medicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
+                userMedicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
             }
 
             return ResponseEntity.ok("LINEで報告しました");

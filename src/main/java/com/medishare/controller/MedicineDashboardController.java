@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.medishare.model.USER_MEDICINE;
-import com.medishare.service.MedicineService;
+import com.medishare.service.UserMedicineService;
 import com.medishare.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/medicine_dashboard")
 @RequiredArgsConstructor
 public class MedicineDashboardController {
-    private final MedicineService medicineService;
+    private final UserMedicineService userMedicineService;
     private final UserService userService;
 
     @GetMapping
@@ -73,9 +73,9 @@ public class MedicineDashboardController {
         List<USER_MEDICINE> medicines;
 
         if(searchKeyword != null) {
-            medicines = medicineService.getMedicineListByUserAndMedicationMethodAndSearch(userId, titleName, searchKeyword);
+            medicines = userMedicineService.getMedicineListByUserAndMedicationMethodAndSearch(userId, titleName, searchKeyword);
         } else {
-            medicines = medicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
+            medicines = userMedicineService.getMedicineListByUserAndMedicationMethod(userId, titleName);
         }
         model.addAttribute("medicines", medicines);        
 
@@ -85,7 +85,7 @@ public class MedicineDashboardController {
     @PostMapping("/delete_medicine")
     public ResponseEntity<String> deleteMedicine(@RequestBody List<Integer> userMedicineIds) {
         try {
-            medicineService.deleteMedicine(userMedicineIds);
+            userMedicineService.deleteMedicine(userMedicineIds);
             return ResponseEntity.ok("お薬を削除しました");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("お薬の削除に失敗しました");

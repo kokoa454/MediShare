@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.medishare.model.USER_MEDICINE;
-import com.medishare.service.MedicineService;
+import com.medishare.service.UserMedicineService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,17 +17,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/edit_medicine")
 @RequiredArgsConstructor
 public class EditMedicineController {
-    private final MedicineService medicineService;
+    private final UserMedicineService userMedicineService;
 
     @GetMapping
     public String edit_medicine(@RequestParam(name = "userMedicineId", required = true) int userMedicineId, Model model) {
         // ユーザーの薬の詳細を取得
-        model.addAttribute("medicine", medicineService.getMedicineDetailsByUserMedicineId(userMedicineId));
+        model.addAttribute("medicine", userMedicineService.getMedicineDetailsByUserMedicineId(userMedicineId));
 
         // タイミングの薬か時間指定の薬かを判定
-        model.addAttribute("medicationMethod", medicineService.isTimingOrSelectedTimeMedicine(medicineService.getMedicineDetailsByUserMedicineId(userMedicineId)));
+        model.addAttribute("medicationMethod", userMedicineService.isTimingOrSelectedTimeMedicine(userMedicineService.getMedicineDetailsByUserMedicineId(userMedicineId)));
         
-        USER_MEDICINE medicine = medicineService.getMedicineDetailsByUserMedicineId(userMedicineId);
+        USER_MEDICINE medicine = userMedicineService.getMedicineDetailsByUserMedicineId(userMedicineId);
         model.addAttribute("userMedicine", medicine);
 
         return "edit_medicine";  // edit_medicine.html を表示
@@ -36,7 +36,7 @@ public class EditMedicineController {
     @PostMapping
     public String editMedicine(@ModelAttribute("userMedicine") USER_MEDICINE userMedicine) {        
         // 薬の情報を更新
-        medicineService.updateMedicine(
+        userMedicineService.updateMedicine(
             userMedicine.getUserMedicineId(),
             userMedicine.getMedicineUserInput(),
             userMedicine.getMedicineOfficialName(),

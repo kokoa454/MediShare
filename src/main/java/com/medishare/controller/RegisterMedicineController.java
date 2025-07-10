@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.medishare.model.USER_MEDICINE;
-import com.medishare.service.MedicineService;
+import com.medishare.service.UserMedicineService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/register_medicine")
 @RequiredArgsConstructor
 public class RegisterMedicineController {
-    private final MedicineService medicineService;
+    private final UserMedicineService userMedicineService;
     
     @GetMapping
     public String register_medicinePage(Model model) {
@@ -28,7 +28,7 @@ public class RegisterMedicineController {
 
     @PostMapping
     public String register_medicinePage(@ModelAttribute USER_MEDICINE userMedicine) {
-        medicineService.registerMedicine(
+        userMedicineService.registerMedicine(
             userMedicine.getMedicineUserInput(),
             userMedicine.getMedicineOfficialName(),
             userMedicine.getPrescriptionDays(),

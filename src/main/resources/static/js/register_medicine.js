@@ -45,3 +45,48 @@ function switchSelectGroup() {
         `;
     }
 }
+
+function searchMedicine(){
+    const inputMedicineName = document.getElementById("medicine-official-name").value;
+    const suggestionsList = document.getElementById("medicine-official-name-suggestions");
+    const errorMessage = document.getElementById("medicine-official-name-error");
+
+    if( inputMedicineName.length < 1) {
+        suggestionsList.innerHTML = ""; // Clear suggestions if input is less than 2 characters
+        return;
+    }
+
+    fetch(`/searchMedicineOfficialName?name=${encodeURIComponent(inputMedicineName)}`)
+        .then(response => response.json())
+        .then(data => {
+            suggestionsList.innerHTML = "";
+            data.forEach(medicine => {
+                const option = document.createElement("option");
+                option.value = medicine.medicineOfficialName;
+                suggestionsList.appendChild(option);
+            });
+        }
+    )
+}
+
+function validateMedicineName() {
+    const input = document.getElementById("medicine-official-name").value;
+    const options = document.getElementById("medicine-official-name-suggestions").options;
+    const errorMessage = document.getElementById("medicine-official-name-error");
+
+    let match = false;
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === input) {
+            match = true;
+            break;
+        }
+    }
+
+    if (!match) {
+        errorMessage.style.display = "block";
+        return false;
+    } else {
+        errorMessage.style.display = "none";
+        return true;
+    }
+}
