@@ -121,6 +121,32 @@ input::placeholder{
     transform: translateY(-2px);
 }
 
+#toUrlKusurinoshiori{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+#toUrlKusurinoshiori img{
+    width: 20px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+#toUrlKusurinoshiori p, a{
+    font-size: 16px;
+    color: var(--mikan);
+}
+
+#toUrlKusurinoshiori p{
+    margin: 0;
+}
+
+#toUrlKusurinoshiori a{
+    font-weight: 600;
+}
+
 @media (max-width: 1024px){
     body{
         display: block;

@@ -18,10 +18,10 @@ public class MEDICINE {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int medicineId;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String medicineOfficialName;
 
-    @Column(unique = true ,nullable = false)
+    @Column(unique = true)
     private String urlKusurinoShiori;
 
     public MEDICINE(){

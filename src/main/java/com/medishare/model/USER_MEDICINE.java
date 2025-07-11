@@ -28,10 +28,10 @@ public class USER_MEDICINE {
     @JoinColumn(name = "userId", nullable = false)
     private USER_DATABASE user;
 
-    @Column(nullable = false)
+    @Column
     private String medicineOfficialName;
 
-    @Column(nullable = false)
+    @Column
     private String urlKusurinoshiori;
 
     @Column

@@ -3,13 +3,13 @@ import mysql.connector
 
 db_config = {
     'host': 'localhost',
-    'user': 'root',
-    'password': 'Takaki1107',
+    'user': 'medishare_user',
+    'password': 'medishare_user',
     'database': 'medishare'
 }
 
 def insertMedicineData():
-    with open('../../../scrapeKusurinoshiori/medicine.json', 'r', encoding='utf-8') as file:
+    with open('./medicine.json', 'r', encoding='utf-8') as file:
         medicines = json.load(file)
 
     conn = mysql.connector.connect(**db_config)

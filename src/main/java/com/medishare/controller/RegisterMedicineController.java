@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.service.UserMedicineService;
 
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -28,6 +29,16 @@ public class RegisterMedicineController {
 
     @PostMapping
     public String register_medicinePage(@ModelAttribute USER_MEDICINE userMedicine) {
+        if (userMedicine.getMedicineOfficialName() != null && userMedicine.getMedicineOfficialName().isEmpty()) {
+            userMedicine.setMedicineOfficialName(null);
+        }
+        if (userMedicine.getUrlKusurinoshiori() != null && userMedicine.getUrlKusurinoshiori().isEmpty()) {
+            userMedicine.setUrlKusurinoshiori(null);
+        }
+        if (userMedicine.getUserComment() != null && userMedicine.getUserComment().isEmpty()) {
+            userMedicine.setUserComment(null);
+        }
+
         userMedicineService.registerMedicine(
             userMedicine.getMedicineUserInput(),
             userMedicine.getMedicineOfficialName(),
