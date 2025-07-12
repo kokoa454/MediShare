@@ -33,13 +33,13 @@ main{
 }
 
 #about-medishare p, #about-kusurinoshiori p{
-    font-size: 20px;
+    font-size: var(--font-xl);
     line-height: 1.5;
     text-align: center;
 }
 
 #about-medishare h3{
-    font-size: 28px;
+    font-size: var(--font-4xl);
     text-align: center;
 }
 
@@ -50,12 +50,12 @@ main{
 }
 
 #warning-section h4{
-    font-size: 20px;
+    font-size: var(--font-xl);
     margin-bottom: 8px;
 }
 
 #warning-section p{
-    font-size: 16px;
+    font-size: var(--font-md);
     line-height: 1.5;
     font-weight: bold;
 }
@@ -68,7 +68,7 @@ button{
     color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: var(--font-xl);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -93,7 +93,7 @@ button:hover::before{
 }
 
 button:hover{
-    background-color: #333333;
+    background-color: var(--dark-gray);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }

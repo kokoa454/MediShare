@@ -53,12 +53,12 @@ header *{
 }
 
 .menu-content .MediShare-text {
-    font-size: 48px;
+    font-size: var(--font-6xl);
     margin-bottom: 10px;
 }
 
 .menu-content .ForYourLife-text {
-    font-size: 24px;
+    font-size: var(--font-3xl);
     margin-bottom: 40px;
 }
 
@@ -71,7 +71,7 @@ header *{
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@ header *{
 }
 
 #logout-btn-mobile:hover, #logout-btn-desktop:hover {
-    background-color: #d97300;
+    background-color: var(--mikan-hover);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -117,7 +117,7 @@ header *{
 
 #email-container-desktop h3,
 #email-container-mobile h3 {
-    font-size: 18px;
+    font-size: var(--font-lg);
     color: var(--black);
     margin: 0;
     font-weight: 600;
@@ -126,7 +126,7 @@ header *{
 #email-container-desktop p,
 #email-container-mobile p {
     margin-top: 12px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 500;
 }
 
@@ -154,7 +154,7 @@ header *{
 
 #tips-containers-desktop h4,
 #tips-containers-mobile h4 {
-    font-size: 20px;
+    font-size: var(--font-xl);
     margin-bottom: 25px;
     color: var(--black);
     font-weight: 600;
@@ -186,7 +186,7 @@ header *{
     padding: 16px 20px;
     display: block;
     background-color: var(--white);
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     color: var(--black);
     border-radius: 12px 12px 0 0;
@@ -225,7 +225,7 @@ header *{
 .tip-content p {
     color: var(--gray-darker);
     line-height: 1.6;
-    font-size: 15px;
+    font-size: var(--font-md);
     margin: 0;
     padding-bottom: 20px;
 }
@@ -269,7 +269,7 @@ header *{
 #footer-title-mobile p a {
     text-decoration: none;
     color: var(--gray-darker);
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: color 0.3s ease;
     font-weight: 500;
 }
@@ -399,12 +399,12 @@ header *{
     }
 
     .menu-content .MediShare-text {
-        font-size: 48px;
+        font-size: var(--font-6xl);
         margin-bottom: 10px;
     }
 
     .menu-content .ForYourLife-text {
-        font-size: 24px;
+        font-size: var(--font-3xl);
         margin-bottom: 40px;
     }
 

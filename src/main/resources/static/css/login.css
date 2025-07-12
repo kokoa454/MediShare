@@ -50,7 +50,7 @@ main{
 }
 
 #loading-dialog-content p{
-    font-size: 12px;
+    font-size: var(--font-md);
     margin-top: 8px;
 }
 
@@ -83,14 +83,14 @@ main{
 
 #reset-password-dialog h2 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: var(--font-3xl);
     color: var(--mikan);
 }
 
 #reset-password-dialog p {
     margin-bottom: 12px;
-    font-size: 16px;
-    color: #333;
+    font-size: var(--font-md);
+    color: var(--dark-gray);
 }
 
 #reset-password-dialog p:last-of-type{
@@ -104,10 +104,10 @@ main{
     margin: 8px;
     margin-bottom: 16px;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-gray);
     border-radius: 8px;
-    font-size: 16px;
-    color: #333;
+    font-size: var(--font-md);
+    color: var(--dark-gray);
 }
 
 #reset-password-dialog #button-group{
@@ -130,7 +130,7 @@ main{
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -158,7 +158,7 @@ main{
 }
 
 #reset-password-dialog button:hover {
-    background-color: #d97300;
+    background-color: var(--mikan-hover);
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -200,7 +200,7 @@ main{
 
 #wrapper2 h1{
     margin-top: 60px;
-    font-size: 36px;
+    font-size: var(--font-5xl);
 }
 
 form{
@@ -239,7 +239,7 @@ form{
 }
 
 .input-text-group label{
-    font-size: 16px;
+    font-size: var(--font-md);
     margin-bottom: 10px;
 }
 
@@ -249,7 +249,7 @@ form{
     border: 2px solid var(--gray-middle);
     border-radius: 5px;
     padding-left: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     letter-spacing: 1px;
 }
 
@@ -258,20 +258,20 @@ input::placeholder{
 }
 
 .input-group:nth-of-type(1) input{
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 .input-group:nth-of-type(1) input::placeholder{
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 .input-group:nth-of-type(2) input::placeholder{
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 .input-group:nth-of-type(2){
     position: relative;
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 #show-password{
@@ -315,13 +315,13 @@ input::placeholder{
 }
 
 #remember-userInfo-group label, #remember-username-group label{
-    font-size: 16px;
+    font-size: var(--font-md);
 }
 
 form a{
     text-decoration: none;
     color: var(--mikan);
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
 }
 
@@ -338,7 +338,7 @@ button[type="submit"] {
     color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -363,7 +363,7 @@ button[type="submit"]:hover::before {
 }
 
 button[type="submit"]:hover {
-    background-color: #333333;
+    background-color: var(--dark-gray);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -390,7 +390,7 @@ button[type="submit"]:hover {
 }
 
 #loading-cat p{
-    font-size: 12px;
+    font-size: var(--font-md);
     margin-top: 8px;
 }
 

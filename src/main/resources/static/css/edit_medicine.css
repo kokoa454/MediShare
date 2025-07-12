@@ -15,7 +15,7 @@ main{
 }
 
 #page-title{
-    font-size: 48px;
+    font-size: var(--font-6xl);
     margin-bottom: 48px;
 }
 
@@ -32,7 +32,7 @@ form[id="edit-medicine-form"]{
 }
 
 .input-group label, .input-group p{
-    font-size: 20px;
+    font-size: var(--font-xl);
     margin-bottom: 8px
 }
 
@@ -42,9 +42,9 @@ form[id="edit-medicine-form"]{
     border: 2px solid var(--gray-middle);
     border-radius: 5px;
     padding-left: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     letter-spacing: 1px;
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 input::placeholder{
@@ -66,7 +66,7 @@ input::placeholder{
 }
 
 .radio-group label{
-    font-size: 20px;
+    font-size: var(--font-xl);
     margin-bottom: 0;
 }
 
@@ -76,9 +76,9 @@ input::placeholder{
     border: 2px solid var(--gray-middle);
     border-radius: 5px;
     padding-left: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     letter-spacing: 1px;
-    font-size: 20px;
+    font-size: var(--font-xl);
 }
 
 .input-group textarea{
@@ -87,9 +87,9 @@ input::placeholder{
     border: 2px solid var(--gray-middle);
     border-radius: 5px;
     padding: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     letter-spacing: 1px;
-    font-size: 20px;
+    font-size: var(--font-xl);
     resize: none;
 }
 
@@ -108,7 +108,7 @@ input::placeholder{
     color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: var(--font-xl);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -138,7 +138,7 @@ input::placeholder{
 }
 
 #button-container button:hover {
-    background-color: #333333;
+    background-color: var(--dark-gray);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -150,13 +150,13 @@ input::placeholder{
 }
 
 .asterisk{
-    font-size: 20px;
+    font-size: var(--font-xl);
     color: var(--red);
 }
 
 .error-message{
     display: none;
-    font-size: 16px;
+    font-size: var(--font-md);
     color: var(--red);
     margin-left: 8px;
 }

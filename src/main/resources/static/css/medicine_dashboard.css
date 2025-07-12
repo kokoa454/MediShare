@@ -15,7 +15,7 @@ main{
 }
 
 #page-title{
-    font-size: 48px;
+    font-size: var(--font-6xl);
     margin-bottom: 48px;
 }
 
@@ -76,7 +76,7 @@ main{
     border: 2px solid var(--gray-middle);
     border-radius: 8px;
     padding: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
 }
 
 #search-container input::placeholder{
@@ -155,7 +155,7 @@ main{
 }
 
 .medicine-name h3{
-    font-size: 36px;
+    font-size: var(--font-5xl);
 }
 
 .prescription-days-container{
@@ -171,7 +171,7 @@ main{
 }
 
 .prescription-days-container p{
-    font-size: 24px;
+    font-size: var(--font-3xl);
 }
 
 .medicine-checkbox{
@@ -197,7 +197,7 @@ main{
     color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: var(--font-xl);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -227,7 +227,7 @@ main{
 }
 
 #button-container button:hover {
-    background-color: #333333;
+    background-color: var(--dark-gray);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -272,18 +272,18 @@ dialog::backdrop {
 
 dialog h2 {
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: var(--font-3xl);
     color: var(--mikan);
 }
 
 dialog p {
-    font-size: 16px;
-    color: #333;
+    font-size: var(--font-md);
+    color: var(--dark-gray);
 }
 
 #delete-medicine-name p {
     margin: 4px 0;
-    font-size: 18px;
+    font-size: var(--font-lg);
 }
 
 dialog button {
@@ -295,7 +295,7 @@ dialog button {
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -319,7 +319,7 @@ dialog button:hover::before {
 }
 
 dialog button:hover {
-    background-color: #d97300;
+    background-color: var(--mikan-hover);
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -337,7 +337,7 @@ dialog button:hover {
 }
 
 #cancel-delete-button:hover {
-    background-color: #333;
+    background-color: var(--dark-gray);
 }
 
 

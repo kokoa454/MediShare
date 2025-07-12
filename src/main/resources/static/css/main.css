@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fdfdfd;
+    background-color: var(--background-light);
     line-height: 1;
 }
 
@@ -76,6 +76,22 @@ a, label, span, input, button {
     --shadow-mikan: rgba(240, 131, 0, 0.5);
     --red: #E2041B;
     --line-green: #00B900;
+    --dark-gray: #333333;
+    --mikan-hover: #d97300;
+    --light-gray: #e0e0e0;
+    --border-gray: #ccc;
+    --background-light: #fdfdfd;
+    
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-md: 16px;
+    --font-lg: 18px;
+    --font-xl: 20px;
+    --font-2xl: 22px;
+    --font-3xl: 24px;
+    --font-4xl: 32px;
+    --font-5xl: 36px;
+    --font-6xl: 48px;
 }
 
 html, body{
@@ -86,13 +102,13 @@ html, body{
 
 .MediShare-text{
     font-family: 'Limelight', sans-serif;
-    font-size: 48px;
+    font-size: var(--font-6xl);
     color: var(--mikan);
 }
 
 .ForYourLife-text{
     font-family: 'Oswald', sans-serif;
-    font-size: 24px;
+    font-size: var(--font-3xl);
     font-style: bold;
     font-weight: 500;
     color: var(--black);

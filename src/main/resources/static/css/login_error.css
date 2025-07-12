@@ -29,7 +29,7 @@ main{
 
 #wrapper2 h1{
     margin-top: 60px;
-    font-size: 36px;
+    font-size: var(--font-5xl);
 }
 
 #login-error-contents{
@@ -64,7 +64,7 @@ main{
 }
 
 #login-error-contents-text p{
-    font-size: 24px;
+    font-size: var(--font-3xl);
 }
 
 #login-error-contents ul{
@@ -73,7 +73,7 @@ main{
 }
 
 #login-error-contents ul li{
-    font-size: 20px;
+    font-size: var(--font-xl);
     margin-bottom: 16px;
     list-style-type: none;
     color: var(--red);
@@ -91,7 +91,7 @@ button[type="button"] {
     color: var(--white);
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -116,7 +116,7 @@ button[type="button"]:hover::before {
 }
 
 button[type="button"]:hover {
-    background-color: #333333;
+    background-color: var(--dark-gray);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -127,7 +127,7 @@ button[type="button"]:hover {
     }
 
     #login-error-contents ul li{
-        font-size: 16px;
+        font-size: var(--font-md);
         margin-bottom: 12px;
     }
 

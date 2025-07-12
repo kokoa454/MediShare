@@ -28,7 +28,7 @@ footer {
     text-decoration: none;
     color: var(--gray-darker);
     background-color: var(--gray-light);
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: color 0.3s ease;
     font-weight: 500;
 }
