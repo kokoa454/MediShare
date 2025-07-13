@@ -8,57 +8,39 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#about-medishare, #about-kusurinoshiori{
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 24px;
 }
 
-#about-medishare-title, #about-kusurinoshiori-title{
+#title{
+    margin-bottom: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-#about-kusurinoshiori-title img{
-    height: 80px;
-    object-fit: contain;
+section{
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 40px;
 }
 
-#about-medishare p, #about-kusurinoshiori p{
-    font-size: var(--font-xl);
-    line-height: 2;
-    text-align: center;
-}
-
-#about-medishare h3{
+section h3{
     font-size: var(--font-4xl);
-    text-align: center;
+    margin-bottom: 16px;
 }
 
-#warning-section{
-    margin-bottom: 60px;
-    border: 2px solid var(--red);
-    padding: 12px;
-}
-
-#warning-section h4{
+section p{
     font-size: var(--font-xl);
-    margin-bottom: 8px;
+    line-height: 1.5;
+    margin-bottom: 16px;
 }
 
-#warning-section p{
-    font-size: var(--font-md);
+section li{
+    font-size: var(--font-xl);
     line-height: 1.5;
-    font-weight: bold;
+    margin-bottom: 8px;
+    list-style-type: none;
 }
 
 button{
@@ -99,7 +81,7 @@ button:hover{
     transform: translateY(-2px);
 }
 
-@media (max-width: 1024px){
+@media(max-width: 1024px){
     main{
         width: 100%;
         height: auto;
@@ -107,8 +89,9 @@ button:hover{
         padding-left: 12px;
     }
 
-    #about-medishare-title, #about-kusurinoshiori-title{
+    #title{
         flex-direction: column;
+        align-items: center;
     }
 
     button{

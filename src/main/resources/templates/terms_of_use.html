@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('terms_of_use', 'headerAndFooter')}"></head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <main>
+        <div id="title">
+            <h1 class="MediShare-text">MEDISHARE</h1>
+            <h1>利用規則</h1>
+        </div>
+        <section>
+            <h3>第1条（適用）</h3>
+            <p>本規則は、MediShare（以下「当サービス」）の利用条件およびユーザーと運営者の間の権利義務を定めるものです。</p>
+        </section>
+        <section>
+            <h3>第2条（禁止事項）</h3>
+            <p>ユーザーは以下の行為を行ってはなりません。</p>
+            <ul>
+                <li>・虚偽の情報の登録</li>
+                <li>・他人へのなりすまし行為</li>
+                <li>・不正アクセス、改ざん、またはハッキング行為</li>
+                <li>・第三者の権利（著作権・プライバシー等）の侵害</li>
+                <li>・サーバーに過度な負荷を与える行為</li>
+                <li>・その他、公序良俗または法令に違反する行為</li>
+            </ul>
+        </section>
+        <section>
+            <h3>第3条（アカウント管理）</h3>
+            <p>ユーザーは自身の責任でアカウント情報を管理し、ユーザー自身の家族を除く、第三者に開示・譲渡してはなりません。</p>
+        </section>
+        <section>
+            <h3>第4条（サービスの停止）</h3>
+            <p>以下のいずれかに該当する場合、事前の通知なしに当サービスを一時的または永続的に停止することがあります。</p>
+            <ul>
+                <li>・システムメンテナンス・保守</li>
+                <li>・災害やその他の不可抗力による運営困難</li>
+                <li>・ユーザーの規則違反</li>
+            </ul>
+        </section>
+        <section>
+            <h3>第5条（免責事項）</h3>
+            <p>本サービスの利用により生じた損害について、当運営者は責任を負いません。</p>
+        </section>
+        <button type="button" th:onclick="|location.href='@{/dashboard}'|">戻る</button>
+    </main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

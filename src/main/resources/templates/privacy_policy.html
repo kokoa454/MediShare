@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('privacy_policy', 'headerAndFooter')}"></head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <main>
+        <div id="title">
+            <h1 class="MediShare-text">MEDISHARE</h1>
+            <h2>プライバシーポリシー</h2>
+        </div>
+        <section>
+            <h3>1. 取得する情報</h3>
+            <p>本サービスは以下の情報を取得することがあります。</p>
+            <ul>
+                <li>・氏名・メールアドレス等のユーザアカウント情報</li>
+                <li>・家族のメールアドレスまたはLINE連携情報</li>
+                <li>・登録された薬の情報（正式名称、用法、用量、服薬タイミング等）</li>
+                <li>・通知の履歴やログデータ</li>
+                <li>・端末情報、IPアドレス、ブラウザ情報等の技術情報</li>
+            </ul>
+        </section>
+        <section>
+            <h3>2. 情報の利用目的</h3>
+            <p>取得した情報は以下の目的で使用されます。</p>
+            <ul>
+                <li>・ユーザー認証とアカウント管理</li>
+                <li>・薬の服用スケジュール通知および記録管理</li>
+                <li>・家族への通知共有</li>
+                <li>・サービス向上・分析・障害対応</li>
+                <li>・法令に基づく対応</li>
+            </ul>
+        </section>
+        <section>
+            <h3>3. 第三者提供</h3>
+            <p>以下の場合を除き、取得した情報を第三者に提供することはありません。</p>
+            <ul>
+                <li>・ユーザーの同意がある場合</li>
+                <li>・法令に基づき提供が必要な場合</li>
+                <li>・生命・財産の保護のために必要な緊急時</li>
+            </ul>
+        </section>
+        <section>
+            <h3>4. 情報の管理</h3>
+            <p>当サービスは、SSLによる通信の暗号化やアクセス制限など、適切な安全管理措置を講じています。</p>
+        </section>
+        <section>
+            <h3>5. 利用者の権利</h3>
+            <p>ユーザーは自身の個人情報に対する開示・訂正・削除を求めることができます。希望される方は、運営者連絡先までご連絡ください。</p>
+        </section>
+        <section>
+            <h3>6. ポリシーの変更</h3>
+            <p>本ポリシーの内容は、必要に応じて変更されることがあります。重要な変更がある場合はアプリ内通知またはメールでお知らせします。</p>
+        </section>
+        <section>
+            <h3>7. お問い合わせ</h3>
+            <p>本ポリシーに関するお問い合わせは、以下の連絡先までお願いいたします。</p>
+            <p>開発者メール: <a href="mailto:hm-c24036@sist.ac.jp">hm-c24036@sist.ac.jp</a></p>
+            <p>開発者メール: <a href="mailto:hm-c24063@sist.ac.jp">hm-c24063@sist.ac.jp</a></p>
+        </section>
+        <p>最終更新日: 2025年7月12日</p>
+        <button type="button" th:onclick="|location.href='@{/dashboard}'|">戻る</button>
+    </main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

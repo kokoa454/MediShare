@@ -24,6 +24,8 @@ public class SecurityConfig {
                                 "/login/reset_password",
                                 "/reset_password",
                                 "/about_app",
+                                "/privacy_policy",
+                                "/terms_of_use",
                                 "/manifest.json",
                                 "/callback"
                         )
