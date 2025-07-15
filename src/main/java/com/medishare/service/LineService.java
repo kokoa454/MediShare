@@ -9,6 +9,8 @@ import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LineService {
     private final LineMessagingClient lineMessagingClient;
+    private static final Logger logger = LoggerFactory.getLogger(LineService.class);
 
     @EventMapping
     public void handleFollowEvent(FollowEvent followEvent) {
@@ -29,7 +32,9 @@ public class LineService {
             new TextMessage(message))
         ).whenComplete((response, exception) -> {
             if (exception != null) {
-                System.out.println( exception.getMessage());
+                logger.error("Failed to reply to follow event message: error message={}", exception.getMessage());
+            } else {
+                logger.info("Successfully replied to follow event message: user LINE ID={}", userId);
             }
         });
 
@@ -38,7 +43,9 @@ public class LineService {
             new TextMessage(userId)
         )).whenComplete((response, exception) -> {
             if (exception != null) {
-                System.out.println( exception.getMessage());
+                logger.error("Failed to push user ID in follow event: error message={}", exception.getMessage());
+            } else {
+                logger.info("Successfully pushed user ID in follow event: user LINE ID={}", userId);
             }
         });
     }
@@ -70,7 +77,9 @@ public class LineService {
             new TextMessage(message)
         )).whenComplete((response, exception) -> {
             if (exception != null) {
-                System.out.println( exception.getMessage());
+                logger.error("Failed to send medication report message: family LINE ID={}, error message={}", familyLineId, exception.getMessage());
+            } else {
+                logger.info("Medication report message sent successfully: family LINE ID={}", familyLineId);
             }
         });
     }
@@ -81,7 +90,9 @@ public class LineService {
             new TextMessage(message)
         )).whenComplete((response, exception) -> {
             if (exception != null) {
-                System.out.println( exception.getMessage());
+                logger.error("Failed to send pre-medication notification to user: user LINE ID={}, error message={}", userLineId, exception.getMessage());
+            } else {
+                logger.info("Pre-medication notification sent to user successfully: user LINE ID={}", userLineId);
             }
         });
     }
@@ -92,7 +103,9 @@ public class LineService {
             new TextMessage(message)
         )).whenComplete((response, exception) -> {
             if (exception != null) {
-                System.out.println( exception.getMessage());
+                logger.error("Failed to send pre-medication notification to family: family LINE ID={}, error message={}", familyLineId, exception.getMessage());
+            } else {
+                logger.info("Pre-medication notification sent to family successfully: family LINE ID={}", familyLineId);
             }
         });
     }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.medishare.service.UserService;
 
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SettingsController {
     private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(SettingsController.class);
 
     @GetMapping
     public String settingsPage(Model model) {
@@ -68,8 +71,10 @@ public class SettingsController {
         try {
             String familyEmail = body.get("confirmedFamilyEmail");
             userService.updateFamilyEmail(userId, familyEmail);
+            logger.info("家族メールアドレス更新成功: ユーザID={}, メールアドレス={}", userId, familyEmail);
             return ResponseEntity.ok("家族メールアドレスを更新しました");
         } catch (Exception e) {
+            logger.error("家族メールアドレス更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("家族メールアドレスの更新に失敗しました");
         }
     }
@@ -80,8 +85,10 @@ public class SettingsController {
         try {
             String userEmail = body.get("confirmedUserEmail");
             userService.updateUserEmail(userId, userEmail);
+            logger.info("ユーザーメールアドレス更新成功: ユーザID={}, メールアドレス={}", userId, userEmail);
             return ResponseEntity.ok("ユーザーメールアドレスを更新しました");
         } catch (Exception e) {
+            logger.error("ユーザーメールアドレス更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザーメールアドレスの更新に失敗しました");
         }
     }
@@ -92,8 +99,10 @@ public class SettingsController {
         try {
             String userName = body.get("confirmedUserName");
             userService.updateUserName(userId, userName);
+            logger.info("ユーザー名更新成功: ユーザID={}, ユーザー名={}", userId, userName);
             return ResponseEntity.ok("ユーザー名を更新しました");
         } catch (Exception e) {
+            logger.error("ユーザー名更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザー名の更新に失敗しました");
         }
     }
@@ -104,8 +113,10 @@ public class SettingsController {
         try{
             String userLineId = body.get("confirmedUserLineId");
             userService.updateUserLineId(userId, userLineId);
+            logger.info("ユーザーラインID更新成功: ユーザID={}, ラインID={}", userId, userLineId);
             return ResponseEntity.ok("ユーザーラインIDを更新しました");
         } catch (Exception e) {
+            logger.error("ユーザーラインID更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザーラインIDの更新に失敗しました");
         }
     }
@@ -116,8 +127,10 @@ public class SettingsController {
         try{
             String familyLineId = body.get("confirmedFamilyLineId");
             userService.updateFamilyLineId(userId, familyLineId);
+            logger.info("家族LINEID更新成功: ユーザID={}, LINEID={}", userId, familyLineId);
             return ResponseEntity.ok("家族LINEIDを更新しました");
         } catch (Exception e) {
+            logger.error("家族LINEID更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("家族LINEIDの更新に失敗しました");
         }
     }
@@ -128,8 +141,10 @@ public class SettingsController {
         try{
             String wakeUpTime = body.get("confirmedWakeUpTime");
             userService.updateWakeUpTime(userId, wakeUpTime);
+            logger.info("起床時間更新成功: ユーザID={}, 起床時間={}", userId, wakeUpTime);
             return ResponseEntity.ok("起床時間を更新しました");
         } catch (Exception e) {
+            logger.error("起床時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("起床時間の更新に失敗しました");
         }
     }
@@ -140,8 +155,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeBreakfastTime");
             userService.updateBeforeBreakfastTime(userId, time);
+            logger.info("朝食前時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("朝食前時間を更新しました");
         } catch (Exception e) {
+            logger.error("朝食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("朝食前時間の更新に失敗しました");
         }
     }
@@ -152,8 +169,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterBreakfastTime");
             userService.updateAfterBreakfastTime(userId, time);
+            logger.info("朝食後時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("朝食後時間を更新しました");
         } catch (Exception e) {
+            logger.error("朝食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("朝食後時間の更新に失敗しました");
         }
     }
@@ -164,8 +183,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeLunchTime");
             userService.updateBeforeLunchTime(userId, time);
+            logger.info("昼食前時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("昼食前時間を更新しました");
         } catch (Exception e) {
+            logger.error("昼食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("昼食前時間の更新に失敗しました");
         }
     }
@@ -176,8 +197,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterLunchTime");
             userService.updateAfterLunchTime(userId, time);
+            logger.info("昼食後時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("昼食後時間を更新しました");
         } catch (Exception e) {
+            logger.error("昼食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("昼食後時間の更新に失敗しました");
         }
     }
@@ -188,8 +211,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeDinnerTime");
             userService.updateBeforeDinnerTime(userId, time);
+            logger.info("夕食前時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("夕食前時間を更新しました");
         } catch (Exception e) {
+            logger.error("夕食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("夕食前時間の更新に失敗しました");
         }
     }
@@ -200,8 +225,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterDinnerTime");
             userService.updateAfterDinnerTime(userId, time);
+            logger.info("夕食後時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("夕食後時間を更新しました");
         } catch (Exception e) {
+            logger.error("夕食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("夕食後時間の更新に失敗しました");
         }
     }
@@ -212,8 +239,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeSleepTime");
             userService.updateBeforeSleepTime(userId, time);
+            logger.info("就寝前時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("就寝前時間を更新しました");
         } catch (Exception e) {
+            logger.error("就寝前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("就寝前時間の更新に失敗しました");
         }
     }
@@ -224,8 +253,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBetweenMealsTime");
             userService.updateBetweenMealsTime(userId, time);
+            logger.info("食間時間更新成功: ユーザID={}, 時間={}", userId, time);
             return ResponseEntity.ok("食間時間を更新しました");
         } catch (Exception e) {
+            logger.error("食間時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("食間時間の更新に失敗しました");
         }
     }

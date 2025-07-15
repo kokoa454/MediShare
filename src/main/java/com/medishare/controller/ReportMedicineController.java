@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.medishare.dto.ReportDTO;
 import com.medishare.repository.UserRepository;
@@ -30,6 +32,7 @@ public class ReportMedicineController {
     private final MailService mailService;
     private final LineService lineService;
     private final UserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(ReportMedicineController.class);
 
     @GetMapping
     public String report_medicinePage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "userMedicineIds", required = true) String userMedicineIds, Model model) {
@@ -111,8 +114,10 @@ public class ReportMedicineController {
                 userMedicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
             }
 
+            logger.info("Email sent successfully: user ID={}, email address={}", userService.getLoginUserId(), userEmail);
             return ResponseEntity.ok("メールで報告しました");
         } catch (Exception e) {
+            logger.error("Failed to send email: user ID={}, email address={}, error={}", userService.getLoginUserId(), userEmail, e.getMessage());
             return ResponseEntity.status(500).body("メールの送信に失敗しました");
         }
 
@@ -140,8 +145,10 @@ public class ReportMedicineController {
                 userMedicineService.completeMedicine(Integer.parseInt(userMedicineId), completedDate);
             }
 
+            logger.info("LINE message sent successfully: user ID={}, LINE ID={}", userService.getLoginUserId(), familyLineId);
             return ResponseEntity.ok("LINEで報告しました");
         } catch (Exception e) {
+            logger.error("Failed to send LINE message: user ID={}, LINE ID={}, error={}", userService.getLoginUserId(), familyLineId, e.getMessage());
             return ResponseEntity.status(500).body("LINEの送信に失敗しました");
         }
     }

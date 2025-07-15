@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ public class LoginController {
     private final UserRepository userRepository;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final MailService mailService;
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping
     public String loginPage() {
@@ -44,8 +47,10 @@ public class LoginController {
 
             String resetLink = "http://localhost:8080/reset_password?token=" + token;
             mailService.sendPasswordResetEmail(email, resetLink);
+            logger.info("Password reset email sent successfully: user ID={}, email={}, reset link={}", user.getUserId(), email, resetLink);
+        } else {
+            logger.warn("Failed to send password reset email, email address does not exist, email={}", email);
         }
-
         return ResponseEntity.ok("ご登録のメールアドレス宛にパスワードリセットメールを送信しました");
     }
 }

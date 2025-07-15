@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.medishare.model.PASSWORD_RESET_TOKEN;
 import com.medishare.model.USER_DATABASE;
 import com.medishare.repository.PasswordResetTokenRepository;
+import com.medishare.service.UserService;
 import com.medishare.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,8 @@ public class ResetPasswordController {
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(ResetPasswordController.class);
 
     @GetMapping
     public String resetPassword_page(@RequestParam String token, Model model) {
@@ -52,11 +57,13 @@ public class ResetPasswordController {
                 user.setPassword(encodedPassword);
                 userRepository.save(user);
                 passwordResetTokenRepository.delete(passwordResetTokenEntity);
+                logger.info("パスワード更新成功: ユーザID={}, メールアドレス={}", user.getUserId(), userEmail);
                 return ResponseEntity.ok("パスワードを更新しました");
             } else {
                 return ResponseEntity.status(400).body("無効なトークンです");
             }
         } catch (Exception e) {
+            logger.error("パスワード更新失敗: ユーザID={}, エラー={}", userService.getLoginUserId(), e.getMessage());
             return ResponseEntity.status(500).body("パスワードの更新に失敗しました");
         }
     }

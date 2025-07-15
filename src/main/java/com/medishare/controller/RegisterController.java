@@ -1,5 +1,7 @@
 package com.medishare.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,8 @@ import com.medishare.service.UserService;
 @Controller
 @RequestMapping("/register_account")
 public class RegisterController {
-
     private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
     @Autowired
     public RegisterController(UserService userService) {
@@ -43,10 +45,10 @@ public class RegisterController {
                         .body("このメールアドレスは既に登録されています");
             }
 
-            System.out.println("ユーザー登録成功: " + userEmail);
+            logger.info("User registration successful: user ID={}, email address={}", userService.getLoginUserId(), userEmail);
             return ResponseEntity.ok("User registered successfully");
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            logger.error("User registration failed: email address={}, error message={}", userEmail, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("サーバーエラーが発生しました");
         }

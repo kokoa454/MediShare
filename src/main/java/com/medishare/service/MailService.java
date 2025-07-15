@@ -7,11 +7,14 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class MailService {
     @Autowired
     private JavaMailSender mailSender;
+    private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
     public void sendMail(String userName, String userEmail ,String to, List<String> medicineNames, String medicationMethod, String userCondition, String userComment) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -33,8 +36,9 @@ public class MailService {
         );
         try {
             mailSender.send(message);
+            logger.info("Medication report email sent successfully: family email address={}", to);
         } catch (MailException e) {
-            System.err.println("Failed to send email to " + to + ": " + e.getMessage());
+            logger.error("Failed to send medication report email: family email address={}, error message={}", to, e.getMessage());
         }
     }
 
@@ -46,8 +50,9 @@ public class MailService {
         message.setText("こちらのURLからパスワードをリセットしてください。\n" + resetLink + "\n" + "リンクの有効期限は1時間です。\n" + "また、本メールは自動送信のため、ご返信はお控えください。");
         try {
             mailSender.send(message);
+            logger.info("Password reset email sent successfully: user email address={}", to);
         } catch (MailException e) {
-            System.err.println("Failed to send email to " + to + ": " + e.getMessage());
+            logger.error("Failed to send password reset email: user email address={}, error message={}", to, e.getMessage());
         }
     }
 }
