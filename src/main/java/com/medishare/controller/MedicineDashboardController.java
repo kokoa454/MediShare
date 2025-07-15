@@ -2,6 +2,8 @@ package com.medishare.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class MedicineDashboardController {
     private final UserMedicineService userMedicineService;
     private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(MedicineDashboardController.class);
 
     @GetMapping
     public String medicineDashboardPage(@RequestParam(name = "method", required = true) String method, @RequestParam(name = "search", required = false) String searchKeyword ,Model model) {
@@ -86,8 +89,10 @@ public class MedicineDashboardController {
     public ResponseEntity<String> deleteMedicine(@RequestBody List<Integer> userMedicineIds) {
         try {
             userMedicineService.deleteMedicine(userMedicineIds);
+            logger.info("Successfully deleted medicine: user ID={}, user medicine ID={}", userService.getLoginUserId(), userMedicineIds);
             return ResponseEntity.ok("お薬を削除しました");
         } catch (Exception e) {
+            logger.error("Failed to delete medicine: user ID={}, user medicine ID={}, error message={}", userService.getLoginUserId(), userMedicineIds, e.getMessage());
             return ResponseEntity.status(500).body("お薬の削除に失敗しました");
         }
     }

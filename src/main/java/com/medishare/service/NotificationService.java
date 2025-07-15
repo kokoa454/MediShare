@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.model.USER_TIMETABLE;
@@ -19,9 +21,11 @@ public class NotificationService {
     private final UserService userService;
     private final UserMedicineService userMedicineService;
     private final LineService lineService;
+    private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
     @Scheduled(fixedDelay = 60000) // 1分ごとに実行
     public void checkAndSendNotificationBeforeMedication() {
+        logger.info("Start scanning user notifications before medication");
         String now = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
         List<Integer> userIds = userService.getAllUserIds();
 
@@ -73,14 +77,19 @@ public class NotificationService {
                         message.append("- ").append(med).append("\n");
                     }
 
+                    logger.info("Sending pre-medication notification: user ID={}, user LINE ID={}, message={}", userId, userLineId, message.toString());
                     lineService.notifyUserBeforeMedicationLine(userLineId, message.toString());
                 }
+            } else {
+                logger.warn("Failed to send pre-medication notification (user LINE ID not set): user ID={}", userId);
             }
         }
+        logger.info("Finished scanning user notifications before medication");
     }
 
     @Scheduled(fixedDelay = 300000) // 5分ごとに実行
     public void checkAndSendWarningUncompletedMedication() {
+        logger.info("Start scanning user notifications for uncompleted medication");
         LocalTime checkTime = LocalTime.now();
         List<Integer> userIds = userService.getAllUserIds();
 
@@ -100,7 +109,7 @@ public class NotificationService {
 
                     String method = medicine.getMedicationMethod();
                     boolean needToNotify = switch (method) {
-                         case "起床時" -> checkTime.isAfter(LocalTime.parse(userTimetable.getWakeUp()).plusMinutes(30));
+                        case "起床時" -> checkTime.isAfter(LocalTime.parse(userTimetable.getWakeUp()).plusMinutes(30));
                         case "朝食前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeBreakfast()).plusMinutes(30));
                         case "朝食後" -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterBreakfast()).plusMinutes(30));
                         case "昼食前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeLunch()).plusMinutes(30));
@@ -138,6 +147,7 @@ public class NotificationService {
                     }
 
                     lineService.notifyUserBeforeMedicationLine(userLineId, message.toString());
+                    logger.info("Sending notification for unfinished medication: user ID={}, user LINE ID={}, message={}", userId, userLineId, message.toString());
                 }
 
                 if(familyLineId != null) {
@@ -158,9 +168,15 @@ public class NotificationService {
                         }
 
                         lineService.notifyFamilyBeforeMedicationLine(familyLineId, message.toString());
+                        logger.info("Sending notification for unfinished medication: user ID={}, family LINE ID={}, message={}", userId, familyLineId, message.toString());
+                    }
+                } else {
+                    logger.warn("Failed to send notification for unfinished medication (family LINE ID not set): user ID={}", userId);
                 }
-                }
+            } else {
+                logger.warn("Failed to send notification for unfinished medication (user LINE ID not set): user ID={}", userId);
             }
         }
+        logger.info("Finished scanning notifications for unfinished medication");
     }
 }

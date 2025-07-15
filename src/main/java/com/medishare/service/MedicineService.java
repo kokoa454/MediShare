@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.medishare.document.MedicineDocument;
 import com.medishare.model.MEDICINE;
@@ -16,6 +18,7 @@ public class MedicineService {
 
     @Autowired
     private MedicineRepository medicineRepository;
+    private static final Logger logger = LoggerFactory.getLogger(MedicineService.class);
 
     @Autowired
     private MedicineDocumentRepository medicineDocumentRepository;
@@ -32,8 +35,7 @@ public class MedicineService {
             .collect(Collectors.toList());
 
         medicineDocumentRepository.saveAll(medicineDocuments);
-
-        System.out.println("Elasticsearch に " + medicineDocuments.size() + " 件の薬を登録しました。");
+        logger.info("Registered {} medicines to Elasticsearch.", medicineDocuments.size());
     }
 
     public List<MedicineDocument> searchMedicines(String searchOfficialMedicineName) {
