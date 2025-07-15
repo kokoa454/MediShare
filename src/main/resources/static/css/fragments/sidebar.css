@@ -15,6 +15,17 @@ header *{
     background-color: transparent;
 }
 
+#scrollable-menu{
+    width: 100%;
+    height: calc(100dvh - 150px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-gutter: stable both-edges;
+    align-items: center;
+    scrollbar-width: thin;
+}
+
 #header-title{
     display: flex;
     flex-direction: column;
@@ -380,6 +391,7 @@ header *{
         transition: all 0.3s ease;
         z-index: 999;
         overflow-y: auto;
+        scrollbar-width: thin;
     }
 
     .overlay-menu.active {

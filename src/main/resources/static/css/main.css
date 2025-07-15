@@ -1,11 +1,3 @@
-/* Google Fonts settings
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
-*/
-
 *{
     margin: 0;
     padding: 0;
@@ -35,13 +27,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'LineSeed-Thin';
-    src: url('/fonts/line-seed/LINESeedJP_OTF_Th.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-}
-
 h1, h2 {
     font-family: 'LineSeed-ExtraBold', sans-serif;
     font-weight: 800;
@@ -52,16 +37,10 @@ h3, h4 {
     font-weight: bold;
 }
 
-h5, h6, p {
+h5, h6, p, input, textarea, select, option, a, label, span, button {
     font-family: 'LineSeed-Regular', sans-serif;
     font-weight: normal;
 }
-
-a, label, span, input, button {
-    font-family: 'LineSeed-Thin', sans-serif;
-    font-weight: 300;
-}
-
 
 :root{
     --white: #ffffff;
