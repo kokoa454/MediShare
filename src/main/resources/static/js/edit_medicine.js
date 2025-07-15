@@ -24,6 +24,42 @@ function switchSelectGroup() {
     }
     updateHiddenValue()
 }
+const medicineNameMap = new Map();
+
+function searchMedicine() {
+    const inputMedicineName = document.getElementById("medicine-official-name").value;
+    const suggestionsList = document.getElementById("medicine-official-name-suggestions");
+
+    if (inputMedicineName.length < 1) {
+        suggestionsList.innerHTML = "";
+        return;
+    }
+
+    fetch(`/searchMedicineOfficialName?name=${encodeURIComponent(inputMedicineName)}`)
+        .then(response => response.json())
+        .then(data => {
+            suggestionsList.innerHTML = "";
+            data.forEach(medicine => {
+                const option = document.createElement("option");
+                option.value = medicine.medicineOfficialName;
+                suggestionsList.appendChild(option);
+                medicineNameMap.set(medicine.medicineOfficialName, medicine.urlKusurinoShiori);
+            });
+        });
+}
+
+function setKusuriNoShioriUrl() {
+    const medicineOfficialNameInput = document.getElementById("medicine-official-name").value;
+    const urlKusurinoshioriInput = document.getElementById("url-kusurinoshiori");
+    const url = medicineNameMap.get(medicineOfficialNameInput);
+
+    if (url === undefined) {
+        urlKusurinoshioriInput.value = null;
+    } else {
+        urlKusurinoshioriInput.value = url;
+    }
+}
+
 
 selectTiming.addEventListener("change", updateHiddenValue)
 selectSelectedTime.addEventListener("change", updateHiddenValue)
