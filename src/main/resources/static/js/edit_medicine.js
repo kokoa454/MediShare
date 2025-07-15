@@ -32,7 +32,6 @@ function searchMedicine() {
 
     if (inputMedicineName.length < 1) {
         suggestionsList.innerHTML = "";
-        return;
     }
 
     fetch(`/searchMedicineOfficialName?name=${encodeURIComponent(inputMedicineName)}`)
@@ -60,6 +59,44 @@ function setKusuriNoShioriUrl() {
     }
 }
 
+function validateMedicineName() {
+    const input = document.getElementById("medicine-official-name").value;
+    const options = document.getElementById("medicine-official-name-suggestions").options;
+    const errorMessage = document.getElementById("medicine-official-name-error");
+
+    let match = false;
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === input) {
+            match = true;
+            break;
+        }
+    }
+
+    if (!match) {
+        errorMessage.style.display = "block";
+        return false;
+    } else {
+        errorMessage.style.display = "none";
+        return true;
+    }
+}
+
+function validateAndSubmit() {
+    const input = document.getElementById("medicine-official-name").value;
+
+    if (input === "") {
+        document.getElementById("medicine-official-name-error").style.display = "none";
+        return true;
+    }
+
+    if (validateMedicineName()) {
+        setKusuriNoShioriUrl();
+        return true;
+    } else {
+        document.getElementById("medicine-official-name-error").style.display = "block";
+        return false;
+    }
+}
 
 selectTiming.addEventListener("change", updateHiddenValue)
 selectSelectedTime.addEventListener("change", updateHiddenValue)

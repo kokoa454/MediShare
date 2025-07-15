@@ -128,6 +128,7 @@ public class UserMedicineService {
             int userMedicineId,
             String medicineUserInput,
             String medicineOfficialName,
+            String urlKusurinoshiori,
             String prescriptionDays,
             String userComment,
             String medicationMethod
@@ -136,6 +137,7 @@ public class UserMedicineService {
         if (medicine != null) {
             medicine.setMedicineUserInput(medicineUserInput);
             medicine.setMedicineOfficialName(medicineOfficialName);
+            medicine.setUrlKusurinoshiori(urlKusurinoshiori);
             medicine.setPrescriptionDays(prescriptionDays);
             medicine.setUserComment(userComment);
             medicine.setMedicationMethod(medicationMethod);
