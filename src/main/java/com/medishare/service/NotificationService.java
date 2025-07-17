@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.medishare.model.TimeZoneCategory;
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.model.USER_TIMETABLE;
 
@@ -43,16 +44,18 @@ public class NotificationService {
                     }
 
                     String method = medicine.getMedicationMethod();
-                    boolean needToNotify = switch (method) {
-                        case "起床時" -> now.equals(userTimetable.getWakeUp());
-                        case "朝食前" -> now.equals(userTimetable.getBeforeBreakfast());
-                        case "朝食後" -> now.equals(userTimetable.getAfterBreakfast());
-                        case "昼食前" -> now.equals(userTimetable.getBeforeLunch());
-                        case "昼食後" -> now.equals(userTimetable.getAfterLunch());
-                        case "夕食前" -> now.equals(userTimetable.getBeforeDinner());
-                        case "夕食後" -> now.equals(userTimetable.getAfterDinner());
-                        case "就寝前" -> now.equals(userTimetable.getBeforeSleep());
-                        case "食間" -> now.equals(userTimetable.getBetweenMeals());
+
+                    boolean needToNotify = switch (TimeZoneCategory.fromLabel(method)) {
+                        case WAKE_UP -> now.equals(userTimetable.getWakeUp());
+                        case BEFORE_BREAKFAST -> now.equals(userTimetable.getBeforeBreakfast());
+                        case AFTER_BREAKFAST -> now.equals(userTimetable.getAfterBreakfast());
+                        case BEFORE_LUNCH -> now.equals(userTimetable.getBeforeLunch());
+                        case AFTER_LUNCH -> now.equals(userTimetable.getAfterLunch());
+                        case BEFORE_DINNER -> now.equals(userTimetable.getBeforeDinner());
+                        case AFTER_DINNER -> now.equals(userTimetable.getAfterDinner());
+                        case BEFORE_SLEEP -> now.equals(userTimetable.getBeforeSleep());
+                        case BETWEEN_MEALS -> now.equals(userTimetable.getBetweenMeals());
+                        // 時間指定のケース
                         default -> method.matches("\\d{1,2}時") && now.equals(
                                 String.format("%02d:00", Integer.valueOf(method.replace("時", "")))
                         );
@@ -108,16 +111,17 @@ public class NotificationService {
                     }
 
                     String method = medicine.getMedicationMethod();
-                    boolean needToNotify = switch (method) {
-                        case "起床時" -> checkTime.isAfter(LocalTime.parse(userTimetable.getWakeUp()).plusMinutes(30));
-                        case "朝食前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeBreakfast()).plusMinutes(30));
-                        case "朝食後" -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterBreakfast()).plusMinutes(30));
-                        case "昼食前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeLunch()).plusMinutes(30));
-                        case "昼食後" -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterLunch()).plusMinutes(30));
-                        case "夕食前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeDinner()).plusMinutes(30));
-                        case "夕食後" -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterDinner()).plusMinutes(30));
-                        case "就寝前" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeSleep()).plusMinutes(30));
-                        case "食間" -> checkTime.isAfter(LocalTime.parse(userTimetable.getBetweenMeals()).plusMinutes(30));
+                    boolean needToNotify = switch (TimeZoneCategory.fromLabel(method)) {
+                        case WAKE_UP -> checkTime.isAfter(LocalTime.parse(userTimetable.getWakeUp()).plusMinutes(30));
+                        case BEFORE_BREAKFAST -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeBreakfast()).plusMinutes(30));
+                        case AFTER_BREAKFAST -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterBreakfast()).plusMinutes(30));
+                        case BEFORE_LUNCH -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeLunch()).plusMinutes(30));
+                        case AFTER_LUNCH -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterLunch()).plusMinutes(30));
+                        case BEFORE_DINNER -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeDinner()).plusMinutes(30));
+                        case AFTER_DINNER -> checkTime.isAfter(LocalTime.parse(userTimetable.getAfterDinner()).plusMinutes(30));
+                        case BEFORE_SLEEP -> checkTime.isAfter(LocalTime.parse(userTimetable.getBeforeSleep()).plusMinutes(30));
+                        case BETWEEN_MEALS -> checkTime.isAfter(LocalTime.parse(userTimetable.getBetweenMeals()).plusMinutes(30));
+                        // 時間指定のケース
                         default -> method.matches("\\d{1,2}時") && checkTime.isAfter(
                                 LocalTime.parse(String.format("%02d:00", Integer.valueOf(method.replace("時", "")))).plusMinutes(30)
                         );

@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TimingGroupDTO {
+public class TimeZoneGroupDTO {
     private String groupLabel;
     private List<USER_MEDICINE> medicines;
 }

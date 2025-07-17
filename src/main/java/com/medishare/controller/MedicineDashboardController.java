@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.medishare.model.USER_MEDICINE;
 import com.medishare.service.UserMedicineService;
 import com.medishare.service.UserService;
+import com.medishare.model.TimeZoneCategory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,42 +34,13 @@ public class MedicineDashboardController {
         int userId = userService.getLoginUserId();
         String titleName = "";
 
-        switch(method){
-            case "wakeUp" -> titleName = "起床時";
-            case "beforeBreakfast" -> titleName = "朝食前";
-            case "afterBreakfast" -> titleName = "朝食後";
-            case "beforeLunch" -> titleName = "昼食前";
-            case "afterLunch" -> titleName = "昼食後";
-            case "beforeDinner" -> titleName = "夕食前";
-            case "afterDinner" -> titleName = "夕食後";
-            case "beforeSleep" -> titleName = "就寝前";
-            case "betweenMeal" -> titleName = "食間";
-            case "zeroOClock" -> titleName = "0時";
-            case "oneOClock" -> titleName = "1時";
-            case "twoOClock" -> titleName = "2時";
-            case "threeOClock" -> titleName = "3時";
-            case "fourOClock" -> titleName = "4時";
-            case "fiveOClock" -> titleName = "5時";
-            case "sixOClock" -> titleName = "6時";
-            case "sevenOClock" -> titleName = "7時";
-            case "eightOClock" -> titleName = "8時";
-            case "nineOClock" -> titleName = "9時";
-            case "tenOClock" -> titleName = "10時";
-            case "elevenOClock" -> titleName = "11時";
-            case "twelveOClock" -> titleName = "12時";
-            case "thirteenOClock" -> titleName = "13時";
-            case "fourteenOClock" -> titleName = "14時";
-            case "fifteenOClock" -> titleName = "15時";
-            case "sixteenOClock" -> titleName = "16時";
-            case "seventeenOClock" -> titleName = "17時";
-            case "eighteenOClock" -> titleName = "18時";
-            case "nineteenOClock" -> titleName = "19時";
-            case "twentyOClock" -> titleName = "20時";
-            case "twentyOneOClock" -> titleName = "21時";
-            case "twentyTwoOClock" -> titleName = "22時";
-            case "twentyThreeOClock" -> titleName = "23時";
+        for (TimeZoneCategory category : TimeZoneCategory.values()) {
+            if (category.getAttrPrefix().equals(method)) {
+                titleName = category.getLabel();
+                break;
+            }
         }
-
+        
         model.addAttribute("titleName", titleName);
 
         model.addAttribute("method", method);

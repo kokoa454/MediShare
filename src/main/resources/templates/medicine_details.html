@@ -29,7 +29,7 @@
             </div>
             <div class="input-group">
                 <label for="user-comment">その他コメント</label>
-                <textarea id="user-comment" name="user-comment" placeholder="コメントは登録されていません" th:value="${medicine.userComment}" readonly></textarea>
+                <textarea id="user-comment" name="user-comment" placeholder="コメントは登録されていません" th:field="${medicine.userComment}" readonly></textarea>
             </div>
             <div id="button-container">
                 <button type="button" onclick="history.back()">戻る</button>

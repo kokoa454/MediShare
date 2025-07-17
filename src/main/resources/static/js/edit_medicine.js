@@ -5,6 +5,7 @@ const selectedTimeSelectGroup = document.getElementById("medication-method-selec
 const selectSelectedTime = document.getElementById("medication-method-selected-time-select")
 const selectTiming = document.getElementById("mediciation-method-timing-select")
 const hiddenMedicationMethod = document.getElementById("hidden-medication-method")
+const alreadyInputMedicineOfficialName = document.getElementById("medicine-official-name").value
 
 function updateHiddenValue() {
     if (timingRadio.checked) {
@@ -64,37 +65,41 @@ function validateMedicineName() {
     const options = document.getElementById("medicine-official-name-suggestions").options;
     const errorMessage = document.getElementById("medicine-official-name-error");
 
-    let match = false;
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].value === input) {
-            match = true;
-            break;
+    if(input != alreadyInputMedicineOfficialName) {
+        let match = false;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === input) {
+                match = true;
+                break;
+            }
         }
-    }
 
-    if (!match) {
-        errorMessage.style.display = "block";
-        return false;
-    } else {
-        errorMessage.style.display = "none";
-        return true;
+        if (!match) {
+            errorMessage.style.display = "block";
+            return false;
+        } else {
+            errorMessage.style.display = "none";
+            return true;
+        }
     }
 }
 
 function validateAndSubmit() {
     const input = document.getElementById("medicine-official-name").value;
 
-    if (input === "") {
-        document.getElementById("medicine-official-name-error").style.display = "none";
-        return true;
-    }
+    if(input != alreadyInputMedicineOfficialName) {
+        if (input === "") {
+            document.getElementById("medicine-official-name-error").style.display = "none";
+            return true;
+        }
 
-    if (validateMedicineName()) {
-        setKusuriNoShioriUrl();
-        return true;
-    } else {
-        document.getElementById("medicine-official-name-error").style.display = "block";
-        return false;
+        if (validateMedicineName()) {
+            setKusuriNoShioriUrl();
+            return true;
+        } else {
+            document.getElementById("medicine-official-name-error").style.display = "block";
+            return false;
+        }
     }
 }
 
