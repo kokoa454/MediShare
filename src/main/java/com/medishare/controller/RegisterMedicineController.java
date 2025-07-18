@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.medishare.model.USER_MEDICINE;
+import com.medishare.model.UserMedicine;
 import com.medishare.service.UserMedicineService;
 import com.medishare.service.UserService;
 
@@ -25,14 +25,14 @@ public class RegisterMedicineController {
     
     @GetMapping
     public String register_medicinePage(Model model) {
-        model.addAttribute("userMedicine", new USER_MEDICINE()); 
+        model.addAttribute("userMedicine", new UserMedicine()); 
 
         // register_medicine.htmlを表示
         return "register_medicine";
     }
 
     @PostMapping
-    public String register_medicinePage(@ModelAttribute USER_MEDICINE userMedicine) {
+    public String register_medicinePage(@ModelAttribute UserMedicine userMedicine) {
         try{
             if (userMedicine.getMedicineOfficialName() != null && userMedicine.getMedicineOfficialName().isEmpty()) {
             userMedicine.setMedicineOfficialName(null);

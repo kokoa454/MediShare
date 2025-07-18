@@ -8,11 +8,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "medicine")
+@Table(name = "official_medicine")
 @Entity
 @Getter
 @Setter
-public class MEDICINE {
+public class Medicine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class MEDICINE {
     @Column(unique = true)
     private String urlKusurinoShiori;
 
-    public MEDICINE(){
+    public Medicine(){
 
     }
-    public MEDICINE(String medicineOfficialName,String urlKusurinoShiori){
+    public Medicine(String medicineOfficialName,String urlKusurinoShiori){
         this.medicineOfficialName = medicineOfficialName;
         this.urlKusurinoShiori = urlKusurinoShiori;
     }

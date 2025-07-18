@@ -11,8 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.medishare.dto.TimeZoneGroupDTO;
-import com.medishare.model.USER_DATABASE;
-import com.medishare.model.USER_MEDICINE;
+import com.medishare.model.User;
+import com.medishare.model.UserMedicine;
 import com.medishare.repository.UserMedicineRepository;
 import com.medishare.repository.UserRepository;
 import com.medishare.model.TimeZoneCategory;
@@ -37,13 +37,13 @@ public class UserMedicineService {
     ) {
         Authentication userData = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = userData.getName(); // ログインユーザーのメールアドレスを取得
-        USER_DATABASE user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
+        User user = userRepository.findByUserEmail(userEmail); // メールアドレスでユーザーを検索
 
         boolean isCompleted = false;
         String completedDate = null;
 
         // エンティティに詰めて保存
-        USER_MEDICINE medicine = new USER_MEDICINE(
+        UserMedicine medicine = new UserMedicine(
                 user,
                 medicineUserInput,
                 medicineOfficialName,
@@ -60,13 +60,13 @@ public class UserMedicineService {
     
     // 時間帯の薬のみをフィルタリングし、グループ化
     public List<TimeZoneGroupDTO> getTimingMedicinesByUser(int userId){
-        List<USER_MEDICINE> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
-        Map<String, List<USER_MEDICINE>> groupedMedicines = allMedicines.stream()
+        List<UserMedicine> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
+        Map<String, List<UserMedicine>> groupedMedicines = allMedicines.stream()
             .filter(medicine -> isTimingMethod(medicine.getMedicationMethod())) // 時間帯の薬のみフィルタリング
-            .collect(Collectors.groupingBy(USER_MEDICINE::getMedicationMethod));
+            .collect(Collectors.groupingBy(UserMedicine::getMedicationMethod));
 
         List<TimeZoneGroupDTO> timingMedicines = new ArrayList<>();
-        for (Map.Entry<String, List<USER_MEDICINE>> entry : groupedMedicines.entrySet()) {
+        for (Map.Entry<String, List<UserMedicine>> entry : groupedMedicines.entrySet()) {
             timingMedicines.add(new TimeZoneGroupDTO(entry.getKey(), entry.getValue()));
         }
 
@@ -84,13 +84,13 @@ public class UserMedicineService {
 
     // 時間指定の薬のみをフィルタリングし、グループ化
     public List<TimeZoneGroupDTO> getSelectedTimeMedicinesByUser(int userId){
-        List<USER_MEDICINE> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
-        Map<String, List<USER_MEDICINE>> groupedMedicines = allMedicines.stream()
+        List<UserMedicine> allMedicines = userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
+        Map<String, List<UserMedicine>> groupedMedicines = allMedicines.stream()
             .filter(medicine -> isSelectedTimeMethod(medicine.getMedicationMethod())) // 時間帯の薬のみフィルタリング
-            .collect(Collectors.groupingBy(USER_MEDICINE::getMedicationMethod));
+            .collect(Collectors.groupingBy(UserMedicine::getMedicationMethod));
 
         List<TimeZoneGroupDTO> selectedTimeMedicines = new ArrayList<>();
-        for (Map.Entry<String, List<USER_MEDICINE>> entry : groupedMedicines.entrySet()) {
+        for (Map.Entry<String, List<UserMedicine>> entry : groupedMedicines.entrySet()) {
             selectedTimeMedicines.add(new TimeZoneGroupDTO(entry.getKey(), entry.getValue()));
         }
 
@@ -107,17 +107,17 @@ public class UserMedicineService {
     }
 
     // ユーザーIDと投薬方法でフィルタリング
-    public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethod(int userId, String medicationMethod) {
+    public List<UserMedicine> getMedicineListByUserAndMedicationMethod(int userId, String medicationMethod) {
         return  userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
     }
 
     // USER_MEDICINEのuserMedicineIdで薬を取得
-    public USER_MEDICINE getMedicineDetailsByUserMedicineId(int userMedicineId) {
+    public UserMedicine getMedicineDetailsByUserMedicineId(int userMedicineId) {
         return userMedicineRepository.findByUserMedicineId(userMedicineId);
     }
 
     // medicine.medicationMethodがタイミングの薬か時間指定の薬かを判定
-    public String isTimingOrSelectedTimeMedicine(USER_MEDICINE medicine) {
+    public String isTimingOrSelectedTimeMedicine(UserMedicine medicine) {
         TimeZoneCategory category = TimeZoneCategory.fromLabel(medicine.getMedicationMethod());
         if (category.isTiming()) {
             return "timing";
@@ -136,7 +136,7 @@ public class UserMedicineService {
             String userComment,
             String medicationMethod
     ) {
-        USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
+        UserMedicine medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
         if (medicine != null) {
             medicine.setMedicineUserInput(medicineUserInput);
             medicine.setMedicineOfficialName(medicineOfficialName);
@@ -161,18 +161,18 @@ public class UserMedicineService {
     }
 
     //userIdでそのユーザの全薬を取得
-    public List<USER_MEDICINE> getAllMedicinesByUserId(int userId) {
+    public List<UserMedicine> getAllMedicinesByUserId(int userId) {
         return userMedicineRepository.findByUserUserIdOrderByUserMedicineIdAsc(userId);
     }
 
     //キーワードで薬を検索
-    public List<USER_MEDICINE> getMedicineListByUserAndMedicationMethodAndSearch(int userId, String medicationMethod, String searchKeyword) {
+    public List<UserMedicine> getMedicineListByUserAndMedicationMethodAndSearch(int userId, String medicationMethod, String searchKeyword) {
         return userMedicineRepository.findByUserUserIdAndMedicationMethodAndMedicineUserInputContaining(userId, medicationMethod, searchKeyword);
     }
 
     // 服薬を完了させる
     public void completeMedicine(int userMedicineId, String completedDate) {
-        USER_MEDICINE medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
+        UserMedicine medicine = userMedicineRepository.findByUserMedicineId(userMedicineId);
         medicine.setCompleted(true);
         medicine.setCompletedDate(completedDate);
         int prescriptionDays = Integer.parseInt(medicine.getPrescriptionDays());
@@ -182,16 +182,16 @@ public class UserMedicineService {
 
     // すべての服薬が完了しているかを判定
     public boolean isAllMedicinesCompleted(int userId, String medicationMethod) {
-        List<USER_MEDICINE> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
-        return medicines.stream().allMatch(USER_MEDICINE::isCompleted);
+        List<UserMedicine> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+        return medicines.stream().allMatch(UserMedicine::isCompleted);
     }
 
     // 最終服薬時間をチェック
     public void checkLastMedicineTime(int userId, String medicationMethod) {
-        List<USER_MEDICINE> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
+        List<UserMedicine> medicines = userMedicineRepository.findByUserUserIdAndMedicationMethod(userId, medicationMethod);
         String formattedDate = LocalDate.now().toString();
 
-        for(USER_MEDICINE medicine: medicines) {
+        for(UserMedicine medicine: medicines) {
             if (medicine.getCompletedDate() != null && !medicine.getCompletedDate().equals(formattedDate)) {
                 medicine.setCompleted(false);
                 userMedicineRepository.save(medicine);

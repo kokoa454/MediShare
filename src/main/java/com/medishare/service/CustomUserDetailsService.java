@@ -1,6 +1,6 @@
 package com.medishare.service;
 
-import com.medishare.model.USER_DATABASE;
+import com.medishare.model.User;
 import com.medishare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        USER_DATABASE user = userRepository.findByUserEmail(email);
+        User user = userRepository.findByUserEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

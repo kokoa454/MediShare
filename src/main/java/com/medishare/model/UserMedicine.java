@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class USER_MEDICINE {
+public class UserMedicine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class USER_MEDICINE {
     // 🔗 外部キー（USER_DATABASEのuserIdと紐づけ）
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
-    private USER_DATABASE user;
+    private User user;
 
     @Column
     private String medicineOfficialName;
@@ -52,11 +52,11 @@ public class USER_MEDICINE {
     @Column
     private String completedDate;
 
-    public USER_MEDICINE() {
+    public UserMedicine() {
     }
 
-    public USER_MEDICINE(
-        USER_DATABASE user, 
+    public UserMedicine(
+        User user, 
         String medicineUserInput, 
         String medicineOfficialName, 
         String urlKusurinoshiori,

@@ -10,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.medishare.model.TimeZoneCategory;
-import com.medishare.model.USER_MEDICINE;
-import com.medishare.model.USER_TIMETABLE;
+import com.medishare.model.UserMedicine;
+import com.medishare.model.UserTimetable;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,11 +34,11 @@ public class NotificationService {
             String userLineId = userService.getUserLineId(userId);
 
             if(userLineId != null) {
-                USER_TIMETABLE userTimetable = userService.getUserTimetableByUserId(userId);
-                List<USER_MEDICINE> medicines = userMedicineService.getAllMedicinesByUserId(userId);
+                UserTimetable userTimetable = userService.getUserTimetableByUserId(userId);
+                List<UserMedicine> medicines = userMedicineService.getAllMedicinesByUserId(userId);
                 java.util.Map<String, List<String>> medicinesForNotificationMap = new java.util.HashMap<>();
 
-                for (USER_MEDICINE medicine : medicines) {
+                for (UserMedicine medicine : medicines) {
                     if (medicine.isCompleted()) {
                         continue;
                     }
@@ -101,11 +101,11 @@ public class NotificationService {
             String familyLineId = userService.getFamilyLineId(userId);
 
             if(userLineId != null) {
-                USER_TIMETABLE userTimetable = userService.getUserTimetableByUserId(userId);
-                List<USER_MEDICINE> medicines = userMedicineService.getAllMedicinesByUserId(userId);
+                UserTimetable userTimetable = userService.getUserTimetableByUserId(userId);
+                List<UserMedicine> medicines = userMedicineService.getAllMedicinesByUserId(userId);
                 java.util.Map<String, List<String>> medicinesForNotificationMap = new java.util.HashMap<>();
 
-                for (USER_MEDICINE medicine : medicines) {
+                for (UserMedicine medicine : medicines) {
                     if (medicine.isCompleted()) {
                         continue;
                     }

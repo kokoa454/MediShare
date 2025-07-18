@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class USER_TIMETABLE {
+public class UserTimetable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userTimetableId;
@@ -25,7 +25,7 @@ public class USER_TIMETABLE {
     // 🔗 外部キー（USER_DATABASEのuserIdと紐づけ）
     @OneToOne
     @JoinColumn(name = "userId", nullable = false)
-    private USER_DATABASE user;
+    private User user;
 
     @Column(nullable = true)
     private String wakeUp;
@@ -54,10 +54,10 @@ public class USER_TIMETABLE {
     @Column(nullable = true)
     private String betweenMeals;
 
-    public USER_TIMETABLE(){}
+    public UserTimetable(){}
 
-    public USER_TIMETABLE(
-        USER_DATABASE user,
+    public UserTimetable(
+        User user,
         String wakeUp,
         String beforeBreakfast,
         String afterBreakfast,

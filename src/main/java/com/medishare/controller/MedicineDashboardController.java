@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.medishare.model.USER_MEDICINE;
+import com.medishare.model.UserMedicine;
 import com.medishare.service.UserMedicineService;
 import com.medishare.service.UserService;
 import com.medishare.model.TimeZoneCategory;
@@ -45,7 +45,7 @@ public class MedicineDashboardController {
 
         model.addAttribute("method", method);
 
-        List<USER_MEDICINE> medicines;
+        List<UserMedicine> medicines;
 
         if(searchKeyword != null) {
             medicines = userMedicineService.getMedicineListByUserAndMedicationMethodAndSearch(userId, titleName, searchKeyword);

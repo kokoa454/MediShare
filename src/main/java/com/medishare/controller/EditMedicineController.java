@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.medishare.model.USER_MEDICINE;
+import com.medishare.model.UserMedicine;
 import com.medishare.service.UserMedicineService;
 import lombok.RequiredArgsConstructor;
 
@@ -35,7 +35,7 @@ public class EditMedicineController {
     }
 
     @PostMapping
-    public String editMedicine(@ModelAttribute("userMedicine") USER_MEDICINE userMedicine) {
+    public String editMedicine(@ModelAttribute("userMedicine") UserMedicine userMedicine) {
         try {
             if (userMedicine.getMedicineOfficialName() != null && userMedicine.getMedicineOfficialName().isEmpty()) {
             userMedicine.setMedicineOfficialName(null);

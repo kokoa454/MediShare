@@ -13,11 +13,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "user_database")
+@Table(name = "user")
 @Entity
 @Getter
 @Setter
-public class USER_DATABASE {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,12 +42,12 @@ public class USER_DATABASE {
     private String familyLineId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<USER_MEDICINE> medicines;
+    private List<UserMedicine> medicines;
 
-    public USER_DATABASE(){
+    public User(){
 
     }
-    public USER_DATABASE(String userEmail, String password, String familyEmail, String userName, String userLineId, String familyLineId) {
+    public User(String userEmail, String password, String familyEmail, String userName, String userLineId, String familyLineId) {
         this.userEmail = userEmail;
         this.password = password;
         this.familyEmail = familyEmail;

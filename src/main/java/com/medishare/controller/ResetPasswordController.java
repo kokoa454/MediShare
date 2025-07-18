@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.medishare.model.PASSWORD_RESET_TOKEN;
-import com.medishare.model.USER_DATABASE;
+import com.medishare.model.PasswordResetToken;
+import com.medishare.model.User;
 import com.medishare.repository.PasswordResetTokenRepository;
 import com.medishare.service.UserService;
 import com.medishare.repository.UserRepository;
@@ -44,15 +44,15 @@ public class ResetPasswordController {
         try {
             String token = body.get("token");
             String password = body.get("password");
-            Optional<PASSWORD_RESET_TOKEN> passwordResetToken = passwordResetTokenRepository.findByToken(token);
+            Optional<PasswordResetToken> passwordResetToken = passwordResetTokenRepository.findByToken(token);
 
             if(passwordResetToken.isPresent() && 
                 java.time.LocalDateTime.parse(passwordResetToken.get().getExpiryDate())
                     .isAfter(java.time.LocalDateTime.now())) {
-                PASSWORD_RESET_TOKEN passwordResetTokenEntity = passwordResetToken.get();
+                PasswordResetToken passwordResetTokenEntity = passwordResetToken.get();
 
                 String userEmail = passwordResetTokenEntity.getEmail();
-                USER_DATABASE user = userRepository.findByUserEmail(userEmail);
+                User user = userRepository.findByUserEmail(userEmail);
                 String encodedPassword = passwordEncoder.encode(password);
                 user.setPassword(encodedPassword);
                 userRepository.save(user);

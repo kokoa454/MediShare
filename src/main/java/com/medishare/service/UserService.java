@@ -8,8 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.medishare.model.USER_DATABASE;
-import com.medishare.model.USER_TIMETABLE;
+import com.medishare.model.User;
+import com.medishare.model.UserTimetable;
 import com.medishare.repository.UserRepository;
 import com.medishare.repository.UserTimetableRepository;
 
@@ -34,8 +34,8 @@ public class UserService {
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        USER_DATABASE user = new USER_DATABASE(userEmail, encodedPassword, null, null, null, null);
-        USER_TIMETABLE timetable = new USER_TIMETABLE(user, "07:00", "08:00", "09:00", "11:30", "13:00", "18:00", "19:30", "22:00", "15:00");
+        User user = new User(userEmail, encodedPassword, null, null, null, null);
+        UserTimetable timetable = new UserTimetable(user, "07:00", "08:00", "09:00", "11:30", "13:00", "18:00", "19:30", "22:00", "15:00");
         userRepository.save(user);
         userTimetableRepository.save(timetable);
         return true;
@@ -43,7 +43,7 @@ public class UserService {
 
     // ログインユーザーのIDを取得
     public int getLoginUserId(){
-        USER_DATABASE user = userRepository.findByUserEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        User user = userRepository.findByUserEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given email.");
         }
@@ -52,7 +52,7 @@ public class UserService {
 
     // ユーザーIDから家族メールアドレスを取得
     public String getFamilyEmail(int userId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -61,7 +61,7 @@ public class UserService {
 
     // ユーザIDからユーザメールアドレスを更新
     public void updateUserEmail(int userId, String userEmail){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -71,7 +71,7 @@ public class UserService {
 
     //ユーザIDから家族メールアドレスを更新
     public void updateFamilyEmail(int userId, String familyEmail){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -81,7 +81,7 @@ public class UserService {
 
     // ユーザIDからユーザ名を取得
     public String getUserName(int userId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -90,7 +90,7 @@ public class UserService {
 
     // ユーザIDからユーザLINEIDを取得
     public String getUserLineId(int userId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -99,7 +99,7 @@ public class UserService {
 
     // ユーザIDからユーザLINEIDを更新
     public void updateUserLineId(int userId, String userLineId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -113,13 +113,13 @@ public class UserService {
     }
 
     // ユーザIDからタイムテーブルを取得
-    public USER_TIMETABLE getUserTimetableByUserId(int userId){
+    public UserTimetable getUserTimetableByUserId(int userId){
         return userTimetableRepository.findByUserUserId(userId);
     }
 
     // ユーザIDからユーザ名を更新
     public void updateUserName(int userId, String userName){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -129,7 +129,7 @@ public class UserService {
 
     // ユーザIDから家族のLINEIDを取得
     public String getFamilyLineId(int userId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -138,7 +138,7 @@ public class UserService {
 
     // ユーザIDから家族のLINEIDを更新
     public void updateFamilyLineId(int userId, String familyLineId){
-        USER_DATABASE user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
         if (user == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -148,7 +148,7 @@ public class UserService {
 
     // ユーザIDから起床時のタイムテーブルを取得
     public String getWakeUpTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -157,7 +157,7 @@ public class UserService {
 
     // ユーザIDから起床時のタイムテーブルを更新
     public void updateWakeUpTime(int userId, String wakeUpTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -167,7 +167,7 @@ public class UserService {
 
     // ユーザIDから朝食前のタイムテーブルを取得
     public String getBeforeBreakfastTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -176,7 +176,7 @@ public class UserService {
 
     // ユーザIDから朝食前のタイムテーブルを更新
     public void updateBeforeBreakfastTime(int userId, String breakfastTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -186,7 +186,7 @@ public class UserService {
 
     // ユーザIDから朝食後のタイムテーブルを取得
     public String getAfterBreakfastTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -195,7 +195,7 @@ public class UserService {
 
     // ユーザIDから朝食後のタイムテーブルを更新
     public void updateAfterBreakfastTime(int userId, String afterBreakfastTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -205,7 +205,7 @@ public class UserService {
 
     // ユーザIDから昼食前のタイムテーブルを取得
     public String getBeforeLunchTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -214,7 +214,7 @@ public class UserService {
 
     // ユーザIDから昼食前のタイムテーブルを更新
     public void updateBeforeLunchTime(int userId, String lunchTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -224,7 +224,7 @@ public class UserService {
 
     // ユーザIDから昼食後のタイムテーブルを取得
     public String getAfterLunchTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -233,7 +233,7 @@ public class UserService {
 
     // ユーザIDから昼食後のタイムテーブルを更新
     public void updateAfterLunchTime(int userId, String afterLunchTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -243,7 +243,7 @@ public class UserService {
 
     // ユーザIDから夕食前のタイムテーブルを取得
     public String getBeforeDinnerTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -252,7 +252,7 @@ public class UserService {
 
     // ユーザIDから夕食前のタイムテーブルを更新
     public void updateBeforeDinnerTime(int userId, String dinnerTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -262,7 +262,7 @@ public class UserService {
 
     // ユーザIDから夕食後のタイムテーブルを取得
     public String getAfterDinnerTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -271,7 +271,7 @@ public class UserService {
 
     // ユーザIDから夕食後のタイムテーブルを更新
     public void updateAfterDinnerTime(int userId, String afterDinnerTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -281,7 +281,7 @@ public class UserService {
 
     // ユーザIDから就寝前のタイムテーブルを取得
     public String getBeforeSleepTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -290,7 +290,7 @@ public class UserService {
 
     // ユーザIDから就寝前のタイムテーブルを更新
     public void updateBeforeSleepTime(int userId, String beforeSleepTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -300,7 +300,7 @@ public class UserService {
 
     // ユーザIDから食間のタイムテーブルを取得
     public String getBetweenMealsTime(int userId){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }
@@ -309,7 +309,7 @@ public class UserService {
 
     // ユーザIDから食間のタイムテーブルを更新
     public void updateBetweenMealsTime(int userId, String betweenMealsTime){
-        USER_TIMETABLE userTimetable = userTimetableRepository.findByUserUserId(userId);
+        UserTimetable userTimetable = userTimetableRepository.findByUserUserId(userId);
         if (userTimetable == null) {
             throw new NoSuchElementException("No such user found with the given id.");
         }

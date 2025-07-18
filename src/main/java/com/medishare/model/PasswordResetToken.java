@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class PASSWORD_RESET_TOKEN {
+public class PasswordResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reset_id;
@@ -27,9 +27,9 @@ public class PASSWORD_RESET_TOKEN {
     @Column(nullable = false)
     private String expiryDate;
 
-    public PASSWORD_RESET_TOKEN() {}
+    public PasswordResetToken() {}
 
-    public PASSWORD_RESET_TOKEN(String token, String email, String expiryDate) {
+    public PasswordResetToken(String token, String email, String expiryDate) {
         this.token = token;
         this.email = email;
         this.expiryDate = expiryDate;

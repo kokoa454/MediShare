@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.medishare.model.PASSWORD_RESET_TOKEN;
-import com.medishare.model.USER_DATABASE;
+import com.medishare.model.PasswordResetToken;
+import com.medishare.model.User;
 import com.medishare.repository.PasswordResetTokenRepository;
 import com.medishare.repository.UserRepository;
 import com.medishare.service.MailService;
@@ -39,10 +39,10 @@ public class LoginController {
     public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> body) {
         String email = body.get("email");
 
-        USER_DATABASE user = userRepository.findByUserEmail(email);
+        User user = userRepository.findByUserEmail(email);
         if (user != null) {
             String token = UUID.randomUUID().toString();
-            PASSWORD_RESET_TOKEN passwordResetToken = new PASSWORD_RESET_TOKEN(token, email, LocalDateTime.now().plusHours(1).toString());
+            PasswordResetToken passwordResetToken = new PasswordResetToken(token, email, LocalDateTime.now().plusHours(1).toString());
             passwordResetTokenRepository.save(passwordResetToken);
 
             String resetLink = "http://localhost:8080/reset_password?token=" + token;
