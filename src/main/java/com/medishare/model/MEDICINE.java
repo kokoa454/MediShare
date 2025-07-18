@@ -22,14 +22,14 @@ public class Medicine {
     private String medicineOfficialName;
 
     @Column(unique = true)
-    private String urlKusurinoShiori;
+    private String urlKusurinoshiori;
 
     public Medicine(){
 
     }
-    public Medicine(String medicineOfficialName,String urlKusurinoShiori){
+    public Medicine(String medicineOfficialName,String urlKusurinoshiori){
         this.medicineOfficialName = medicineOfficialName;
-        this.urlKusurinoShiori = urlKusurinoShiori;
+        this.urlKusurinoshiori = urlKusurinoshiori;
     }
 
 }

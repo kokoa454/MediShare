@@ -18,19 +18,19 @@ def insertMedicineData():
     try:
         for medicine in medicines:
             sql = """
-            INSERT IGNORE INTO medicine (medicine_official_name, url_kusurino_shiori)
+            INSERT IGNORE INTO official_medicine (medicine_official_name, url_kusurinoshiori)
             VALUES (%s, %s)
             """
             values = (medicine['medicineOfficialName'], medicine['urlKusurinoShiori'])
             cursor.execute(sql, values)
-            
+        
+        print("official_medicineテーブルにデータを追加しました")
     except mysql.connector.Error as err:
         print(f"Error: {err}")
 
     conn.commit()
     cursor.close()
     conn.close()
-    print("medicineデータベースへのデータ挿入完了")
 
 def main():
     insertMedicineData()

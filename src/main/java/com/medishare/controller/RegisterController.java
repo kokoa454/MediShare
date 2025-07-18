@@ -45,8 +45,8 @@ public class RegisterController {
                         .body("このメールアドレスは既に登録されています");
             }
 
-            logger.info("User registration successful: user ID={}, email address={}", userService.getLoginUserId(), userEmail);
-            return ResponseEntity.ok("User registered successfully");
+            logger.info("User registration successful: user ID={}, email address={}", userService.getUserIdByEmail(userEmail), userEmail);
+            return ResponseEntity.ok("登録に成功しました");
         } catch (Exception e){
             logger.error("User registration failed: email address={}, error message={}", userEmail, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

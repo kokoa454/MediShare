@@ -31,3 +31,5 @@ line.bot.channelSecret=YOUR_LINE_BOT_CHANNEL_SECRET
 spring.data.elasticsearch.uris=YOUR_ELASTICSEARCH_URL
 spring.data.elasticsearch.username=
 spring.data.elasticsearch.password=
+
+search.engine=mysql

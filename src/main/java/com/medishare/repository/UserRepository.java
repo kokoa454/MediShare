@@ -21,6 +21,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUserId(int userId);
 
     // すべてのユーザーIDを取得する
-    @Query("SELECT u.userId FROM USER_DATABASE u")
+    @Query("SELECT u.userId FROM User u")
     List<Integer> findAllUserIds();
 }

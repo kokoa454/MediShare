@@ -41,6 +41,14 @@ public class UserService {
         return true;
     }
 
+    public int getUserIdByEmail(String userEmail) {
+        User user = userRepository.findByUserEmail(userEmail);
+        if (user == null) {
+            throw new NoSuchElementException("No such user found with the given email.");
+        }
+        return user.getUserId();
+    }
+
     // ログインユーザーのIDを取得
     public int getLoginUserId(){
         User user = userRepository.findByUserEmail(SecurityContextHolder.getContext().getAuthentication().getName());

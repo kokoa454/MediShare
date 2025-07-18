@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.medishare.document.MedicineDocument;
+import com.medishare.dto.MedicineDTO;
 import com.medishare.service.MedicineService;
 
 @RestController
@@ -16,7 +16,7 @@ public class SearchController {
     private MedicineService medicineService;
 
     @GetMapping("/searchMedicineOfficialName")
-    public List<MedicineDocument> searchOfficialMedicineName(@RequestParam String name) {
+    public List<MedicineDTO> searchOfficialMedicineName(@RequestParam String name) {
         return medicineService.searchMedicines(name);
     }
 }
