@@ -140,7 +140,7 @@ def outputJson(medicineList):
 
 def outputCsv(medicineList):
     try:
-        with open("./scripts/scrapeKusurinoshiori/medicine.csv", "w", encoding="ansi", newline='') as f:
+        with open("./scripts/scrapeKusurinoshiori/medicine.csv", "w", encoding="utf-8", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["medicineOfficialName", "urlKusurinoShiori"])
 
