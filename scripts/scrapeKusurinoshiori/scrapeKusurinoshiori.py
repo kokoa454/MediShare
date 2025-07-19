@@ -129,7 +129,7 @@ def getMedicines(soup, driver):
 
 def outputJson(medicineList):
     try:
-        with open("./src/main/scrapeKusurinoshiori/medicine.json", "w", encoding="utf-8") as f:
+        with open("./scripts/scrapeKusurinoshiori/medicine.json", "w", encoding="utf-8") as f:
             json.dump([medicine.toDict() for medicine in medicineList], f, ensure_ascii=False, indent=4)
         f.close()
         print("kusurinoshiori.jsonに出力しました")
@@ -140,7 +140,7 @@ def outputJson(medicineList):
 
 def outputCsv(medicineList):
     try:
-        with open("./src/main/scrapeKusurinoshiori/medicine.csv", "w", encoding="ansi", newline='') as f:
+        with open("./scripts/scrapeKusurinoshiori/medicine.csv", "w", encoding="ansi", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["medicineOfficialName", "urlKusurinoShiori"])
 
