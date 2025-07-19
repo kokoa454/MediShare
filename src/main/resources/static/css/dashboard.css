@@ -1,11 +1,12 @@
 body{
     width: 100%;
+    min-height: 920px;
     display: flex;
 }
 
 main{
     width: calc(100% - 480px);
-    height: 100vh;
+    height: 100%;
     padding-top: 24px;
     padding-bottom: 48px;
     display: flex;
@@ -233,6 +234,7 @@ main{
 @media (max-width: 1024px){
     body{
         display: block;
+        min-height: 0;
     }
 
     main{
