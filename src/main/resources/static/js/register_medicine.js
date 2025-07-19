@@ -64,13 +64,13 @@ function searchMedicine(){
                 const option = document.createElement("option");
                 option.value = medicine.medicineOfficialName;
                 suggestionsList.appendChild(option);
-                medicineNameMap.set(medicine.medicineOfficialName, medicine.urlKusurinoShiori);
+                medicineNameMap.set(medicine.medicineOfficialName, medicine.urlKusurinoshiori);
             });
         }
     )
 }
 
-function setKusuriNoShioriUrl() {
+function setKusuriNoshioriUrl() {
     const medicineOfficialNameInput = document.getElementById("medicine-official-name").value;
     const urlKusurinoshioriInput = document.getElementById("url-kusurinoshiori");
     const url = medicineNameMap.get(medicineOfficialNameInput);
@@ -113,7 +113,7 @@ function validateAndSubmit() {
     }
 
     if (validateMedicineName()) {
-        setKusuriNoShioriUrl();
+        setKusuriNoshioriUrl();
         return true;
     } else {
         document.getElementById("medicine-official-name-error").style.display = "block";
