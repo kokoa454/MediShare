@@ -40,12 +40,12 @@ public class RegisterController {
             boolean isRegistered = userService.registerUser(userEmail, password);
 
             if (!isRegistered) {
-                System.out.println("すでに登録されているユーザーです");
+                logger.info("User registration failed (already registered): email address={}", userEmail);
                 return ResponseEntity.status(HttpStatus.CONFLICT)
                         .body("このメールアドレスは既に登録されています");
             }
 
-            logger.info("User registration successful: user ID={}, email address={}", userService.getUserIdByEmail(userEmail), userEmail);
+            logger.warn("User registration successful: user ID={}, email address={}", userService.getUserIdByEmail(userEmail), userEmail);
             return ResponseEntity.ok("登録に成功しました");
         } catch (Exception e){
             logger.error("User registration failed: email address={}, error message={}", userEmail, e.getMessage());
