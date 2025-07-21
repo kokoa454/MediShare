@@ -15,7 +15,6 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(
-                                "/",
                                 "/login",
                                 "/css/**",
                                 "/js/**",
