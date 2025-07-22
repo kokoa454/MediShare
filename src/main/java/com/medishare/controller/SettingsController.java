@@ -2,6 +2,8 @@ package com.medishare.controller;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.medishare.service.UserService;
 
@@ -71,10 +71,10 @@ public class SettingsController {
         try {
             String familyEmail = body.get("confirmedFamilyEmail");
             userService.updateFamilyEmail(userId, familyEmail);
-            logger.info("家族メールアドレス更新成功: ユーザID={}, メールアドレス={}", userId, familyEmail);
+            logger.info("Successfully updated family email: user ID={}, email={}", userId, familyEmail);
             return ResponseEntity.ok("家族メールアドレスを更新しました");
         } catch (Exception e) {
-            logger.error("家族メールアドレス更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update family email: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("家族メールアドレスの更新に失敗しました");
         }
     }
@@ -85,10 +85,10 @@ public class SettingsController {
         try {
             String userEmail = body.get("confirmedUserEmail");
             userService.updateUserEmail(userId, userEmail);
-            logger.info("ユーザーメールアドレス更新成功: ユーザID={}, メールアドレス={}", userId, userEmail);
+            logger.info("Successfully updated user email: user ID={}, email={}", userId, userEmail);
             return ResponseEntity.ok("ユーザーメールアドレスを更新しました");
         } catch (Exception e) {
-            logger.error("ユーザーメールアドレス更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update user email: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザーメールアドレスの更新に失敗しました");
         }
     }
@@ -99,10 +99,10 @@ public class SettingsController {
         try {
             String userName = body.get("confirmedUserName");
             userService.updateUserName(userId, userName);
-            logger.info("ユーザー名更新成功: ユーザID={}, ユーザー名={}", userId, userName);
+            logger.info("Successfully updated user name: user ID={}, name={}", userId, userName);
             return ResponseEntity.ok("ユーザー名を更新しました");
         } catch (Exception e) {
-            logger.error("ユーザー名更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update user name: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザー名の更新に失敗しました");
         }
     }
@@ -113,10 +113,10 @@ public class SettingsController {
         try{
             String userLineId = body.get("confirmedUserLineId");
             userService.updateUserLineId(userId, userLineId);
-            logger.info("ユーザーラインID更新成功: ユーザID={}, ラインID={}", userId, userLineId);
+            logger.info("Successfully updated user line ID: user ID={}, LINE ID={}", userId, userLineId);
             return ResponseEntity.ok("ユーザーラインIDを更新しました");
         } catch (Exception e) {
-            logger.error("ユーザーラインID更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update user line ID: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("ユーザーラインIDの更新に失敗しました");
         }
     }
@@ -127,10 +127,10 @@ public class SettingsController {
         try{
             String familyLineId = body.get("confirmedFamilyLineId");
             userService.updateFamilyLineId(userId, familyLineId);
-            logger.info("家族LINEID更新成功: ユーザID={}, LINEID={}", userId, familyLineId);
+            logger.info("Successfully updated family line ID: user ID={}, LINE ID={}", userId, familyLineId);
             return ResponseEntity.ok("家族LINEIDを更新しました");
         } catch (Exception e) {
-            logger.error("家族LINEID更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update family line ID: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("家族LINEIDの更新に失敗しました");
         }
     }
@@ -141,10 +141,10 @@ public class SettingsController {
         try{
             String wakeUpTime = body.get("confirmedWakeUpTime");
             userService.updateWakeUpTime(userId, wakeUpTime);
-            logger.info("起床時間更新成功: ユーザID={}, 起床時間={}", userId, wakeUpTime);
+            logger.info("Successfully updated wake up time: user ID={}, wake up time={}", userId, wakeUpTime);
             return ResponseEntity.ok("起床時間を更新しました");
         } catch (Exception e) {
-            logger.error("起床時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update wake up time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("起床時間の更新に失敗しました");
         }
     }
@@ -155,10 +155,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeBreakfastTime");
             userService.updateBeforeBreakfastTime(userId, time);
-            logger.info("朝食前時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated before breakfast time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("朝食前時間を更新しました");
         } catch (Exception e) {
-            logger.error("朝食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update before breakfast time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("朝食前時間の更新に失敗しました");
         }
     }
@@ -169,10 +169,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterBreakfastTime");
             userService.updateAfterBreakfastTime(userId, time);
-            logger.info("朝食後時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated after breakfast time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("朝食後時間を更新しました");
         } catch (Exception e) {
-            logger.error("朝食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update after breakfast time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("朝食後時間の更新に失敗しました");
         }
     }
@@ -183,10 +183,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeLunchTime");
             userService.updateBeforeLunchTime(userId, time);
-            logger.info("昼食前時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated before lunch time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("昼食前時間を更新しました");
         } catch (Exception e) {
-            logger.error("昼食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update before lunch time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("昼食前時間の更新に失敗しました");
         }
     }
@@ -197,10 +197,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterLunchTime");
             userService.updateAfterLunchTime(userId, time);
-            logger.info("昼食後時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated after lunch time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("昼食後時間を更新しました");
         } catch (Exception e) {
-            logger.error("昼食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update after lunch time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("昼食後時間の更新に失敗しました");
         }
     }
@@ -211,10 +211,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeDinnerTime");
             userService.updateBeforeDinnerTime(userId, time);
-            logger.info("夕食前時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated before dinner time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("夕食前時間を更新しました");
         } catch (Exception e) {
-            logger.error("夕食前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update before dinner time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("夕食前時間の更新に失敗しました");
         }
     }
@@ -225,10 +225,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedAfterDinnerTime");
             userService.updateAfterDinnerTime(userId, time);
-            logger.info("夕食後時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated after dinner time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("夕食後時間を更新しました");
         } catch (Exception e) {
-            logger.error("夕食後時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update after dinner time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("夕食後時間の更新に失敗しました");
         }
     }
@@ -239,10 +239,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBeforeSleepTime");
             userService.updateBeforeSleepTime(userId, time);
-            logger.info("就寝前時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated before sleep time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("就寝前時間を更新しました");
         } catch (Exception e) {
-            logger.error("就寝前時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update before sleep time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("就寝前時間の更新に失敗しました");
         }
     }
@@ -253,10 +253,10 @@ public class SettingsController {
         try {
             String time = body.get("confirmedBetweenMealsTime");
             userService.updateBetweenMealsTime(userId, time);
-            logger.info("食間時間更新成功: ユーザID={}, 時間={}", userId, time);
+            logger.info("Successfully updated between meals time: user ID={}, time={}", userId, time);
             return ResponseEntity.ok("食間時間を更新しました");
         } catch (Exception e) {
-            logger.error("食間時間更新失敗: ユーザID={}, エラー={}", userId, e.getMessage());
+            logger.error("Failed to update between meals time: user ID={}, error={}", userId, e.getMessage());
             return ResponseEntity.status(500).body("食間時間の更新に失敗しました");
         }
     }
