@@ -31,7 +31,7 @@ function searchMedicine() {
     const inputMedicineName = document.getElementById("medicine-official-name").value;
     const suggestionsList = document.getElementById("medicine-official-name-suggestions");
 
-    if (inputMedicineName.length < 1) {
+    if (inputMedicineName.length < 2) {
         suggestionsList.innerHTML = "";
     }
 
@@ -111,3 +111,9 @@ selectedTimeRadio.addEventListener("change", switchSelectGroup)
 window.addEventListener("DOMContentLoaded", () => {
     switchSelectGroup()
 });
+
+let debounceTimer;
+function debouncedSearchMedicine() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(searchMedicine, 400);
+}
