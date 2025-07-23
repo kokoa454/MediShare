@@ -5,8 +5,8 @@ const urlsToCache = [
     '/index.html',
     '/css/main.css',
     '/css/login.css',
-    '/img/icon-192.png',
-    '/img/icon-512.png',
+    '/img/icon-192.webp',
+    '/img/icon-512.webp',
     '/img/loading-cat.gif'
 ];
 

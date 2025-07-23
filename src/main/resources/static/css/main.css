@@ -30,16 +30,19 @@
 h1, h2 {
     font-family: 'LineSeed-ExtraBold', sans-serif;
     font-weight: 800;
+    color: var(--black);
 }
 
 h3, h4 {
     font-family: 'LineSeed-Bold', sans-serif;
     font-weight: bold;
+    color: var(--black);
 }
 
 h5, h6, p, input, textarea, select, option, a, label, span, button {
     font-family: 'LineSeed-Regular', sans-serif;
     font-weight: normal;
+    color: var(--black);
 }
 
 :root{
