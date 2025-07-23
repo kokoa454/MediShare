@@ -1,8 +1,5 @@
 const CACHE_NAME = "medishare-cache-v1";
 const urlsToCache = [
-    '/',
-    '/login',
-    '/index.html',
     '/css/main.css',
     '/css/login.css',
     '/img/icon-192.webp',
@@ -22,10 +19,7 @@ self.addEventListener('fetch', function(event) {
     if (event.request.method !== 'GET') return;
 
     event.respondWith(
-        fetch(event.request)
-            .catch(() => {
-                return caches.match('/index.html');
-            })
+        fetch(event.request).catch(() => caches.match(event.request))
     );
 });
 
