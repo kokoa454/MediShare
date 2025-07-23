@@ -2,7 +2,7 @@ main{
     width: 100%;
     min-height: calc(100vh - 178px);
     padding: 20px 0 90px 0;
-    background: url(../img/background.png) no-repeat center center fixed;
+    background: url(../img/background.webp) no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
