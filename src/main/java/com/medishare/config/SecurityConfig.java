@@ -26,7 +26,10 @@ public class SecurityConfig {
                                 "/privacy_policy",
                                 "/terms_of_use",
                                 "/manifest.json",
-                                "/callback"
+                                "/callback",
+                                "/fonts/**",
+                                "sw.js",
+                                "manifest.json"
                         )
                         .permitAll()
                         .anyRequest()
