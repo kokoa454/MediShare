@@ -69,7 +69,7 @@ public class MedicineService {
                 .map(medicine -> new MedicineDTO(medicine.getMedicineOfficialName(), medicine.getUrlKusurinoshiori()))
                 .collect(Collectors.toList());
         } else {
-            return medicineRepository.findByMedicineOfficialNameContainingIgnoreCase(searchOfficialMedicineName)
+            return medicineRepository.findTop30ByMedicineOfficialNameContainingIgnoreCase(searchOfficialMedicineName)
                 .stream()
                 .map(medicine -> new MedicineDTO(medicine.getMedicineOfficialName(), medicine.getUrlKusurinoshiori()))
                 .collect(Collectors.toList());

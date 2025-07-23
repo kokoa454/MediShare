@@ -8,7 +8,7 @@
         <form th:action="@{/register_medicine}" th:object="${userMedicine}" method="post" id="register-medicine-form" onsubmit="return validateAndSubmit();">
             <div class="input-group">
                 <label for="medicine-official-name">お薬の正式名称<span class="error-message" id="medicine-official-name-error">正しいお薬の名前を入力してください</span></label>
-                <input type="text" id="medicine-official-name" th:field="*{medicineOfficialName}" placeholder="カロナール錠200 など" list="medicine-official-name-suggestions" oninput="searchMedicine()" onchange="setKusuriNoShioriUrl()">
+                <input type="text" id="medicine-official-name" th:field="*{medicineOfficialName}" placeholder="カロナール錠200 など" list="medicine-official-name-suggestions" oninput="debouncedSearchMedicine()" onchange="setKusurinoshioriUrl()">
                 <datalist id="medicine-official-name-suggestions"></datalist>
                 <input type="hidden" id="url-kusurinoshiori" th:field="*{urlKusurinoshiori}">
                 <p id="medicine-official-name-description">お薬の正式名称を登録することで、「くすりのしおり」と連携することができます</p>

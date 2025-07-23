@@ -10,7 +10,7 @@
                 <label for="medicine-official-name">お薬の正式名称</label>
                 <input type="text" id="medicine-name" name="medicine-name" placeholder="登録されていません" th:value="${medicine.medicineOfficialName}" readonly>
                 <div id="toUrlKusurinoshiori" th:if="${medicine.urlKusurinoshiori}">
-                    <img th:src="@{/img/link-icon.png}" alt="リンクアイコン">
+                    <img th:src="@{/img/link-icon.webp}" alt="リンクアイコン">
                     <p>このお薬についての詳細は</p>
                     <a th:href="${medicine.urlKusurinoshiori}" target="_blank" rel="noopener noreferrer">こちら</a>
                 </div>
