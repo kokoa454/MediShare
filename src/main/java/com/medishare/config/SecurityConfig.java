@@ -29,7 +29,8 @@ public class SecurityConfig {
                                 "/callback",
                                 "/fonts/**",
                                 "sw.js",
-                                "manifest.json"
+                                "manifest.json",
+                                "favicon.ico"
                         )
                         .permitAll()
                         .anyRequest()
