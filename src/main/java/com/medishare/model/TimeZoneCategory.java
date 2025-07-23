@@ -5,15 +5,15 @@ import org.slf4j.LoggerFactory;
 
 public enum TimeZoneCategory {
     // タイミング
-    WAKE_UP("起床時", "タイミング", "wakeUp", "wake-up-photo.png"),
-    BEFORE_BREAKFAST("朝食前", "タイミング", "beforeBreakfast", "before-breakfast-photo.png"),
-    AFTER_BREAKFAST("朝食後", "タイミング", "afterBreakfast", "after-breakfast-photo.png"),
-    BEFORE_LUNCH("昼食前", "タイミング", "beforeLunch", "before-lunch-photo.png"),
-    AFTER_LUNCH("昼食後", "タイミング", "afterLunch", "after-lunch-photo.png"),
-    BEFORE_DINNER("夕食前", "タイミング", "beforeDinner", "before-dinner-photo.png"),
-    AFTER_DINNER("夕食後", "タイミング", "afterDinner", "after-dinner-photo.png"),
-    BEFORE_SLEEP("就寝前", "タイミング", "beforeSleep", "before-sleep-photo.png"),
-    BETWEEN_MEALS("食間", "タイミング", "betweenMeals", "between-meals-photo.png"),
+    WAKE_UP("起床時", "タイミング", "wakeUp", "wake-up-photo.webp"),
+    BEFORE_BREAKFAST("朝食前", "タイミング", "beforeBreakfast", "before-breakfast-photo.webp"),
+    AFTER_BREAKFAST("朝食後", "タイミング", "afterBreakfast", "after-breakfast-photo.webp"),
+    BEFORE_LUNCH("昼食前", "タイミング", "beforeLunch", "before-lunch-photo.webp"),
+    AFTER_LUNCH("昼食後", "タイミング", "afterLunch", "after-lunch-photo.webp"),
+    BEFORE_DINNER("夕食前", "タイミング", "beforeDinner", "before-dinner-photo.webp"),
+    AFTER_DINNER("夕食後", "タイミング", "afterDinner", "after-dinner-photo.webp"),
+    BEFORE_SLEEP("就寝前", "タイミング", "beforeSleep", "before-sleep-photo.webp"),
+    BETWEEN_MEALS("食間", "タイミング", "betweenMeals", "between-meals-photo.webp"),
 
     // 時間指定
     ZERO_O_CLOCK("0時", "時間指定", "zeroOClock", null),

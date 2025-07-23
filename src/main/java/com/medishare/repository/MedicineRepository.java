@@ -8,5 +8,5 @@ import com.medishare.model.Medicine;
 
 public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
     List<Medicine> findAll();
-    List<Medicine> findByMedicineOfficialNameContainingIgnoreCase(String medicineOfficialName);
+    List<Medicine> findTop30ByMedicineOfficialNameContainingIgnoreCase(String medicineOfficialName);
 }

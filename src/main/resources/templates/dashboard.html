@@ -6,7 +6,7 @@
     <main>
         <h1 id="page-title">お薬の時間帯</h1>
         <button id="toRegisterMedicine">
-            <img th:src="@{/img/plus-icon.png}" alt="登録アイコン">
+            <img th:src="@{/img/plus-icon.webp}" alt="登録アイコン">
         </button>
 
         <section id="tab-container">
@@ -23,7 +23,7 @@
                     <img th:src="@{'/img/' + ${category.photoName}}" th:alt="${category.label + 'の写真'}">
                     <p th:text="${category.label}"></p>
                     <img th:if="${isCompletedMap[category.attrPrefix]}"
-                        th:src="@{/img/completed-icon.png}"
+                        th:src="@{/img/completed-icon.webp}"
                         th:alt="完了済アイコン"
                         th:id="${category.attrPrefix + '-icon'}"
                         class="completed-icon">
@@ -42,7 +42,7 @@
                         th:onclick="|location.href='@{/medicine_dashboard(method=${category.attrPrefix})}'|">
                     <p th:text="${category.label}"></p>
                     <img th:if="${isCompletedMap[category.attrPrefix]}"
-                        th:src="@{/img/completed-icon.png}"
+                        th:src="@{/img/completed-icon.webp}"
                         th:alt="完了済アイコン"
                         th:id="${category.attrPrefix + '-icon'}"
                         class="completed-icon">
