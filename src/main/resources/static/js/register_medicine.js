@@ -70,7 +70,7 @@ function searchMedicine(){
     )
 }
 
-function setKusuriNoshioriUrl() {
+function setKusurinoshioriUrl() {
     const medicineOfficialNameInput = document.getElementById("medicine-official-name").value;
     const urlKusurinoshioriInput = document.getElementById("url-kusurinoshiori");
     const url = medicineNameMap.get(medicineOfficialNameInput);
@@ -113,7 +113,7 @@ function validateAndSubmit() {
     }
 
     if (validateMedicineName()) {
-        setKusuriNoshioriUrl();
+        setKusurinoshioriUrl();
         return true;
     } else {
         document.getElementById("medicine-official-name-error").style.display = "block";
